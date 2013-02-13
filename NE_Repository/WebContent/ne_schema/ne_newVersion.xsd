@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+            xmlns:xml="http://www.w3.org/XML/1998/namespace"
+	    targetNamespace="http://www.natural-europe.eu/nhm/"
+	    xmlns:tns="http://www.natural-europe.eu/nhm/"              
+            elementFormDefault="qualified"
+            attributeFormDefault="unqualified">
+                
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/xml.xsd"/>
+                
+  <xs:element name="record" type="tns:RecordType"/>            
+                       
+  <xs:complexType name="RecordType">
+    <xs:sequence>    
+      <xs:element name="header" minOccurs="1" maxOccurs="1">
+	<xs:complexType>
+	  <xs:sequence> 
+            <xs:element name="id" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="collectionId" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="createdOn" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="createdBy" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="lastModifiedOn" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="lastModifiedBy" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="deletedOn" type="xs:dateTime" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="deletedBy" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="version" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="status" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="access" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="validated" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="presentedToII" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="disseminatedToBiocase" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="metadataLanguages" minOccurs="1" maxOccurs="1">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="metadataLanguage" type="xs:string" minOccurs="0" maxOccurs="unbounded"/> 
+                </xs:sequence>    
+              </xs:complexType>   
+            </xs:element>
+	  </xs:sequence>         
+	</xs:complexType> 	
+      </xs:element>
+      <xs:element name="metadata" minOccurs="1" maxOccurs="1">
+	<xs:complexType>
+	  <xs:sequence>
+            <xs:element name="provider" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="dataProvider" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="objectUri" type="xs:anyURI" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="contextUri" type="xs:anyURI" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="contentType" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="licenseUri" type="xs:anyURI" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="thumbnailUri" type="xs:anyURI" minOccurs="0" maxOccurs="1"/>
+            
+            <xs:element name="scientificName" type="tns:VocabTermType" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="classification" type="tns:VocabTermType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="commonName" type="tns:LangStringType" minOccurs="0" maxOccurs="unbounded"/>             
+               
+            <xs:element name="title" type="tns:LangStringType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="creator" type="tns:AnnotatedTermType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="subject" type="tns:LangStringType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="description" type="tns:LangStringType" minOccurs="0" maxOccurs="unbounded"/>      
+            <xs:element name="contributor" type="tns:AnnotatedTermType" minOccurs="0" maxOccurs="unbounded"/>           
+            <xs:element name="date" type="tns:AnnotatedTermType" minOccurs="0" maxOccurs="unbounded"/>         
+            <xs:element name="type" type="tns:VocabTermType" minOccurs="0" maxOccurs="unbounded"/>          
+            <xs:element name="format" type="tns:LangStringType" minOccurs="0" maxOccurs="unbounded"/>                      
+            <xs:element name="identifier" type="tns:LangStringType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="source" type="tns:LangStringType" minOccurs="0" maxOccurs="unbounded"/>           
+            <xs:element name="language" type="tns:LangStringType" minOccurs="0" maxOccurs="unbounded"/> 
+            <xs:element name="relation" type="tns:LangStringType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="rights" type="tns:AnnotatedTermType" minOccurs="0" maxOccurs="unbounded"/>       
+            
+            <xs:element name="alternative" type="tns:LangStringType" minOccurs="1" maxOccurs="unbounded"/> 
+            <xs:element name="created" type="tns:LangStringType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="extent" type="tns:LangStringType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="medium" type="tns:LangStringType" minOccurs="0" maxOccurs="unbounded"/>  
+            <xs:element name="isVersionOf" type="tns:LangStringType" minOccurs="0" maxOccurs="unbounded"/>  
+            <xs:element name="hasVersion" type="tns:LangStringType" minOccurs="0" maxOccurs="unbounded"/> 
+            <xs:element name="isReplacedBy" type="tns:LangStringType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="replaces" type="tns:LangStringType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="isRequiredBy" type="tns:LangStringType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="requires" type="tns:LangStringType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="isPartOf" type="tns:LangStringType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="hasPart" type="tns:LangStringType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="isReferencedBy" type="tns:LangStringType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="references" type="tns:LangStringType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="isFormatOf" type="tns:LangStringType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="hasFormat" type="tns:LangStringType" minOccurs="0" maxOccurs="unbounded"/> 
+            <xs:element name="conformsTo" type="tns:LangStringType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="spatial" type="tns:AnnotatedTermType" minOccurs="0" maxOccurs="unbounded"/>  
+            <xs:element name="temporal" type="tns:LangStringType" minOccurs="0" maxOccurs="unbounded"/> 
+
+            <xs:element name="geolocation" type="tns:GeolocationType" minOccurs="0" maxOccurs="1"/>  
+	  </xs:sequence>
+	</xs:complexType>
+      </xs:element>
+    </xs:sequence>    
+  </xs:complexType>
+  <xs:complexType name="AnnotatedTermType">
+      <xs:simpleContent>
+          <xs:extension base="xs:string">
+              <xs:attribute name="flag" type="xs:string" use="optional"/>
+              <xs:attribute name="annotation" type="xs:string" use="optional"/>
+              <xs:attribute ref="xml:lang" use="optional"/>
+          </xs:extension>
+      </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="VocabTermType">
+      <xs:simpleContent>
+          <xs:extension base="xs:string">  
+              <xs:attribute name="flag" type="xs:string" use="optional"/>
+              <xs:attribute name="annotation" type="xs:string" use="optional"/>
+              <xs:attribute name="vocab" type="xs:string" use="optional"/>
+              <xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+              <xs:attribute ref="xml:lang" use="optional"/>
+          </xs:extension>
+      </xs:simpleContent>
+  </xs:complexType>   
+  <xs:complexType name="LangStringType">
+      <xs:simpleContent>
+          <xs:extension base="xs:string">
+              <xs:attribute name="flag" type="xs:string" use="optional"/>
+              <xs:attribute ref="xml:lang" use="optional"/>
+          </xs:extension>
+      </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="GeolocationType">
+      <xs:attribute name="latitude" type="xs:double" use="optional"/>
+      <xs:attribute name="longitude" type="xs:double" use="optional"/>
+      <xs:attribute name="elevation" type="xs:double" use="optional"/>
+  </xs:complexType>
+</xs:schema>                
