@@ -73,67 +73,68 @@ public class NEHandler extends DocumentHandler {
 
 	public void chechHeaderSection(String qName) {
 
-		if (qName.equalsIgnoreCase("ne:id")) {
+		if (qName.equalsIgnoreCase("ne:id") || qName.equalsIgnoreCase("id")) {
 			headerType.setId(true);
 		}
-		if (qName.equalsIgnoreCase("ne:collectionId")) {
+		if (qName.equalsIgnoreCase("ne:collectionId")
+				|| qName.equalsIgnoreCase("collectionId")) {
 
 			headerType.setCollectionId(true);
 		}
 
-		if (qName.equalsIgnoreCase("ne:createdOn")) {
+		if (qName.equalsIgnoreCase("ne:createdOn") || qName.equalsIgnoreCase("createdOn")) {
 			headerType.setCreatedOn(true);
 		}
-		if (qName.equalsIgnoreCase("ne:createdBy")) {
+		if (qName.equalsIgnoreCase("ne:createdBy")|| qName.equalsIgnoreCase("createdBy")) {
 
 			headerType.setCreatedBy(true);
 		}
-		if (qName.equalsIgnoreCase("ne:lastModifiedOn")) {
+		if (qName.equalsIgnoreCase("ne:lastModifiedOn")||qName.equalsIgnoreCase("lastModifiedOn")) {
 
 			headerType.setLastModifiedOn(true);
 		}
-		if (qName.equalsIgnoreCase("ne:lastModifiedBy")) {
+		if (qName.equalsIgnoreCase("ne:lastModifiedBy")||qName.equalsIgnoreCase("lastModifiedBy")) {
 
 			headerType.setLastModifiedOn(true);
 		}
-		if (qName.equalsIgnoreCase("ne:deletedOn")) {
+		if (qName.equalsIgnoreCase("ne:deletedOn")||qName.equalsIgnoreCase("deletedOn")) {
 
 			headerType.setDeletedOn(true);
 		}
 
-		if (qName.equalsIgnoreCase("ne:deletedBy")) {
+		if (qName.equalsIgnoreCase("ne:deletedBy")||qName.equalsIgnoreCase("deletedBy")) {
 
 			headerType.setDeletedBy(true);
 		}
-		if (qName.equalsIgnoreCase("ne:version")) {
+		if (qName.equalsIgnoreCase("ne:version")||qName.equalsIgnoreCase("version")) {
 
 			headerType.setVersion(true);
 		}
-		if (qName.equalsIgnoreCase("ne:status")) {
+		if (qName.equalsIgnoreCase("ne:status")||qName.equalsIgnoreCase("status")) {
 
 			headerType.setStatus(true);
 		}
-		if (qName.equalsIgnoreCase("ne:access")) {
+		if (qName.equalsIgnoreCase("ne:access")||qName.equalsIgnoreCase("access")) {
 
 			headerType.setAccess(true);
 		}
-		if (qName.equalsIgnoreCase("ne:validated")) {
+		if (qName.equalsIgnoreCase("ne:validated")||qName.equalsIgnoreCase("validated")) {
 
 			headerType.setValidated(true);
 		}
-		if (qName.equalsIgnoreCase("ne:metadataLanguages")) {
+		if (qName.equalsIgnoreCase("ne:metadataLanguages")||qName.equalsIgnoreCase("metadataLanguages")) {
 			headerType.setMetadataLangs(true);
 
 		}
-		if (qName.equalsIgnoreCase("ne:metadataLanguage")) {
+		if (qName.equalsIgnoreCase("ne:metadataLanguage")||qName.equalsIgnoreCase("metadataLanguage")) {
 
 			headerType.setMetadataLang(true);
 		}
-		if (qName.equalsIgnoreCase("ne:presentedToII")) {
+		if (qName.equalsIgnoreCase("ne:presentedToII")||qName.equalsIgnoreCase("presentedToII")) {
 
 			headerType.setPresentedToII(true);
 		}
-		if (qName.equalsIgnoreCase("ne:disseminatedToBiocase")) {
+		if (qName.equalsIgnoreCase("ne:disseminatedToBiocase")||qName.equalsIgnoreCase("disseminatedToBiocase")) {
 
 			headerType.setDisseminatedToBiocase(true);
 		}
