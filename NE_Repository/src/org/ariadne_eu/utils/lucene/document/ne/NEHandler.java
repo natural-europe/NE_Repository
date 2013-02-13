@@ -66,8 +66,19 @@ public class NEHandler extends DocumentHandler {
 	public void startElement(String uri, String localName, String qName,
 			Attributes atts) throws SAXException {
 
-		//checkMetadataSection(qName, atts);
+		checkMetadataSection(qName, atts);
 
+	}
+
+	public void setAttributeValues(Attributes atts, String fieldName) {
+		if (atts != null && atts.getLength() != 0) {
+			for (int i = 0; i < atts.getLength(); i++) {
+				String name = atts.getQName(i);
+				String data = atts.getValue(name);
+				doc.add(new Field(fieldName + name, data, Field.Store.YES,
+						Field.Index.NOT_ANALYZED));
+			}
+		}
 	}
 
 	public void checkMetadataSection(String qName, Attributes atts) {
@@ -75,164 +86,184 @@ public class NEHandler extends DocumentHandler {
 		if (qName.equalsIgnoreCase("ne:scientificName")
 				|| qName.equalsIgnoreCase("scientificName")) {
 
-			doc.add(new Field("metadata.scientificName@flag", atts
-					.getValue("flag"), Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
-
-			doc.add(new Field("metadata.scientificName@vocab", atts
-					.getValue("vocab"), Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
-
-			doc.add(new Field("metadata.scientificName@uri", atts
-					.getValue("uri"), Field.Store.YES, Field.Index.NOT_ANALYZED));
-
-			doc.add(new Field("metadata.scientificNamelang", atts
-					.getValue("xml:lang"), Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
+			String fieldName = "metadata.scientificName@";
+			setAttributeValues(atts, fieldName);
 
 		}
 		if (qName.equalsIgnoreCase("ne:classification")
 				|| qName.equalsIgnoreCase("classification")) {
-
+			String fieldName = "metadata.classification@";
+			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:commonName")
 				|| qName.equalsIgnoreCase("commonName")) {
-
+			String fieldName = "metadata.commonName@";
+			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:title")
 				|| qName.equalsIgnoreCase("title")) {
-
+			String fieldName = "metadata.title@";
+			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:creator")
 				|| qName.equalsIgnoreCase("creator")) {
-
+			String fieldName = "metadata.creator@";
+			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:subject")
 				|| qName.equalsIgnoreCase("subject")) {
-
+			String fieldName = "metadata.subject@";
+			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:description")
 				|| qName.equalsIgnoreCase("description")) {
-
+			String fieldName = "metadata.description@";
+			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:contributor")
 				|| qName.equalsIgnoreCase("contributor")) {
-
+			String fieldName = "metadata.contributor@";
+			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:date") || qName.equalsIgnoreCase("date")) {
 
-			String annotation = atts.getValue("annotation");
-			if (!annotation.equals(null))
-				doc.add(new Field("metadata.dateName@annotation", annotation,
-						Field.Store.YES, Field.Index.NOT_ANALYZED));
+			String fieldName = "metadata.date@";
+			setAttributeValues(atts, fieldName);
 
 		}
 		if (qName.equalsIgnoreCase("ne:type") || qName.equalsIgnoreCase("type")) {
-
+			String fieldName = "metadata.type@";
+			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:format")
 				|| qName.equalsIgnoreCase("format")) {
-
+			String fieldName = "metadata.format@";
+			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:identifier")
 				|| qName.equalsIgnoreCase("identifier")) {
-
+			String fieldName = "metadata.identifier@";
+			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:source")
 				|| qName.equalsIgnoreCase("source")) {
-
+			String fieldName = "metadata.source@";
+			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:language")
 				|| qName.equalsIgnoreCase("language")) {
-
+			String fieldName = "metadata.language@";
+			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:relation")
 				|| qName.equalsIgnoreCase("relation")) {
-
+			String fieldName = "metadata.relation@";
+			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:rights")
 				|| qName.equalsIgnoreCase("rights")) {
-
+			String fieldName = "metadata.rights@";
+			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:alternative")
 				|| qName.equalsIgnoreCase("alternative")) {
-
+			String fieldName = "metadata.alternative@";
+			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:created")
 				|| qName.equalsIgnoreCase("created")) {
-
+			String fieldName = "metadata.created@";
+			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:extent")
 				|| qName.equalsIgnoreCase("extent")) {
-
+			String fieldName = "metadata.extent@";
+			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:medium")
 				|| qName.equalsIgnoreCase("medium")) {
-
+			String fieldName = "metadata.medium@";
+			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:isVersionOf")
 				|| qName.equalsIgnoreCase("isVersionOf")) {
-
+			String fieldName = "metadata.isVersionOf@";
+			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:hasVersion")
 				|| qName.equalsIgnoreCase("hasVersion")) {
-
+			String fieldName = "metadata.hasVersion@";
+			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:isReplacedBy")
 				|| qName.equalsIgnoreCase("isReplacedBy")) {
-
+			String fieldName = "metadata.isReplacedBy@";
+			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:replaces")
 				|| qName.equalsIgnoreCase("replaces")) {
-
+			String fieldName = "metadata.replaces@";
+			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:isRequiredBy")
 				|| qName.equalsIgnoreCase("isRequiredBy")) {
-
+			String fieldName = "metadata.isRequiredBy@";
+			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:requires")
 				|| qName.equalsIgnoreCase("requires")) {
-
+			String fieldName = "metadata.requires@";
+			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:isPartOf")
 				|| qName.equalsIgnoreCase("isPartOf")) {
-
+			String fieldName = "metadata.isPartOf@";
+			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:hasPart")
 				|| qName.equalsIgnoreCase("hasPart")) {
-
+			String fieldName = "metadata.hasPart@";
+			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:isReferencedBy")
 				|| qName.equalsIgnoreCase("isReferencedBy")) {
-
+			String fieldName = "metadata.isReferencedBy@";
+			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:references")
 				|| qName.equalsIgnoreCase("references")) {
-
+			String fieldName = "metadata.references@";
+			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:isFormatOf")
 				|| qName.equalsIgnoreCase("isFormatOf")) {
-
+			String fieldName = "metadata.isFormatOf@";
+			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:hasFormat")
 				|| qName.equalsIgnoreCase("hasFormat")) {
-
+			String fieldName = "metadata.hasFormat@";
+			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:conformsTo")
 				|| qName.equalsIgnoreCase("conformasTo")) {
-
+			String fieldName = "metadata.conformasTo@";
+			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:spatial")
 				|| qName.equalsIgnoreCase("spatial")) {
-
+			String fieldName = "metadata.spatial@";
+			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:temporal")
 				|| qName.equalsIgnoreCase("temporal")) {
-
+			String fieldName = "metadata.temporal@";
+			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:geolocation")
 				|| qName.equalsIgnoreCase("geolocation")) {
-
+			String fieldName = "metadata.geolocation@";
+			setAttributeValues(atts, fieldName);
 		}
 	}
 
@@ -247,8 +278,8 @@ public class NEHandler extends DocumentHandler {
 		if (qName.equalsIgnoreCase("ne:dataProvider")
 				|| qName.equalsIgnoreCase("dataProvider")) {
 
-			doc.add(new Field("metadata.dataProvider", tmpValue, Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
+			doc.add(new Field("metadata.dataProvider", tmpValue,
+					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:objectUri")
 				|| qName.equalsIgnoreCase("objectUri")) {
@@ -263,8 +294,8 @@ public class NEHandler extends DocumentHandler {
 
 		if (qName.equalsIgnoreCase("ne:contentType")
 				|| qName.equalsIgnoreCase("contentType")) {
-			doc.add(new Field("metadata.contentType", tmpValue, Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
+			doc.add(new Field("metadata.contentType", tmpValue,
+					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:licenseUri")
 				|| qName.equalsIgnoreCase("licenseUri")) {
@@ -273,18 +304,18 @@ public class NEHandler extends DocumentHandler {
 		}
 		if (qName.equalsIgnoreCase("ne:thumbnailUri")
 				|| qName.equalsIgnoreCase("thumbnailUri")) {
-			doc.add(new Field("metadata.thumbnailUri", tmpValue, Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
+			doc.add(new Field("metadata.thumbnailUri", tmpValue,
+					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:scientificName")
 				|| qName.equalsIgnoreCase("scientificName")) {
-			doc.add(new Field("metadata.scientificName", tmpValue, Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
+			doc.add(new Field("metadata.scientificName", tmpValue,
+					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:classification")
 				|| qName.equalsIgnoreCase("classification")) {
-			doc.add(new Field("metadata.classification", tmpValue, Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
+			doc.add(new Field("metadata.classification", tmpValue,
+					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:commonName")
 				|| qName.equalsIgnoreCase("commonName")) {
@@ -308,13 +339,13 @@ public class NEHandler extends DocumentHandler {
 		}
 		if (qName.equalsIgnoreCase("ne:description")
 				|| qName.equalsIgnoreCase("description")) {
-			doc.add(new Field("metadata.description", tmpValue, Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
+			doc.add(new Field("metadata.description", tmpValue,
+					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:contributor")
 				|| qName.equalsIgnoreCase("contributor")) {
-			doc.add(new Field("metadata.contributor", tmpValue, Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
+			doc.add(new Field("metadata.contributor", tmpValue,
+					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:date") || qName.equalsIgnoreCase("date")) {
 			doc.add(new Field("metadata.date", tmpValue, Field.Store.YES,
@@ -356,8 +387,8 @@ public class NEHandler extends DocumentHandler {
 		}
 		if (qName.equalsIgnoreCase("ne:alternative")
 				|| qName.equalsIgnoreCase("alternative")) {
-			doc.add(new Field("metadata.alternative", tmpValue, Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
+			doc.add(new Field("metadata.alternative", tmpValue,
+					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:created")
 				|| qName.equalsIgnoreCase("created")) {
@@ -376,8 +407,8 @@ public class NEHandler extends DocumentHandler {
 		}
 		if (qName.equalsIgnoreCase("ne:isVersionOf")
 				|| qName.equalsIgnoreCase("isVersionOf")) {
-			doc.add(new Field("metadata.isVersionOf", tmpValue, Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
+			doc.add(new Field("metadata.isVersionOf", tmpValue,
+					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:hasVersion")
 				|| qName.equalsIgnoreCase("hasVersion")) {
@@ -386,8 +417,8 @@ public class NEHandler extends DocumentHandler {
 		}
 		if (qName.equalsIgnoreCase("ne:isReplacedBy")
 				|| qName.equalsIgnoreCase("isReplacedBy")) {
-			doc.add(new Field("metadata.isReplacedBy", tmpValue, Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
+			doc.add(new Field("metadata.isReplacedBy", tmpValue,
+					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:replaces")
 				|| qName.equalsIgnoreCase("replaces")) {
@@ -396,8 +427,8 @@ public class NEHandler extends DocumentHandler {
 		}
 		if (qName.equalsIgnoreCase("ne:isRequiredBy")
 				|| qName.equalsIgnoreCase("isRequiredBy")) {
-			doc.add(new Field("metadata.isRequiredBy", tmpValue, Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
+			doc.add(new Field("metadata.isRequiredBy", tmpValue,
+					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:requires")
 				|| qName.equalsIgnoreCase("requires")) {
@@ -416,8 +447,8 @@ public class NEHandler extends DocumentHandler {
 		}
 		if (qName.equalsIgnoreCase("ne:isReferencedBy")
 				|| qName.equalsIgnoreCase("isReferencedBy")) {
-			doc.add(new Field("metadata.isReferencedBy", tmpValue, Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
+			doc.add(new Field("metadata.isReferencedBy", tmpValue,
+					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:references")
 				|| qName.equalsIgnoreCase("references")) {
@@ -436,8 +467,8 @@ public class NEHandler extends DocumentHandler {
 		}
 		if (qName.equalsIgnoreCase("ne:conformsTo")
 				|| qName.equalsIgnoreCase("conformasTo")) {
-			doc.add(new Field("metadata.conformasTo", tmpValue, Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
+			doc.add(new Field("metadata.conformasTo", tmpValue,
+					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:spatial")
 				|| qName.equalsIgnoreCase("spatial")) {
@@ -451,8 +482,8 @@ public class NEHandler extends DocumentHandler {
 		}
 		if (qName.equalsIgnoreCase("ne:geolocation")
 				|| qName.equalsIgnoreCase("geolocation")) {
-			doc.add(new Field("metadata.geolocation", tmpValue, Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
+			doc.add(new Field("metadata.geolocation", tmpValue,
+					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 
 	}
