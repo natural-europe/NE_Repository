@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 
@@ -31,13 +32,17 @@ public class NEHandler extends DocumentHandler {
 
 	String content;
 	String tmpValue;
+	private Hashtable elements;
+	private Hashtable attrs;
 
 	@Override
 	public Document getDocument(InputStream is) throws DocumentHandlerException {
 		// TODO Auto-generated method stub
 		SAXParserFactory spf = SAXParserFactory.newInstance();
+
 		try {
 			SAXParser parser = spf.newSAXParser();
+
 			parser.parse(is, this);
 			return doc;
 		} catch (IOException e) {
@@ -56,6 +61,8 @@ public class NEHandler extends DocumentHandler {
 	public void startDocument() {
 		doc = new Document();
 		// content = new String();
+		elements = new Hashtable<>();
+		attrs = new Hashtable<>();
 
 	}
 
@@ -86,178 +93,211 @@ public class NEHandler extends DocumentHandler {
 		if (qName.equalsIgnoreCase("ne:scientificName")
 				|| qName.equalsIgnoreCase("scientificName")) {
 
-			String fieldName = "metadata.scientificName@";
+			String fieldName = "metadata.scientificName" + "@";
 			setAttributeValues(atts, fieldName);
-
 		}
 		if (qName.equalsIgnoreCase("ne:classification")
 				|| qName.equalsIgnoreCase("classification")) {
-			String fieldName = "metadata.classification@";
+			int i = getElementCounterAttrs(qName);
+			String fieldName = "metadata.classification." + i + "@";
 			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:commonName")
 				|| qName.equalsIgnoreCase("commonName")) {
-			String fieldName = "metadata.commonName@";
+			int i = getElementCounterAttrs(qName);
+			String fieldName = "metadata.commonName." + i + "@";
 			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:title")
 				|| qName.equalsIgnoreCase("title")) {
-			String fieldName = "metadata.title@";
+			int i = getElementCounterAttrs(qName);
+
+			String fieldName = "metadata.title." + i + "@";
 			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:creator")
 				|| qName.equalsIgnoreCase("creator")) {
-			String fieldName = "metadata.creator@";
+			int i = getElementCounterAttrs(qName);
+			String fieldName = "metadata.creator." + i + "@";
 			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:subject")
 				|| qName.equalsIgnoreCase("subject")) {
-			String fieldName = "metadata.subject@";
+			int i = getElementCounterAttrs(qName);
+			String fieldName = "metadata.subject." + i + "@";
 			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:description")
 				|| qName.equalsIgnoreCase("description")) {
-			String fieldName = "metadata.description@";
+			int i = getElementCounterAttrs(qName);
+			String fieldName = "metadata.description." + i + "@";
 			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:contributor")
 				|| qName.equalsIgnoreCase("contributor")) {
-			String fieldName = "metadata.contributor@";
+			int i = getElementCounterAttrs(qName);
+			String fieldName = "metadata.contributor." + i + "@";
 			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:date") || qName.equalsIgnoreCase("date")) {
-
-			String fieldName = "metadata.date@";
+			int i = getElementCounterAttrs(qName);
+			String fieldName = "metadata.date." + i + "@";
 			setAttributeValues(atts, fieldName);
 
 		}
 		if (qName.equalsIgnoreCase("ne:type") || qName.equalsIgnoreCase("type")) {
-			String fieldName = "metadata.type@";
+			int i = getElementCounterAttrs(qName);
+			String fieldName = "metadata.type." + i + "@";
 			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:format")
 				|| qName.equalsIgnoreCase("format")) {
-			String fieldName = "metadata.format@";
+			int i = getElementCounterAttrs(qName);
+			String fieldName = "metadata.format." + i + "@";
 			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:identifier")
 				|| qName.equalsIgnoreCase("identifier")) {
-			String fieldName = "metadata.identifier@";
+			int i = getElementCounterAttrs(qName);
+			String fieldName = "metadata.identifier." + i + "@";
 			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:source")
 				|| qName.equalsIgnoreCase("source")) {
-			String fieldName = "metadata.source@";
+			int i = getElementCounterAttrs(qName);
+			String fieldName = "metadata.source." + i + "@";
 			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:language")
 				|| qName.equalsIgnoreCase("language")) {
-			String fieldName = "metadata.language@";
+			int i = getElementCounterAttrs(qName);
+			String fieldName = "metadata.language." + i + "@";
 			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:relation")
 				|| qName.equalsIgnoreCase("relation")) {
-			String fieldName = "metadata.relation@";
+			int i = getElementCounterAttrs(qName);
+			String fieldName = "metadata.relation." + i + "@";
 			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:rights")
 				|| qName.equalsIgnoreCase("rights")) {
-			String fieldName = "metadata.rights@";
+			int i = getElementCounterAttrs(qName);
+			String fieldName = "metadata.rights." + i + "@";
 			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:alternative")
 				|| qName.equalsIgnoreCase("alternative")) {
-			String fieldName = "metadata.alternative@";
+			int i = getElementCounterAttrs(qName);
+			String fieldName = "metadata.alternative." + i + "@";
 			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:created")
 				|| qName.equalsIgnoreCase("created")) {
-			String fieldName = "metadata.created@";
+			int i = getElementCounterAttrs(qName);
+			String fieldName = "metadata.created." + i + "@";
 			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:extent")
 				|| qName.equalsIgnoreCase("extent")) {
-			String fieldName = "metadata.extent@";
+			int i = getElementCounterAttrs(qName);
+			String fieldName = "metadata.extent." + i + "@";
 			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:medium")
 				|| qName.equalsIgnoreCase("medium")) {
-			String fieldName = "metadata.medium@";
+			int i = getElementCounterAttrs(qName);
+			String fieldName = "metadata.medium." + i + "@";
 			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:isVersionOf")
 				|| qName.equalsIgnoreCase("isVersionOf")) {
-			String fieldName = "metadata.isVersionOf@";
+			int i = getElementCounterAttrs(qName);
+			String fieldName = "metadata.isVersionOf." + i + "@";
 			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:hasVersion")
 				|| qName.equalsIgnoreCase("hasVersion")) {
-			String fieldName = "metadata.hasVersion@";
+			int i = getElementCounterAttrs(qName);
+			String fieldName = "metadata.hasVersion." + i + "@";
 			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:isReplacedBy")
 				|| qName.equalsIgnoreCase("isReplacedBy")) {
-			String fieldName = "metadata.isReplacedBy@";
+			int i = getElementCounterAttrs(qName);
+			String fieldName = "metadata.isReplacedBy." + i + "@";
 			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:replaces")
 				|| qName.equalsIgnoreCase("replaces")) {
-			String fieldName = "metadata.replaces@";
+			int i = getElementCounterAttrs(qName);
+			String fieldName = "metadata.replaces." + i + "@";
 			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:isRequiredBy")
 				|| qName.equalsIgnoreCase("isRequiredBy")) {
-			String fieldName = "metadata.isRequiredBy@";
+			int i = getElementCounterAttrs(qName);
+			String fieldName = "metadata.isRequiredBy." + i + "@";
 			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:requires")
 				|| qName.equalsIgnoreCase("requires")) {
-			String fieldName = "metadata.requires@";
+			int i = getElementCounterAttrs(qName);
+			String fieldName = "metadata.requires." + i + "@";
 			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:isPartOf")
 				|| qName.equalsIgnoreCase("isPartOf")) {
-			String fieldName = "metadata.isPartOf@";
+			int i = getElementCounterAttrs(qName);
+			String fieldName = "metadata.isPartOf." + i + "@";
 			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:hasPart")
 				|| qName.equalsIgnoreCase("hasPart")) {
-			String fieldName = "metadata.hasPart@";
+			int i = getElementCounterAttrs(qName);
+			String fieldName = "metadata.hasPart." + i + "@";
 			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:isReferencedBy")
 				|| qName.equalsIgnoreCase("isReferencedBy")) {
-			String fieldName = "metadata.isReferencedBy@";
+			int i = getElementCounterAttrs(qName);
+			String fieldName = "metadata.isReferencedBy." + i + "@";
 			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:references")
 				|| qName.equalsIgnoreCase("references")) {
-			String fieldName = "metadata.references@";
+			int i = getElementCounterAttrs(qName);
+			String fieldName = "metadata.references." + i + "@";
 			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:isFormatOf")
 				|| qName.equalsIgnoreCase("isFormatOf")) {
-			String fieldName = "metadata.isFormatOf@";
+			int i = getElementCounterAttrs(qName);
+			String fieldName = "metadata.isFormatOf." + i + "@";
 			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:hasFormat")
 				|| qName.equalsIgnoreCase("hasFormat")) {
-			String fieldName = "metadata.hasFormat@";
+			int i = getElementCounterAttrs(qName);
+			String fieldName = "metadata.hasFormat." + i + "@";
 			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:conformsTo")
 				|| qName.equalsIgnoreCase("conformasTo")) {
-			String fieldName = "metadata.conformasTo@";
+			int i = getElementCounterAttrs(qName);
+			String fieldName = "metadata.conformasTo." + i + "@";
 			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:spatial")
 				|| qName.equalsIgnoreCase("spatial")) {
-			String fieldName = "metadata.spatial@";
+			int i = getElementCounterAttrs(qName);
+			String fieldName = "metadata.spatial." + i + "@";
 			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:temporal")
 				|| qName.equalsIgnoreCase("temporal")) {
-			String fieldName = "metadata.temporal@";
+			int i = getElementCounterAttrs(qName);
+			String fieldName = "metadata.temporal."+i+"@";
 			setAttributeValues(atts, fieldName);
 		}
 		if (qName.equalsIgnoreCase("ne:geolocation")
@@ -265,6 +305,20 @@ public class NEHandler extends DocumentHandler {
 			String fieldName = "metadata.geolocation@";
 			setAttributeValues(atts, fieldName);
 		}
+	}
+
+	public void checkMetadata(String qName) {
+
+		doc.add(new Field("metadata." + qName, tmpValue, Field.Store.YES,
+				Field.Index.NOT_ANALYZED));
+
+	}
+
+	public void checkHeader(String qName) {
+
+		doc.add(new Field("header." + qName, tmpValue, Field.Store.YES,
+				Field.Index.NOT_ANALYZED));
+
 	}
 
 	public void checkMetadataSection(String qName) {
@@ -283,202 +337,242 @@ public class NEHandler extends DocumentHandler {
 		}
 		if (qName.equalsIgnoreCase("ne:objectUri")
 				|| qName.equalsIgnoreCase("objectUri")) {
+
 			doc.add(new Field("metadata.objectUri", tmpValue, Field.Store.YES,
 					Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:contextUri")
 				|| qName.equalsIgnoreCase("contextUri")) {
+			int i = getElementCounter(qName);
 			doc.add(new Field("metadata.contextUri", tmpValue, Field.Store.YES,
 					Field.Index.NOT_ANALYZED));
 		}
 
 		if (qName.equalsIgnoreCase("ne:contentType")
 				|| qName.equalsIgnoreCase("contentType")) {
+
 			doc.add(new Field("metadata.contentType", tmpValue,
 					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:licenseUri")
 				|| qName.equalsIgnoreCase("licenseUri")) {
+
 			doc.add(new Field("metadata.licenseUri", tmpValue, Field.Store.YES,
 					Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:thumbnailUri")
 				|| qName.equalsIgnoreCase("thumbnailUri")) {
+
 			doc.add(new Field("metadata.thumbnailUri", tmpValue,
 					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:scientificName")
 				|| qName.equalsIgnoreCase("scientificName")) {
+
 			doc.add(new Field("metadata.scientificName", tmpValue,
 					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:classification")
 				|| qName.equalsIgnoreCase("classification")) {
-			doc.add(new Field("metadata.classification", tmpValue,
+			int i = getElementCounter(qName);
+			doc.add(new Field("metadata.classification." + i, tmpValue,
 					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:commonName")
 				|| qName.equalsIgnoreCase("commonName")) {
-			doc.add(new Field("metadata.commonName", tmpValue, Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
+			int i = getElementCounter(qName);
+			doc.add(new Field("metadata.commonName." + i, tmpValue,
+					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:title")
 				|| qName.equalsIgnoreCase("title")) {
-			doc.add(new Field("metadata.title", tmpValue, Field.Store.YES,
+			int i = getElementCounter(qName);
+			doc.add(new Field("metadata.title." + i, tmpValue, Field.Store.YES,
 					Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:creator")
 				|| qName.equalsIgnoreCase("creator")) {
-			doc.add(new Field("metadata.creator", tmpValue, Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
+			int i = getElementCounter(qName);
+			doc.add(new Field("metadata.creator." + i, tmpValue,
+					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:subject")
 				|| qName.equalsIgnoreCase("subject")) {
-			doc.add(new Field("metadata.subject", tmpValue, Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
+			int i = getElementCounter(qName);
+			doc.add(new Field("metadata.subject." + i, tmpValue,
+					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:description")
 				|| qName.equalsIgnoreCase("description")) {
-			doc.add(new Field("metadata.description", tmpValue,
+			int i = getElementCounter(qName);
+			doc.add(new Field("metadata.description." + i, tmpValue,
 					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:contributor")
 				|| qName.equalsIgnoreCase("contributor")) {
-			doc.add(new Field("metadata.contributor", tmpValue,
+			int i = getElementCounter(qName);
+			doc.add(new Field("metadata.contributor." + i, tmpValue,
 					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:date") || qName.equalsIgnoreCase("date")) {
-			doc.add(new Field("metadata.date", tmpValue, Field.Store.YES,
+			int i = getElementCounter(qName);
+			doc.add(new Field("metadata.date." + i, tmpValue, Field.Store.YES,
 					Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:type") || qName.equalsIgnoreCase("type")) {
-			doc.add(new Field("metadata.type", tmpValue, Field.Store.YES,
+			int i = getElementCounter(qName);
+			doc.add(new Field("metadata.type." + i, tmpValue, Field.Store.YES,
 					Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:format")
 				|| qName.equalsIgnoreCase("format")) {
-			doc.add(new Field("metadata.format", tmpValue, Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
+			int i = getElementCounter(qName);
+			doc.add(new Field("metadata.format." + i, tmpValue,
+					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:identifier")
 				|| qName.equalsIgnoreCase("identifier")) {
-			doc.add(new Field("metadata.identifier", tmpValue, Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
+			int i = getElementCounter(qName);
+			doc.add(new Field("metadata.identifier." + i, tmpValue,
+					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:source")
 				|| qName.equalsIgnoreCase("source")) {
-			doc.add(new Field("metadata.source", tmpValue, Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
+			int i = getElementCounter(qName);
+			doc.add(new Field("metadata.source." + i, tmpValue,
+					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:language")
 				|| qName.equalsIgnoreCase("language")) {
-			doc.add(new Field("metadata.language", tmpValue, Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
+			int i = getElementCounter(qName);
+			doc.add(new Field("metadata.language." + i, tmpValue,
+					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:relation")
 				|| qName.equalsIgnoreCase("relation")) {
-			doc.add(new Field("metadata.relation", tmpValue, Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
+			int i = getElementCounter(qName);
+			doc.add(new Field("metadata.relation." + i, tmpValue,
+					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:rights")
 				|| qName.equalsIgnoreCase("rights")) {
-			doc.add(new Field("metadata.rights", tmpValue, Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
+			int i = getElementCounter(qName);
+			doc.add(new Field("metadata.rights." + i, tmpValue,
+					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:alternative")
 				|| qName.equalsIgnoreCase("alternative")) {
-			doc.add(new Field("metadata.alternative", tmpValue,
+			int i = getElementCounter(qName);
+			doc.add(new Field("metadata.alternative." + i, tmpValue,
 					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:created")
 				|| qName.equalsIgnoreCase("created")) {
-			doc.add(new Field("metadata.created", tmpValue, Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
+			int i = getElementCounter(qName);
+			doc.add(new Field("metadata.created." + i, tmpValue,
+					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:extent")
 				|| qName.equalsIgnoreCase("extent")) {
-			doc.add(new Field("metadata.extent", tmpValue, Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
+			int i = getElementCounter(qName);
+			doc.add(new Field("metadata.extent." + i, tmpValue,
+					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:medium")
 				|| qName.equalsIgnoreCase("medium")) {
-			doc.add(new Field("metadata.medium", tmpValue, Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
+			int i = getElementCounter(qName);
+			doc.add(new Field("metadata.medium." + i, tmpValue,
+					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:isVersionOf")
 				|| qName.equalsIgnoreCase("isVersionOf")) {
-			doc.add(new Field("metadata.isVersionOf", tmpValue,
+			int i = getElementCounter(qName);
+			doc.add(new Field("metadata.isVersionOf." + i, tmpValue,
 					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:hasVersion")
 				|| qName.equalsIgnoreCase("hasVersion")) {
-			doc.add(new Field("metadata.hasVersion", tmpValue, Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
+			int i = getElementCounter(qName);
+			doc.add(new Field("metadata.hasVersion." + i, tmpValue,
+					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:isReplacedBy")
 				|| qName.equalsIgnoreCase("isReplacedBy")) {
-			doc.add(new Field("metadata.isReplacedBy", tmpValue,
+			int i = getElementCounter(qName);
+			doc.add(new Field("metadata.isReplacedBy." + i, tmpValue,
 					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:replaces")
 				|| qName.equalsIgnoreCase("replaces")) {
-			doc.add(new Field("metadata.replaces", tmpValue, Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
+			int i = getElementCounter(qName);
+			doc.add(new Field("metadata.replaces." + i, tmpValue,
+					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:isRequiredBy")
 				|| qName.equalsIgnoreCase("isRequiredBy")) {
-			doc.add(new Field("metadata.isRequiredBy", tmpValue,
+			int i = getElementCounter(qName);
+			doc.add(new Field("metadata.isRequiredBy." + i, tmpValue,
 					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:requires")
 				|| qName.equalsIgnoreCase("requires")) {
-			doc.add(new Field("metadata.requires", tmpValue, Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
+			int i = getElementCounter(qName);
+			doc.add(new Field("metadata.requires." + i, tmpValue,
+					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:isPartOf")
 				|| qName.equalsIgnoreCase("isPartOf")) {
-			doc.add(new Field("metadata.isPartOf", tmpValue, Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
+			int i = getElementCounter(qName);
+			doc.add(new Field("metadata.isPartOf." + i, tmpValue,
+					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:hasPart")
 				|| qName.equalsIgnoreCase("hasPart")) {
-			doc.add(new Field("metadata.hasPart", tmpValue, Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
+			int i = getElementCounter(qName);
+			doc.add(new Field("metadata.hasPart." + i, tmpValue,
+					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:isReferencedBy")
 				|| qName.equalsIgnoreCase("isReferencedBy")) {
-			doc.add(new Field("metadata.isReferencedBy", tmpValue,
+			int i = getElementCounter(qName);
+			doc.add(new Field("metadata.isReferencedBy." + i, tmpValue,
 					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:references")
 				|| qName.equalsIgnoreCase("references")) {
-			doc.add(new Field("metadata.references", tmpValue, Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
+			int i = getElementCounter(qName);
+			doc.add(new Field("metadata.references." + i, tmpValue,
+					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:isFormatOf")
 				|| qName.equalsIgnoreCase("isFormatOf")) {
-			doc.add(new Field("metadata.isFormatOf", tmpValue, Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
+			int i = getElementCounter(qName);
+			doc.add(new Field("metadata.isFormatOf." + i, tmpValue,
+					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:hasFormat")
 				|| qName.equalsIgnoreCase("hasFormat")) {
-			doc.add(new Field("metadata.hasFormat", tmpValue, Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
+			int i = getElementCounter(qName);
+			doc.add(new Field("metadata.hasFormat." + i, tmpValue,
+					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:conformsTo")
 				|| qName.equalsIgnoreCase("conformasTo")) {
-			doc.add(new Field("metadata.conformasTo", tmpValue,
+			int i = getElementCounter(qName);
+			doc.add(new Field("metadata.conformasTo." + i, tmpValue,
 					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:spatial")
 				|| qName.equalsIgnoreCase("spatial")) {
-			doc.add(new Field("metadata.spatial", tmpValue, Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
+			int i = getElementCounter(qName);
+			doc.add(new Field("metadata.spatial." + i, tmpValue,
+					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:temporal")
 				|| qName.equalsIgnoreCase("temporal")) {
-			doc.add(new Field("metadata.temporal", tmpValue, Field.Store.YES,
-					Field.Index.NOT_ANALYZED));
+			int i = getElementCounter(qName);
+			doc.add(new Field("metadata.temporal." + i, tmpValue,
+					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
 		if (qName.equalsIgnoreCase("ne:geolocation")
 				|| qName.equalsIgnoreCase("geolocation")) {
@@ -488,9 +582,38 @@ public class NEHandler extends DocumentHandler {
 
 	}
 
+	public int getElementCounter(String qName) {
+		int value = 0;
+		if (elements.containsKey(qName)) {
+			value = (int) elements.get(qName);
+			value += 1;
+			elements.put(qName, value);
+			return value;
+		} else {
+			value = 1;
+			elements.put(qName, value);
+			return value;
+		}
+	}
+
+	public int getElementCounterAttrs(String qName) {
+		int value = 0;
+		if (attrs.containsKey(qName)) {
+			value = (int) attrs.get(qName);
+			value += 1;
+			attrs.put(qName, value);
+			return value;
+		} else {
+			value = 1;
+			attrs.put(qName, value);
+			return value;
+		}
+	}
+
 	public void checkHeaderSection(String qName) {
 
 		if (qName.equalsIgnoreCase("ne:id") || qName.equalsIgnoreCase("id")) {
+
 			doc.add(new Field("header.id", tmpValue, Field.Store.YES,
 					Field.Index.NOT_ANALYZED));
 		}
@@ -582,6 +705,8 @@ public class NEHandler extends DocumentHandler {
 
 		checkHeaderSection(qName);
 		checkMetadataSection(qName);
+		// checkHeader(qName);
+		// checkMetadata(qName);
 	}
 
 	public static void main(String[] args) throws FileNotFoundException,
@@ -594,11 +719,13 @@ public class NEHandler extends DocumentHandler {
 				filePath)));
 
 		List fields = doc.getFields();
+
 		for (Iterator iterator = fields.iterator(); iterator.hasNext();) {
 			Field field = (Field) iterator.next();
 			System.out.println(field.name() + " :: " + field.stringValue());
 
 		}
+
 	}
 
 }
