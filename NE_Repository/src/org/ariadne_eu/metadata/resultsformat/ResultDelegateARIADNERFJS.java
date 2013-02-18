@@ -27,7 +27,8 @@ import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 
 public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
-	private static Logger log = Logger.getLogger(ResultDelegateARIADNERFJS.class);
+	private static Logger log = Logger
+			.getLogger(ResultDelegateARIADNERFJS.class);
 
 	private int start;
 	private int max;
@@ -38,13 +39,19 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 		try {
 			facetFields = new Vector<String>();
 
-			Collection solrs = PropertiesManager.getInstance().getPropertyStartingWith(RepositoryConstants.getInstance().SR_SOLR_FACETFIELD + ".").values();
+			Collection solrs = PropertiesManager
+					.getInstance()
+					.getPropertyStartingWith(
+							RepositoryConstants.getInstance().SR_SOLR_FACETFIELD
+									+ ".").values();
 			for (Object object : solrs) {
 				facetFields.add((String) object);
 			}
 
 			if (!(facetFields.size() > 0)) {
-				log.error("initialize:property \"" + RepositoryConstants.getInstance().SR_SOLR_FACETFIELD + ".n\" not defined");
+				log.error("initialize:property \""
+						+ RepositoryConstants.getInstance().SR_SOLR_FACETFIELD
+						+ ".n\" not defined");
 			}
 
 		} catch (Throwable t) {
@@ -58,11 +65,12 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 		this.lQuery = lQuery;
 	}
 
-	public String result(TopDocs topDocs, IndexSearcher searcher) throws JSONException, CorruptIndexException, IOException {
+	public String result(TopDocs topDocs, IndexSearcher searcher)
+			throws JSONException, CorruptIndexException, IOException {
 		SolrDocument doc;
 
 		QueryResponse response = getSolrResponse();
-		
+
 		JSONObject resultsJson = new JSONObject();
 		JSONObject resultJson = new JSONObject();
 		JSONArray idArrayJson = new JSONArray();
@@ -70,94 +78,111 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 		resultJson.put("error", "");
 		resultJson.put("errorMessage", "");
 		resultJson.put("facets", getFacets(response.getFacetFields()));
-		
-		
-		int size = (int)response.getResults().getNumFound();
+
+		int size = (int) response.getResults().getNumFound();
 		if (size == -1)
 			size = Integer.MAX_VALUE;
-		
-		for (int i = 0; i < max && (max < 0 || i < size - start) ; i++) {
+
+		for (int i = 0; i < max && (max < 0 || i < size - start); i++) {
 			JSONObject json = new JSONObject();
 			doc = response.getResults().get(i);
 			try {
-				idArrayJson.put(doc.get("lom.general.identifier.entry"));
-				
+				 //idArrayJson.put(doc.get("lom.general.identifier.entry"));
+				 idArrayJson.put(doc.get("header.id"));
+
 				if (doc.get("lom.general.title.string") != null)
 					json.put("title", doc.get("lom.general.title.string"));
 				else
 					json.put("title", new String(""));
-				
+
+				if (doc.get("collection") != null)
+					json.put("collection", doc.get("collection"));
+				else
+					json.put("collection", new String(""));
+
 				if (doc.get("lom.general.description.string") != null)
-					json.put("description", doc.get("lom.general.description.string"));
+					json.put("description",
+							doc.get("lom.general.description.string"));
 				else
 					json.put("description", new String(""));
 
-                               //** 18/11/12 NE: language
-                                if (doc.get("lom.general.language") != null)
+				// ** 18/11/12 NE: language
+				if (doc.get("lom.general.language") != null)
 					json.put("language", doc.get("lom.general.language"));
 				else
 					json.put("language", new String(""));
 
-				if (doc.get("lom.general.keyword.string") != null){
-					Collection keywordsCollection = doc.getFieldValues("lom.general.keyword.string");
+				if (doc.get("lom.general.keyword.string") != null) {
+					Collection keywordsCollection = doc
+							.getFieldValues("lom.general.keyword.string");
 					String keywords = "";
 					JSONArray keywordsArray = new JSONArray();
-					for (Iterator iterator = keywordsCollection.iterator(); iterator.hasNext();) {
-//						if (keywords.equals(""))
-//							keywords += "&#044;";
+					for (Iterator iterator = keywordsCollection.iterator(); iterator
+							.hasNext();) {
+						// if (keywords.equals(""))
+						// keywords += "&#044;";
 						String keyword = (String) iterator.next();
-//						keywords += keyword;
+						// keywords += keyword;
 						keywordsArray.put(keyword);
 					}
-//					json.put("keywords", keywords);
+					// json.put("keywords", keywords);
 					json.put("keywords", keywordsArray);
-				}
-				else
+				} else
 					json.put("keywords", new String(""));
-				
+
 				if (doc.get("lom.technical.location") != null)
 					json.put("location", doc.get("lom.technical.location"));
 				else
 					json.put("location", new String(""));
-				
+
 				if (doc.get("lom.general.identifier.entry") != null)
-					json.put("identifier", doc.get("lom.general.identifier.entry"));
+					json.put("identifier",
+							doc.get("lom.general.identifier.entry"));
 				else
 					json.put("identifier", new String(""));
 
-                                /** In order to pass the context and the meta-metadata identifier **/
-                                if (doc.get("lom.educational.context.value") != null)
-                                        json.put("context", doc.get("lom.educational.context.value"));
-                                else
-                                        json.put("context", new String(""));
+				/**
+				 * In order to pass the context and the meta-metadata identifier
+				 **/
+				if (doc.get("lom.educational.context.value") != null)
+					json.put("context",
+							doc.get("lom.educational.context.value"));
+				else
+					json.put("context", new String(""));
 
-                                if (doc.get("lom.metametadata.identifier.entry") != null)
-                                        json.put("metaMetadataId", doc.get("lom.metametadata.identifier.entry"));
-                                else
-                                        json.put("metaMetadataId", new String(""));
+				if (doc.get("lom.metametadata.identifier.entry") != null)
+					json.put("metaMetadataId",
+							doc.get("lom.metametadata.identifier.entry"));
+				else
+					json.put("metaMetadataId", new String(""));
 
-                                if (doc.get("lom.technical.format") != null)
-                                        json.put("format", doc.get("lom.technical.format"));
-                                else
-                                        json.put("format", new String(""));
+				if (doc.get("lom.technical.format") != null)
+					json.put("format", doc.get("lom.technical.format"));
+				else
+					json.put("format", new String(""));
 
-                                /** 18/11/12 NE: dataPovider **/
-                                if (doc.get("lom.metametadata.identifier.catalog") != null)
-                                        json.put("dataProvider", doc.get("lom.metametadata.identifier.catalog"));
-                                else
-                                        json.put("dataProvider", new String(""));
+				/** 18/11/12 NE: dataPovider **/
+				if (doc.get("lom.metametadata.identifier.catalog") != null)
+					json.put("dataProvider",
+							doc.get("lom.metametadata.identifier.catalog"));
+				else
+					json.put("dataProvider", new String(""));
 
-                            /** 18/11/12 NE: Added in order to pass thumbnail URI, **/
-                                if (doc.get("lom.technical.duration") != null)
-                                        json.put("thumbURL", doc.get("lom.technical.duration"));
-                                else
-                                        json.put("thumbURL", new String(""));
+				/** 18/11/12 NE: Added in order to pass thumbnail URI, **/
+				if (doc.get("lom.technical.duration") != null)
+					json.put("thumbURL", doc.get("lom.technical.duration"));
+				else
+					json.put("thumbURL", new String(""));
 
-                            /** 18/11/12 NE: Added in order to pass license URI, **/
-                             if (doc.get("lom.rights.copyrightandotherrestrictions.string") != null)
-                                        json.put("licenses", "http://creativecommons.org/licenses/"+doc.get("lom.rights.copyrightandotherrestrictions.string")+"/3.0/");
-                                else
-                                        json.put("licenses", new String(""));
+				/** 18/11/12 NE: Added in order to pass license URI, **/
+				if (doc.get("lom.rights.copyrightandotherrestrictions.string") != null)
+					json.put(
+							"licenses",
+							"http://creativecommons.org/licenses/"
+									+ doc.get("lom.rights.copyrightandotherrestrictions.string")
+									+ "/3.0/");
+				else
+					json.put("licenses", new String(""));
 
 			} catch (JSONException ex) {
 				log.error(ex);
@@ -169,30 +194,34 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 		resultJson.put("nrOfResults", size);
 
 		resultsJson.put("result", resultJson);
-		
+
 		return resultsJson.toString();
 	}
-	
+
 	private QueryResponse getSolrResponse() {
 		SolrServerManagement serverMgt = SolrServerManagement.getInstance();
 
-		SolrQuery solrQuery = new SolrQuery().setQuery(lQuery).setFacet(true).setFacetLimit(-1).setFacetMinCount(1).setFacetSort(FacetParams.FACET_SORT_COUNT).setParam("rows", Integer.toString(max)).setParam("start", Integer.toString(start));
+		SolrQuery solrQuery = new SolrQuery().setQuery(lQuery).setFacet(true)
+				.setFacetLimit(-1).setFacetMinCount(1)
+				.setFacetSort(FacetParams.FACET_SORT_COUNT)
+				.setParam("rows", Integer.toString(max))
+				.setParam("start", Integer.toString(start));
 
-
-		for (Iterator<String> iterator = facetFields.iterator(); iterator.hasNext();) {
+		for (Iterator<String> iterator = facetFields.iterator(); iterator
+				.hasNext();) {
 			String facetField = (String) iterator.next();
 			solrQuery.addFacetField(facetField);
 		}
 		QueryResponse rsp = null;
-		
+
 		try {
 			rsp = serverMgt.getServer().query(solrQuery);
-			
+
 		} catch (SolrServerException e) {
 			log.error("getSolrResponse: Solr server error", e);
 		} catch (IOException e) {
 			log.error("getSolrResponse: Solr I/O error", e);
-		} 
+		}
 		return rsp;
 	}
 
@@ -203,17 +232,21 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 				List<Count> facetValues;
 				FacetField facetField;
 				FacetField.Count innerFacetField;
-				for (Iterator facetIterator = facetsFields.iterator(); facetIterator.hasNext();) {
+				for (Iterator facetIterator = facetsFields.iterator(); facetIterator
+						.hasNext();) {
 					JSONObject facetJson = new JSONObject();
 					facetField = (FacetField) facetIterator.next();
-					facetJson.put("field", changeFacetName(facetField.getName()));
+					facetJson.put("field",
+							changeFacetName(facetField.getName()));
 
 					facetValues = facetField.getValues();
 					if (facetValues != null) {
 						JSONArray valuesJson = new JSONArray();
-						for (Iterator ifacetIterator = facetValues.iterator(); ifacetIterator.hasNext();) {
+						for (Iterator ifacetIterator = facetValues.iterator(); ifacetIterator
+								.hasNext();) {
 							JSONObject value = new JSONObject();
-							innerFacetField = (FacetField.Count) ifacetIterator.next();
+							innerFacetField = (FacetField.Count) ifacetIterator
+									.next();
 							value.put("val", innerFacetField.getName());
 							value.put("count", innerFacetField.getCount());
 							valuesJson.put(value);
@@ -231,39 +264,50 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 	}
 
 	private String changeFacetName(String internalName) {
-		if (internalName.equalsIgnoreCase("lom.educational.learningresourcetype.value"))
+		if (internalName
+				.equalsIgnoreCase("lom.educational.learningresourcetype.value"))
 			return "lrt";
 		else if (internalName.equalsIgnoreCase("lom.educational.context.value"))
 			return "context";
+		else if (internalName.equalsIgnoreCase("collection"))
+			return "collection";
 		else if (internalName.equalsIgnoreCase("lom.technical.format"))
 			return "format";
 		else if (internalName.equalsIgnoreCase("lom.general.language"))
 			return "language";
-		else if (internalName.equalsIgnoreCase("collection"))
-			return "provider";
-		else if (internalName.equalsIgnoreCase("lom.educational.interactivitytype.value"))
+		//else if (internalName.equalsIgnoreCase("collection"))
+		//	return "provider";
+		else if (internalName
+				.equalsIgnoreCase("lom.educational.interactivitytype.value"))
 			return "it";
-		else if (internalName.equalsIgnoreCase("lom.educational.interactivitylevel.value"))
+		else if (internalName
+				.equalsIgnoreCase("lom.educational.interactivitylevel.value"))
 			return "il";
-		else if (internalName.equalsIgnoreCase("lom.educational.intendedenduserrole.value"))
+		else if (internalName
+				.equalsIgnoreCase("lom.educational.intendedenduserrole.value"))
 			return "iur";
-		else if (internalName.equalsIgnoreCase("lom.educational.typicalagerange.string"))
+		else if (internalName
+				.equalsIgnoreCase("lom.educational.typicalagerange.string"))
 			return "tagr";
 		else if (internalName.equalsIgnoreCase("lom.general.keyword.string"))
 			return "keyword";
 		else if (internalName.equalsIgnoreCase("lom.rights.description.string"))
 			return "rights";
-		else if (internalName.equalsIgnoreCase("lom.rights.copyrightandotherrestrictions.string"))
+		else if (internalName
+				.equalsIgnoreCase("lom.rights.copyrightandotherrestrictions.string"))
 			return "licences";
-                 else if (internalName.equalsIgnoreCase("lom.classification.taxonpath.taxon.entry.string"))
+		else if (internalName
+				.equalsIgnoreCase("lom.classification.taxonpath.taxon.entry.string"))
 			return "classification";
-                else if (internalName.equalsIgnoreCase("lom.educational.typicalagerange.string"))
+		else if (internalName
+				.equalsIgnoreCase("lom.educational.typicalagerange.string"))
 			return "temporal";
-                else if (internalName.equalsIgnoreCase("lom.general.coverage.string"))
+		else if (internalName.equalsIgnoreCase("lom.general.coverage.string"))
 			return "spatial";
-                else if (internalName.equalsIgnoreCase("lom.classification.description.string"))
+		else if (internalName
+				.equalsIgnoreCase("lom.classification.description.string"))
 			return "common";
 
-			return internalName;
+		return internalName;
 	}
 }

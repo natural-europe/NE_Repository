@@ -183,8 +183,8 @@ public class ARIADNEImplementation {
 			expression =  expression.replace("format:", "lom.technical.format:");
 		if (expression.contains("language:"))
 			expression =  expression.replace("language:", "lom.general.language:");
-		if (expression.contains("provider:"))
-			expression =  expression.replace("provider:", "collection:");
+		if (expression.contains("collection:"))
+			expression =  expression.replace("collection:", "collection:");
 		if (expression.contains("it:"))
 			expression =  expression.replace("it:", "lom.educational.interactivitytype.value:");
 		if (expression.contains("il:"))
