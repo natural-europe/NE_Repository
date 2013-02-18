@@ -34,6 +34,7 @@ public class NEHandler extends DocumentHandler {
 	String tmpValue;
 	private Hashtable elements;
 	private Hashtable attrs;
+	private String contents;
 
 	@Override
 	public Document getDocument(InputStream is) throws DocumentHandlerException {
@@ -60,14 +61,15 @@ public class NEHandler extends DocumentHandler {
 
 	public void startDocument() {
 		doc = new Document();
-		// content = new String();
+	    contents = new String();
 		elements = new Hashtable<>();
 		attrs = new Hashtable<>();
 
 	}
 
 	public void endDocument() {
-
+		doc.add(new Field("contents", contents, Field.Store.YES, Field.Index.ANALYZED));
+		doc.add(new Field("group.solr", "all", Field.Store.YES, Field.Index.NOT_ANALYZED, Field.TermVector.WITH_POSITIONS_OFFSETS));
 	}
 
 	public void startElement(String uri, String localName, String qName,
