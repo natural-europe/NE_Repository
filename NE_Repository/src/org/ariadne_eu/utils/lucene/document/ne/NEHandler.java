@@ -372,7 +372,7 @@ public class NEHandler extends DocumentHandler {
 		}
 		if (qName.equalsIgnoreCase("ne:scientificName")
 				|| qName.equalsIgnoreCase("scientificName")) {
-
+			
 			doc.add(new Field("metadata.scientificName", tmpValue,
 					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}

@@ -91,6 +91,7 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 			doc = response.getResults().get(i);
 			try {
 				// idArrayJson.put(doc.get("lom.general.identifier.entry"));
+
 				idArrayJson.put(doc.get("header.id"));
 
 				addJsonObject(doc, json, "header.id", "id");
@@ -198,37 +199,39 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 	private void addJsonObjectWE(SolrDocument doc, JSONObject json,
 			String fieldName, String responeseName) throws JSONException {
 
-		int pointer = 1;
-
 		Collection collection = new HashSet();
 
-		handleAttributeElements(doc, json, fieldName, responeseName, pointer,
-				collection);
+		handleAttributeElements(doc, json, fieldName, responeseName, collection);
 	}
 
 	private void handleAttributeElements(SolrDocument doc, JSONObject json,
-			String fieldName, String responseName, int pointer, Collection data)
+			String fieldName, String responseName, Collection data)
 			throws JSONException {
 
-		String fn = fieldName + "." + pointer;
-		Object object = doc.get(fn);
-		if (object != null) {
+		String langAttributes = fieldName + "@xml:lang";
+		Collection<Object> fieldValues = doc.getFieldValues(fieldName);
+		Collection<Object> fieldLangValues = doc.getFieldValues(langAttributes);
 
-			HashMap<String, Object> elText = new HashMap<>();
-			elText.put("value", object);
+		if (fieldValues != null && fieldLangValues != null) {
 
-			Object lang = doc.get(fn + "@xml:lang");
-			if (lang != null)
-				elText.put("lang:", lang);
+			Object[] fValuesarray = fieldValues.toArray();
+			Object[] flvArray = fieldLangValues.toArray();
 
-			data.add(elText);
+			for (int i = 0; i < fValuesarray.length; i++) {
+				Object fValue = fValuesarray[i];
+				Object fLangValue = flvArray[i];
+				HashMap<String, Object> elText = new HashMap<>();
+				elText.put("value", fValue);
+				elText.put("lang", fLangValue);
 
-			handleAttributeElements(doc, json, fieldName, responseName,
-					pointer + 1, data);
+				data.add(elText);
+			}
+
+			json.put(responseName, data);
 		} else
+
 			json.put(responseName, new String(""));
 
-		json.put(responseName, data);
 	}
 
 	private QueryResponse getSolrResponse() {
@@ -308,48 +311,33 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 			return "format";
 		else if (internalName.equalsIgnoreCase("lom.general.language"))
 			return "language";
-		
-		
-		
+
 		else if (internalName.equalsIgnoreCase("metadata.dataProvider"))
 			return "provider";
 		else if (internalName.equalsIgnoreCase("metadata.licenseUri"))
 			return "licenseUri";
-		else if (internalName
-				.equalsIgnoreCase("metadata.classification.1"))
+		else if (internalName.equalsIgnoreCase("metadata.classification"))
 			return "classification";
-		else if (internalName
-				.equalsIgnoreCase("metadata.commonName.1"))
+		else if (internalName.equalsIgnoreCase("metadata.commonName"))
 			return "commonName";
-		else if (internalName
-				.equalsIgnoreCase("metadata.date.1"))
+		else if (internalName.equalsIgnoreCase("metadata.date"))
 			return "date";
-		else if (internalName
-				.equalsIgnoreCase("metadata.type.1"))
+		else if (internalName.equalsIgnoreCase("metadata.type"))
 			return "type";
-		else if (internalName
-				.equalsIgnoreCase("metadata.format.1"))
+		else if (internalName.equalsIgnoreCase("metadata.format"))
 			return "format";
-		else if (internalName
-				.equalsIgnoreCase("metadata.language.1"))
+		else if (internalName.equalsIgnoreCase("metadata.language"))
 			return "language";
-		else if (internalName
-				.equalsIgnoreCase("metadata.rights.1"))
+		else if (internalName.equalsIgnoreCase("metadata.rights"))
 			return "rights";
-		else if (internalName
-				.equalsIgnoreCase("metadata.spatial.1"))
+		else if (internalName.equalsIgnoreCase("metadata.spatial"))
 			return "spatial";
-		else if (internalName
-				.equalsIgnoreCase("metadata.temporal.1"))
+		else if (internalName.equalsIgnoreCase("metadata.temporal"))
 			return "temporal";
 		else if (internalName
 				.equalsIgnoreCase("header.metadataLanguages.language"))
 			return "metadataLanguage";
-		
-		
-		
-		
-		
+
 		else if (internalName
 				.equalsIgnoreCase("lom.educational.interactivitytype.value"))
 			return "it";
