@@ -308,8 +308,48 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 			return "format";
 		else if (internalName.equalsIgnoreCase("lom.general.language"))
 			return "language";
-		// else if (internalName.equalsIgnoreCase("collection"))
-		// return "provider";
+		
+		
+		
+		else if (internalName.equalsIgnoreCase("metadata.dataProvider"))
+			return "provider";
+		else if (internalName.equalsIgnoreCase("metadata.licenseUri"))
+			return "licenseUri";
+		else if (internalName
+				.equalsIgnoreCase("metadata.classification.1"))
+			return "classification";
+		else if (internalName
+				.equalsIgnoreCase("metadata.commonName.1"))
+			return "commonName";
+		else if (internalName
+				.equalsIgnoreCase("metadata.date.1"))
+			return "date";
+		else if (internalName
+				.equalsIgnoreCase("metadata.type.1"))
+			return "type";
+		else if (internalName
+				.equalsIgnoreCase("metadata.format.1"))
+			return "format";
+		else if (internalName
+				.equalsIgnoreCase("metadata.language.1"))
+			return "language";
+		else if (internalName
+				.equalsIgnoreCase("metadata.rights.1"))
+			return "rights";
+		else if (internalName
+				.equalsIgnoreCase("metadata.spatial.1"))
+			return "spatial";
+		else if (internalName
+				.equalsIgnoreCase("metadata.temporal.1"))
+			return "temporal";
+		else if (internalName
+				.equalsIgnoreCase("header.metadataLanguages.language"))
+			return "metadataLanguage";
+		
+		
+		
+		
+		
 		else if (internalName
 				.equalsIgnoreCase("lom.educational.interactivitytype.value"))
 			return "it";

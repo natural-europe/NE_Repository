@@ -193,8 +193,10 @@ public class ARIADNEImplementation {
 					"lom.educational.context.value:");
 		if (expression.contains("format:"))
 			expression = expression.replace("format:", "lom.technical.format:");
+		
 		if (expression.contains("provider:"))
 			expression = expression.replace("provider:", "metadata.provider:");
+		
 		if (expression.contains("language:"))
 			expression = expression.replace("language:",
 					"lom.general.language:");
