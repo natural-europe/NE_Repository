@@ -69,7 +69,7 @@ public class NEHandler extends DocumentHandler {
 
 	public void endDocument() {
 		doc.add(new Field("contents", contents, Field.Store.YES, Field.Index.ANALYZED));
-		doc.add(new Field("group.solr", "all", Field.Store.YES, Field.Index.NOT_ANALYZED, Field.TermVector.WITH_POSITIONS_OFFSETS));
+		doc.add(new Field("lom.solr", "all", Field.Store.YES, Field.Index.NOT_ANALYZED, Field.TermVector.WITH_POSITIONS_OFFSETS));
 	}
 
 	public void startElement(String uri, String localName, String qName,

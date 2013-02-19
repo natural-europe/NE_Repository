@@ -2,6 +2,8 @@ package org.ariadne_eu.metadata.resultsformat;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
@@ -67,7 +69,7 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 
 	public String result(TopDocs topDocs, IndexSearcher searcher)
 			throws JSONException, CorruptIndexException, IOException {
-		
+
 		SolrDocument doc;
 
 		QueryResponse response = getSolrResponse();
@@ -76,7 +78,7 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 		JSONObject resultJson = new JSONObject();
 		JSONArray idArrayJson = new JSONArray();
 		JSONArray metadataArrayJson = new JSONArray();
-		resultJson.put("error:", "");
+		resultJson.put("error", "");
 		resultJson.put("errorMessage", "");
 		resultJson.put("facets", getFacets(response.getFacetFields()));
 
@@ -91,10 +93,82 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 				// idArrayJson.put(doc.get("lom.general.identifier.entry"));
 				idArrayJson.put(doc.get("header.id"));
 
-				if (doc.get("metadata.provider") != null)
-					json.put("provider", doc.get("metadata.provider"));
-				else
-					json.put("provider", new String(""));
+				addJsonObject(doc, json, "header.id", "id");
+				addJsonObject(doc, json, "header.collectionId", "collectionId");
+				addJsonObject(doc, json, "header.createdOn", "createdOn");
+				addJsonObject(doc, json, "header.createdBy", "createdBy");
+				addJsonObject(doc, json, "header.lastModifiedOn",
+						"lastModifiedOn");
+				addJsonObject(doc, json, "header.lastModifiedBy",
+						"lastModifiedBy");
+				addJsonObject(doc, json, "header.deletedOn", "deletedOn");
+				addJsonObject(doc, json, "header.deletedBy", "deletedBy");
+				addJsonObject(doc, json, "header.version", "version");
+				addJsonObject(doc, json, "header.status", "status");
+				addJsonObject(doc, json, "header.access", "access");
+				addJsonObject(doc, json, "header.validated", "validated");
+				addJsonObject(doc, json, "header.presentedToII",
+						"presentedToII");
+				addJsonObject(doc, json, "header.disseminatedToBiocase",
+						"disseminatedToBiocase");
+				addJsonObject(doc, json, "header.metadataLanguages.language",
+						"Languages");
+				addJsonObject(doc, json, "metadata.provider", "provider");
+				addJsonObject(doc, json, "metadata.dataProvider",
+						"dataProvider");
+				addJsonObject(doc, json, "metadata.objectUri", "objectUri");
+				addJsonObject(doc, json, "metadata.contextUri", "contextUri");
+				addJsonObject(doc, json, "metadata.contentType", "contentType");
+				addJsonObject(doc, json, "metadata.licenseUri", "licenseUri");
+				addJsonObject(doc, json, "metadata.thumbnailUri",
+						"thumbnailUri");
+
+				addJsonObjectWE(doc, json, "metadata.scientificName",
+						"scientificName");
+				addJsonObjectWE(doc, json, "metadata.classification",
+						"classification");
+				addJsonObjectWE(doc, json, "metadata.commonName", "commonName");
+				addJsonObjectWE(doc, json, "metadata.title", "title");
+				addJsonObjectWE(doc, json, "metadata.creator", "creator");
+				addJsonObjectWE(doc, json, "metadata.subject", "subject");
+				addJsonObjectWE(doc, json, "metadata.description",
+						"description");
+				addJsonObjectWE(doc, json, "metadata.contributor",
+						"contributor");
+				addJsonObjectWE(doc, json, "metadata.date", "date");
+				addJsonObjectWE(doc, json, "metadata.type", "type");
+				addJsonObjectWE(doc, json, "metadata.format", "format");
+				addJsonObjectWE(doc, json, "metadata.identifier", "identifier");
+				addJsonObjectWE(doc, json, "metadata.source", "source");
+				addJsonObjectWE(doc, json, "metadata.language", "language");
+				addJsonObjectWE(doc, json, "metadata.relation", "relation");
+				addJsonObjectWE(doc, json, "metadata.rights", "rights");
+				addJsonObjectWE(doc, json, "metadata.alternative",
+						"alternative");
+				addJsonObjectWE(doc, json, "metadata.created", "created");
+				addJsonObjectWE(doc, json, "metadata.extent", "extent");
+				addJsonObjectWE(doc, json, "metadata.medium", "medium");
+				addJsonObjectWE(doc, json, "metadata.isVersionOf",
+						"isVersionOf");
+				addJsonObjectWE(doc, json, "metadata.hasVersion", "hasVersion");
+				addJsonObjectWE(doc, json, "metadata.isReplacedBy",
+						"isReplacedBy");
+				addJsonObjectWE(doc, json, "metadata.replaces", "replaces");
+				addJsonObjectWE(doc, json, "metadata.isRequiredBy",
+						"isRequiredBy");
+				addJsonObjectWE(doc, json, "metadata.requires", "requires");
+				addJsonObjectWE(doc, json, "metadata.isPartOf", "isPartOf");
+				addJsonObjectWE(doc, json, "metadata.hasPart", "hasPart");
+				addJsonObjectWE(doc, json, "metadata.isReferencedBy",
+						"isReferencedBy");
+				addJsonObjectWE(doc, json, "metadata.references", "references");
+				addJsonObjectWE(doc, json, "metadata.isFormatOf", "isFormatOf");
+				addJsonObjectWE(doc, json, "metadata.hasFormat", "hasFormat");
+				addJsonObjectWE(doc, json, "metadata.conformsTo", "conformsTo");
+				addJsonObjectWE(doc, json, "metadata.spatial", "spatial");
+				addJsonObjectWE(doc, json, "metadata.temporal", "temporal");
+				addJsonObjectWE(doc, json, "metadata.geolocation",
+						"geolocation");
 
 			} catch (JSONException ex) {
 				log.error(ex);
@@ -110,6 +184,51 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 		System.out.println(resultsJson.toString());
 		// log.info(resultsJson.toString());
 		return resultsJson.toString();
+	}
+
+	private void addJsonObject(SolrDocument doc, JSONObject json,
+			String fieldName, String responeseName) throws JSONException {
+		Object field = doc.get(fieldName);
+		if (field != null)
+			json.put(responeseName, field);
+		else
+			json.put(responeseName, new String(""));
+	}
+
+	private void addJsonObjectWE(SolrDocument doc, JSONObject json,
+			String fieldName, String responeseName) throws JSONException {
+
+		int pointer = 1;
+
+		Collection collection = new HashSet();
+
+		handleAttributeElements(doc, json, fieldName, responeseName, pointer,
+				collection);
+	}
+
+	private void handleAttributeElements(SolrDocument doc, JSONObject json,
+			String fieldName, String responseName, int pointer, Collection data)
+			throws JSONException {
+
+		String fn = fieldName + "." + pointer;
+		Object object = doc.get(fn);
+		if (object != null) {
+
+			HashMap<String, Object> elText = new HashMap<>();
+			elText.put("value", object);
+
+			Object lang = doc.get(fn + "@xml:lang");
+			if (lang != null)
+				elText.put("lang:", lang);
+
+			data.add(elText);
+
+			handleAttributeElements(doc, json, fieldName, responseName,
+					pointer + 1, data);
+		} else
+			json.put(responseName, new String(""));
+
+		json.put(responseName, data);
 	}
 
 	private QueryResponse getSolrResponse() {
