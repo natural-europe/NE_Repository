@@ -140,6 +140,7 @@ public class ARIADNEImplementation {
 			}
 			query = changeFacetName(query);
 
+			System.out.println(query);
 			if (qry.exclusionTerms != null) {
 				for (int i = 0; i < qry.exclusionTerms.length; i++) {
 					// System.out.println(qry.exclusionTerms[i]);
@@ -185,59 +186,49 @@ public class ARIADNEImplementation {
 	}
 
 	private String changeFacetName(String expression) {
-		if (expression.contains("lrt:"))
-			expression = expression.replace("lrt:",
-					"lom.educational.learningresourcetype.value:");
-		if (expression.contains("context:"))
-			expression = expression.replace("context:",
-					"lom.educational.context.value:");
-		if (expression.contains("format:"))
-			expression = expression.replace("format:", "lom.technical.format:");
-		
+
 		if (expression.contains("provider:"))
-			expression = expression.replace("provider:", "metadata.provider:");
-		
-		if (expression.contains("language:"))
-			expression = expression.replace("language:",
-					"lom.general.language:");
-		if (expression.contains("collection:"))
-			expression = expression.replace("collection:", "collection:");
-		if (expression.contains("it:"))
-			expression = expression.replace("it:",
-					"lom.educational.interactivitytype.value:");
-		if (expression.contains("il:"))
-			expression = expression.replace("il:",
-					"lom.educational.interactivitylevel.value:");
-		if (expression.contains("iur:"))
-			expression = expression.replace("iur:",
-					"lom.educational.intendedenduserrole.value:");
-		if (expression.contains("tagr:"))
-			expression = expression.replace("tagr:",
-					"lom.educational.typicalagerange.string:");
-		if (expression.contains("collection:\"*\""))
-			expression = expression.replace("collection:\"*\"",
-					"lom.solr:\"all\"");
-		if (expression.contains("keyword:"))
-			expression = expression.replace("keyword:",
-					"lom.general.keyword.string:");
-		if (expression.contains("rights:"))
-			expression = expression.replace("rights:",
-					"lom.rights.description.string:");
-		if (expression.contains("licenses:"))
-			expression = expression.replace("licences:",
-					"lom.rights.copyrightandotherrestrictions.string:");
+			expression = expression.replace("provider:",
+					"metadata.dataProvider:");
+
+		if (expression.contains("licenseUri:"))
+			expression = expression.replace("licenseUri:",
+					"metadata.licenseUri:");
+
 		if (expression.contains("classification:"))
 			expression = expression.replace("classification:",
-					"lom.classification.taxonpath.taxon.entry.string:");
-		if (expression.contains("temporal:"))
-			expression = expression.replace("temporal:",
-					"lom.educational.typicalagerange.string:");
+					"metadata.classification:");
+
+		if (expression.contains("commonName:"))
+			expression = expression.replace("commonName:",
+					"metadata.commonName:");
+
+		if (expression.contains("date:"))
+			expression = expression.replace("date:", "metadata.date:");
+
+		if (expression.contains("type:"))
+			expression = expression.replace("type:", "metadata.type:");
+
+		if (expression.contains("format:"))
+			expression = expression.replace("format:", "metadata.format:");
+
+		if (expression.contains("language:"))
+			expression = expression.replace("language:", "metadata.language:");
+
+		if (expression.contains("rights:"))
+			expression = expression.replace("rights:", "metadata.rights:");
+
 		if (expression.contains("spatial:"))
-			expression = expression.replace("coverage:",
-					"lom.general.coverage.string:");
-		if (expression.contains("common:"))
-			expression = expression.replace("common:",
-					"lom.classification.description.string:");
+			expression = expression.replace("spatial:", "metadata.spatial:");
+
+		if (expression.contains("temporal:"))
+			expression = expression.replace("temporal:", "metadata.temporal:");
+		
+		if (expression.contains("metadataLanguage:"))
+			expression = expression.replace("metadataLanguage:", "header.metadataLanguages.language:");
+
+		if (expression.contains("collection:\"*\""))
+			expression =  expression.replace("collection:\"*\"", "lom.solr:\"all\"");
 
 		return expression;
 	}

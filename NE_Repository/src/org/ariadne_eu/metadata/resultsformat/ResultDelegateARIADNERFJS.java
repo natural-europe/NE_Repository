@@ -6,10 +6,12 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.Vector;
 
 import net.sourceforge.minor.lucene.core.searcher.IndexSearchDelegate;
 
+import org.apache.commons.collections.MultiHashMap;
 import org.apache.log4j.Logger;
 import org.apache.lucene.index.CorruptIndexException;
 import org.apache.lucene.search.IndexSearcher;
@@ -17,8 +19,8 @@ import org.apache.lucene.search.TopDocs;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.response.FacetField;
-import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.client.solrj.response.FacetField.Count;
+import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.params.FacetParams;
 import org.ariadne.config.PropertiesManager;
@@ -36,7 +38,7 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 	private int max;
 	private String lQuery;
 	private static Vector<String> facetFields;
-
+	MultiHashMap languages;
 	static {
 		try {
 			facetFields = new Vector<String>();
@@ -65,6 +67,7 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 		this.start = start;
 		this.max = max;
 		this.lQuery = lQuery;
+		languages = new MultiHashMap();
 	}
 
 	public String result(TopDocs topDocs, IndexSearcher searcher)
@@ -171,6 +174,8 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 				addJsonObjectWE(doc, json, "metadata.geolocation",
 						"geolocation");
 
+				getFieldsBasedOnLanguage(json);
+
 			} catch (JSONException ex) {
 				log.error(ex);
 			}
@@ -224,6 +229,11 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 				elText.put("value", fValue);
 				elText.put("lang", fLangValue);
 
+				HashMap<String, Object> langData = new HashMap<>();
+				langData.put(responseName, fValue);
+
+				languages.put((String) fLangValue, langData);
+
 				data.add(elText);
 			}
 
@@ -231,6 +241,29 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 		} else
 
 			json.put(responseName, new String(""));
+
+	}
+
+	private void getFieldsBasedOnLanguage(JSONObject json) throws JSONException {
+
+		Set<String> keySet = languages.keySet();
+
+		Iterator<String> iterator = keySet.iterator();
+		HashMap<String, Object> langData = new HashMap<>();
+
+		while (iterator.hasNext()) {
+			String langValue = iterator.next();
+
+			if (!langData.containsKey(langValue)) {
+
+				Collection collection = languages.getCollection(langValue);
+				langData.put(langValue, collection);
+
+			} else
+				continue;
+
+		}
+		json.put("Language", langData);
 
 	}
 
@@ -300,19 +333,8 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 	}
 
 	private String changeFacetName(String internalName) {
-		if (internalName
-				.equalsIgnoreCase("lom.educational.learningresourcetype.value"))
-			return "lrt";
-		else if (internalName.equalsIgnoreCase("lom.educational.context.value"))
-			return "context";
-		else if (internalName.equalsIgnoreCase("collection"))
-			return "collection";
-		else if (internalName.equalsIgnoreCase("lom.technical.format"))
-			return "format";
-		else if (internalName.equalsIgnoreCase("lom.general.language"))
-			return "language";
 
-		else if (internalName.equalsIgnoreCase("metadata.dataProvider"))
+		if (internalName.equalsIgnoreCase("metadata.dataProvider"))
 			return "provider";
 		else if (internalName.equalsIgnoreCase("metadata.licenseUri"))
 			return "licenseUri";
@@ -337,37 +359,6 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 		else if (internalName
 				.equalsIgnoreCase("header.metadataLanguages.language"))
 			return "metadataLanguage";
-
-		else if (internalName
-				.equalsIgnoreCase("lom.educational.interactivitytype.value"))
-			return "it";
-		else if (internalName
-				.equalsIgnoreCase("lom.educational.interactivitylevel.value"))
-			return "il";
-		else if (internalName
-				.equalsIgnoreCase("lom.educational.intendedenduserrole.value"))
-			return "iur";
-		else if (internalName
-				.equalsIgnoreCase("lom.educational.typicalagerange.string"))
-			return "tagr";
-		else if (internalName.equalsIgnoreCase("lom.general.keyword.string"))
-			return "keyword";
-		else if (internalName.equalsIgnoreCase("lom.rights.description.string"))
-			return "rights";
-		else if (internalName
-				.equalsIgnoreCase("lom.rights.copyrightandotherrestrictions.string"))
-			return "licences";
-		else if (internalName
-				.equalsIgnoreCase("lom.classification.taxonpath.taxon.entry.string"))
-			return "classification";
-		else if (internalName
-				.equalsIgnoreCase("lom.educational.typicalagerange.string"))
-			return "temporal";
-		else if (internalName.equalsIgnoreCase("lom.general.coverage.string"))
-			return "spatial";
-		else if (internalName
-				.equalsIgnoreCase("lom.classification.description.string"))
-			return "common";
 
 		return internalName;
 	}
