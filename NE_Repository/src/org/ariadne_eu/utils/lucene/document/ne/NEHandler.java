@@ -62,8 +62,8 @@ public class NEHandler extends DocumentHandler {
 	public void startDocument() {
 		doc = new Document();
 		contents = new String();
-		elements = new Hashtable<>();
-		attrs = new Hashtable<>();
+		elements = new Hashtable();
+		attrs = new Hashtable();
 
 	}
 
