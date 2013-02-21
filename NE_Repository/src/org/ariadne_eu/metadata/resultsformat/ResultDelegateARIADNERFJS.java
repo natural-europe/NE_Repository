@@ -38,7 +38,7 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 	private int max;
 	private String lQuery;
 	private static Vector<String> facetFields;
-	MultiHashMap languages;
+	//MultiHashMap languages;
 	static {
 		try {
 			facetFields = new Vector<String>();
@@ -67,7 +67,7 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 		this.start = start;
 		this.max = max;
 		this.lQuery = lQuery;
-		languages = new MultiHashMap();
+		//languages = new MultiHashMap();
 	}
 
 	public String result(TopDocs topDocs, IndexSearcher searcher)
@@ -174,12 +174,12 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 				addJsonObjectWE(doc, json, "metadata.geolocation",
 						"geolocation");
 
-				getFieldsBasedOnLanguage(json);
+				//getFieldsBasedOnLanguage(json);
 
 			} catch (JSONException ex) {
 				log.error(ex);
 			}
-			metadataArrayJson.put(json);
+			//metadataArrayJson.put(json);
 		}
 		resultJson.put("id", idArrayJson);
 		resultJson.put("metadata", metadataArrayJson);
@@ -229,10 +229,10 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 				elText.put("value", fValue);
 				elText.put("lang", fLangValue);
 
-				HashMap<String, Object> langData = new HashMap<>();
-				langData.put(responseName, fValue);
+				//HashMap<String, Object> langData = new HashMap<>();
+				//langData.put(responseName, fValue);
 
-				languages.put((String) fLangValue, langData);
+				//languages.put((String) fLangValue, langData);
 
 				data.add(elText);
 			}
@@ -244,7 +244,7 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 
 	}
 
-	private void getFieldsBasedOnLanguage(JSONObject json) throws JSONException {
+	/*private void getFieldsBasedOnLanguage(JSONObject json) throws JSONException {
 
 		Set<String> keySet = languages.keySet();
 
@@ -267,7 +267,7 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 		}
 		json.put("Language", langData);
 
-	}
+	}*/
 
 	private QueryResponse getSolrResponse() {
 		SolrServerManagement serverMgt = SolrServerManagement.getInstance();
