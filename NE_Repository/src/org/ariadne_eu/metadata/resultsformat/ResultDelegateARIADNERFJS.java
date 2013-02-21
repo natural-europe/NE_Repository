@@ -178,7 +178,7 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
                                         json.put("fPath", doc.get("fPath"));
                                 else
                                         json.put("fPath", new String(""));                          
-
+//test
 				//getFieldsBasedOnLanguage(json);
 
 			} catch (JSONException ex) {
