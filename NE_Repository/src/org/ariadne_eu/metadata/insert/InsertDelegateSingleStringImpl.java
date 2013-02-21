@@ -53,7 +53,7 @@ public class InsertDelegateSingleStringImpl implements IndexInserterDelegate {
 			}
 			doc.add(new Field("date.insert", DateTools.dateToString(new Date(), DateTools.Resolution.MILLISECOND), Field.Store.YES, Field.Index.NOT_ANALYZED));
                         
-                        doc.add(new Field("mdPath", fPath, Field.Store.YES, Field.Index.NOT_ANALYZED));
+                        doc.add(new Field("fPath", fPath, Field.Store.YES, Field.Index.NOT_ANALYZED));
             
             String luceneHandler = PropertiesManager.getInstance().getProperty(RepositoryConstants.getInstance().SR_LUCENE_HANDLER);
             if (luceneHandler.equalsIgnoreCase("org.ariadne_eu.utils.lucene.document.MACELOMHandler")) {
