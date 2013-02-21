@@ -257,6 +257,8 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 			if (!langData.containsKey(langValue)) {
 
 				Collection collection = languages.getCollection(langValue);
+				
+				
 				langData.put(langValue, collection);
 
 			} else
