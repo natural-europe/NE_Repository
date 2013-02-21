@@ -83,7 +83,7 @@ public class InsertMetadataOracleDbImpl extends InsertMetadataImpl {
      * NOTE: Collection is not implemented!
      * 
      * */
-    public synchronized void insertMetadata(String identifier, String metadata, String collection) throws InsertMetadataException {
+    public synchronized void insertMetadata(String identifier, String metadata, String collection,String fPath) throws InsertMetadataException {
         try {
             Connection con = getConnection();
             PreparedStatement pstmt;

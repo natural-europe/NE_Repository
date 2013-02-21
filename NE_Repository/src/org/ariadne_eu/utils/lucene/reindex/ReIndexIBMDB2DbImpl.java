@@ -144,7 +144,7 @@ public class ReIndexIBMDB2DbImpl extends ReIndexImpl {
 						String lom = out.toString();
 
 						if (identifier != null) 
-							luceneImpl.insertMetadata(identifier, lom, "ARIADNE");
+							luceneImpl.insertMetadata(identifier, lom, "ARIADNE","");
 					}
 				} catch (QueryTranslationException e) {
 					log.error("reIndexMetadata: ", e);

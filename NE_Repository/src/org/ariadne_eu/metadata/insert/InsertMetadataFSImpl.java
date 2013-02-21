@@ -49,7 +49,7 @@ public class InsertMetadataFSImpl extends InsertMetadataImpl {
 	}
 	
 	@Override
-	public synchronized void insertMetadata(String identifier, String metadata, String collection) throws InsertMetadataException{
+	public synchronized void insertMetadata(String identifier, String metadata, String collection,String fpath) throws InsertMetadataException{
 		Reader in = new StringReader(metadata);
 		SAXBuilder builder = new SAXBuilder();
 		

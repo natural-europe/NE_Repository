@@ -152,7 +152,7 @@ public class MACEImplementation extends MACESkeleton {
 			String output = outputter.outputString(doc);
 	
 			
-			InsertMetadataFactory.insertMetadata(createRWO.getResourceId()+"MD", output,"MACE");
+			InsertMetadataFactory.insertMetadata(createRWO.getResourceId()+"MD", output,"MACE","");
 		} catch (SessionExpiredException e) {
 			log.info("createRWO: ", e);
             MACEFault fault = new MACEFault();
@@ -265,7 +265,7 @@ public class MACEImplementation extends MACESkeleton {
 			outputter.setFormat(format);
 			String output = outputter.outputString(doc);
 			
-			InsertMetadataFactory.insertMetadata(createLOM.getResourceId()+"MD", output,"MACE");
+			InsertMetadataFactory.insertMetadata(createLOM.getResourceId()+"MD", output,"MACE","");
 		} catch (SessionExpiredException e) {
 			log.info("createLOM: ", e);
             MACEFault fault = new MACEFault();
@@ -368,7 +368,7 @@ public class MACEImplementation extends MACESkeleton {
 			outputter.setFormat(format);
 			String output = outputter.outputString(newDoc);
 			
-			InsertMetadataFactory.insertMetadata(addRelation.getFromResourceId()+"MD", output,"MACE");
+			InsertMetadataFactory.insertMetadata(addRelation.getFromResourceId()+"MD", output,"MACE","");
 
 		} catch (QueryMetadataException e) {
 			log.info("addRelation: ", e);
@@ -460,7 +460,7 @@ public class MACEImplementation extends MACESkeleton {
 					Format format = Format.getPrettyFormat();
 					outputter.setFormat(format);
 					String output = outputter.outputString(newDoc);
-					InsertMetadataFactory.insertMetadata(removeRelation.getFromResourceId()+"MD", output,"MACE");
+					InsertMetadataFactory.insertMetadata(removeRelation.getFromResourceId()+"MD", output,"MACE","");
 				}
 			}	
 			

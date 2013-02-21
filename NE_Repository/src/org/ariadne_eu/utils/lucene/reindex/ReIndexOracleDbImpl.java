@@ -141,7 +141,7 @@ public class ReIndexOracleDbImpl extends ReIndexImpl {
 						String lom = out.toString();
 
 						if (identifier != null) 
-							luceneImpl.insertMetadata(identifier, lom, "ARIADNE");
+							luceneImpl.insertMetadata(identifier, lom, "ARIADNE","");
 					}
 				} catch (QueryMetadataException e) {
 					log.error("reIndexMetadata: ", e);

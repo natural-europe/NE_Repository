@@ -144,7 +144,7 @@ public class ReIndexZipImpl extends ReIndexImpl {
 					serializer.serialize((Element) doc.getFirstChild());
 					String lom = out.toString();
 					if (identifier != null)
-						luceneImpl.insertMetadata(identifier, lom, collection);
+						luceneImpl.insertMetadata(identifier, lom, collection, "");
 				} catch (Exception ex) {
 					log.error("indexFile: fileName=" + mdFile.getName(), ex);
 				}

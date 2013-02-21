@@ -121,7 +121,7 @@ public class SPIDevImplementation extends SPIDevSkeleton {
 			// throws exception if no valid ticket exists
 			Ticket ticket = Ticket.getTicket(submitMetadataRecord.getTargetSessionID()); 
 			checkValidTicket(ticket);
-			InsertMetadataFactory.insertMetadata(submitMetadataRecord.getGlobalIdentifier(), submitMetadataRecord.getMetadata(), submitMetadataRecord.getCollection());
+			InsertMetadataFactory.insertMetadata(submitMetadataRecord.getGlobalIdentifier(), submitMetadataRecord.getMetadata(), submitMetadataRecord.getCollection(),"");
 			// } catch (XMLDBException e) {
 			// log.error("submitMetadataRecord: ", e);
 		} catch (SessionExpiredException e) {

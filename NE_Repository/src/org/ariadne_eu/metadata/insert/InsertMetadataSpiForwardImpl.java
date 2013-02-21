@@ -46,7 +46,7 @@ public class InsertMetadataSpiForwardImpl extends InsertMetadataImpl {
      * NOTE: Collection is not implemented!
      * 
      * */
-    public synchronized void insertMetadata(String identifier, String metadata, String collection) throws InsertMetadataException{
+    public synchronized void insertMetadata(String identifier, String metadata, String collection, String fPath) throws InsertMetadataException{
         try {
         	SqiSessionManagementStub sm = new SqiSessionManagementStub(smURI);
             CreateSession createSession = new CreateSession();

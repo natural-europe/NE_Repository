@@ -89,7 +89,7 @@ public class InsertMetadataExistDbImpl extends InsertMetadataImpl {
  * NOTE: Collection is not implemented!
  * 
  * */
-    public synchronized void insertMetadata(String identifier, String metadata, String collection) throws InsertMetadataException{
+    public synchronized void insertMetadata(String identifier, String metadata, String collection, String fPath) throws InsertMetadataException{
         try {
         	//exist cant handle ":" on the identifier
         	identifier = identifier.replaceAll(":", "_");

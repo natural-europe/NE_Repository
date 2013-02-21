@@ -9,7 +9,7 @@ package org.ariadne_eu.metadata.insert;
 public abstract class InsertMetadataImpl {
     private int language;
 
-    public abstract void insertMetadata(String identifier, String metadata, String collection) throws InsertMetadataException;
+    public abstract void insertMetadata(String identifier, String metadata, String collection, String fPath) throws InsertMetadataException;
 
 
     public int getLanguage() {

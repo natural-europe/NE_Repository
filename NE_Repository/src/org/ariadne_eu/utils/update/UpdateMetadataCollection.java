@@ -63,7 +63,7 @@ public class UpdateMetadataCollection {
 
 			logger.info("Pushing " + id);
 
-			InsertMetadataFactory.insertMetadata(id, OaiUtils.parseLom2XmlstringNoXmlHeader(xmlDoc.getRootElement()),"ARIADNE");
+			InsertMetadataFactory.insertMetadata(id, OaiUtils.parseLom2XmlstringNoXmlHeader(xmlDoc.getRootElement()),"ARIADNE","");
 						
 			logger.info("Successfully pushed : " + id);
 		} catch (Exception e) {

@@ -138,7 +138,7 @@ public class SPIImplementation extends SPISkeleton {
             Ticket ticket = Ticket.getTicket(submitMetadataRecord.getTargetSessionID()); //throws exception if no valid ticket exists
             checkValidTicket(ticket);
             log.debug("submitMetadataRecord:metadata="+submitMetadataRecord.getMetadata());
-            InsertMetadataFactory.insertMetadata(submitMetadataRecord.getGlobalIdentifier(), submitMetadataRecord.getMetadata(),"ARIADNE");
+            InsertMetadataFactory.insertMetadata(submitMetadataRecord.getGlobalIdentifier(), submitMetadataRecord.getMetadata(),"ARIADNE","");
         } catch (SessionExpiredException e) {
             log.error("submitMetadataRecord: ", e);
             SpiFault fault = new SpiFault();

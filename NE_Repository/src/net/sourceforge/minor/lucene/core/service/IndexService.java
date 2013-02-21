@@ -16,12 +16,12 @@ public class IndexService {
 	
     private static Logger log =  Logger.getLogger(IndexService.class);
     
-	public static void insert(File indexDir, IndexInserterDelegate insert, boolean create) throws Exception{
+	public static void insert(File indexDir, IndexInserterDelegate insert, boolean create,String fPath) throws Exception{
 		Check.checkObject(indexDir);
 		Check.checkObject(insert);
 		long start = new Date().getTime();
 		IndexHandler indexHandler = IndexHandlerFactory.getIndexHandler(indexDir);
-		indexHandler.insert(insert, create);
+		indexHandler.insert(insert, create, fPath);
 		long end = new Date().getTime();
 		log.info("Indexing took "+(end - start)+" ms");
 	}

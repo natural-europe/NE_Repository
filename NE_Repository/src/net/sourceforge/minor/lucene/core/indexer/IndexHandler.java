@@ -26,7 +26,7 @@ public class IndexHandler implements IndexInserter, IndexDeleter, IndexUpdater {
 	 * (non-Javadoc)
 	 * @see indexer.IndexInserter#insert(indexer.IndexInserterDelegate)
 	 */
-	public final void insert(IndexInserterDelegate insert, boolean create) throws Exception {
+	public final void insert(IndexInserterDelegate insert, boolean create,String fPath) throws Exception {
 		synchronized (indexDir) {
             IndexWriter writer = null;
             try {

@@ -26,7 +26,7 @@ public class SpiGateway {
 			log.info("submitMetadata:identifier=" + metadataIdentifier + ",sessionID=" + authorizationToken);
 			XMLOutputter out = new XMLOutputter();
 			out.setFormat(Format.getPrettyFormat());
-			InsertMetadataFactory.insertMetadata(metadataIdentifier, out.outputString(metadataInstance), "TEST");
+			InsertMetadataFactory.insertMetadata(metadataIdentifier, out.outputString(metadataInstance), "TEST","");
 			return metadataIdentifier;
 		} catch (InsertMetadataException e) {
 			log.error("submitMetadata: ", e);
