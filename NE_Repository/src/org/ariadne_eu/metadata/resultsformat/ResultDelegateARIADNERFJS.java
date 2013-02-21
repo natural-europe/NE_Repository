@@ -225,7 +225,7 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 			for (int i = 0; i < fValuesarray.length; i++) {
 				Object fValue = fValuesarray[i];
 				Object fLangValue = flvArray[i];
-				HashMap<String, Object> elText = new HashMap<>();
+				HashMap<String, Object> elText = new HashMap<String, Object>();
 				elText.put("value", fValue);
 				elText.put("lang", fLangValue);
 
