@@ -589,7 +589,7 @@ public class NEHandler extends DocumentHandler {
 	public int getElementCounter(String qName) {
 		int value = 0;
 		if (elements.containsKey(qName)) {
-			value = (int) elements.get(qName);
+			value = (Integer) elements.get(qName);
 			value += 1;
 			elements.put(qName, value);
 			return value;
@@ -603,7 +603,7 @@ public class NEHandler extends DocumentHandler {
 	public int getElementCounterAttrs(String qName) {
 		int value = 0;
 		if (attrs.containsKey(qName)) {
-			value = (int) attrs.get(qName);
+			value = (Integer) attrs.get(qName);
 			value += 1;
 			attrs.put(qName, value);
 			return value;
