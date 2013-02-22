@@ -412,28 +412,20 @@
 		<field name="md" type="string" indexed="true" stored="true" />
 		<field name="lom" type="string" indexed="true" stored="true" />
 
-	<!-- 	<field name="metadata.dataProvider" type="string" indexed="true"
-			stored="true" />
-		<field name="metadata.licenseUri" type="string" indexed="true"
-			stored="true" />
-		<field name="metadata.classification" type="string" indexed="true"
-			stored="true" />
-		<field name="metadata.commonName" type="string" indexed="true"
-			stored="true" />
-		<field name="metadata.date" type="string" indexed="true" stored="true" />
-		<field name="metadata.type" type="string" indexed="true" stored="true" />
-		<field name="metadata.format" type="string" indexed="true"
-			stored="true" />
-		<field name="metadata.language" type="string" indexed="true"
-			stored="true" />
-		<field name="metadata.rights" type="string" indexed="true"
-			stored="true" />
-		<field name="metadata.spatial" type="string" indexed="true"
-			stored="true" />
-		<field name="metadata.temporal" type="string" indexed="true"
-			stored="true" />
-		<field name="header.metadataLanguages.language" type="string"
-			indexed="true" stored="true" /> -->
+		<!-- <field name="metadata.dataProvider" type="string" indexed="true" stored="true" 
+			/> <field name="metadata.licenseUri" type="string" indexed="true" stored="true" 
+			/> <field name="metadata.classification" type="string" indexed="true" stored="true" 
+			/> <field name="metadata.commonName" type="string" indexed="true" stored="true" 
+			/> <field name="metadata.date" type="string" indexed="true" stored="true" 
+			/> <field name="metadata.type" type="string" indexed="true" stored="true" 
+			/> <field name="metadata.format" type="string" indexed="true" stored="true" 
+			/> <field name="metadata.language" type="string" indexed="true" stored="true" 
+			/> <field name="metadata.rights" type="string" indexed="true" stored="true" 
+			/> <field name="metadata.spatial" type="string" indexed="true" stored="true" 
+			/> <field name="metadata.temporal" type="string" indexed="true" stored="true" 
+			/> <field name="header.metadataLanguages.language" type="string" indexed="true" 
+			stored="true" /> -->
+
 
 		<field name="lom.general.identifier.entry" type="string"
 			indexed="true" stored="true" multiValued="true" />
