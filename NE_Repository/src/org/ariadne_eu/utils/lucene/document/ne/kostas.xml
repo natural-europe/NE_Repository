@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ne:record xmlns:ne="http://www.natural-europe.eu/nhm/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.natural-europe.eu/nhm/ http://62.217.124.204/ne.xsd">
+  <ne:header>
+    <ne:id>c2957c21-4752-4c56-81ab-3bbfd033aae0</ne:id>
+    <ne:collectionId>Jura-Museum Eichstätt, exhibits</ne:collectionId>
+    <ne:createdOn>2011-11-23T13:25:02.351+02:00</ne:createdOn>
+    <ne:createdBy>Haas, Hans-Dieter</ne:createdBy>
+    <ne:lastModifiedOn>2012-11-08T13:56:35.394+02:00</ne:lastModifiedOn>
+    <ne:lastModifiedBy>TUC, Team</ne:lastModifiedBy>
+    <ne:status>FINAL</ne:status>
+    <ne:access>PRIVATE</ne:access>
+    <ne:validated>true</ne:validated>
+    <ne:presentedToII>false</ne:presentedToII>
+    <ne:disseminatedToBiocase>false</ne:disseminatedToBiocase>
+    <ne:metadataLanguages>
+      <ne:metadataLanguage>la</ne:metadataLanguage>
+      <ne:metadataLanguage>de</ne:metadataLanguage>
+      <ne:metadataLanguage>en</ne:metadataLanguage>
+    </ne:metadataLanguages>
+  </ne:header>
+  <ne:metadata>
+    <ne:provider>The Natural Europe Project</ne:provider>
+    <ne:dataProvider>Jura - Museum Eichstatt</ne:dataProvider>
+    <ne:objectUri>http://jme.collections.natural-europe.eu/content/9d6e29ed-f26a-4702-812a-35ee9b1e364d</ne:objectUri>
+    <ne:contentType>IMAGE</ne:contentType>
+    <ne:licenseUri>http://creativecommons.org/licenses/by-nc-nd/3.0</ne:licenseUri>
+    <ne:thumbnailUri>http://jme.collections.natural-europe.eu/content/thumbs/src/9d6e29ed-f26a-4702-812a-35ee9b1e364d</ne:thumbnailUri>
+    <ne:scientificName xml:lang="la">Rhynchonella cf epiliasina</ne:scientificName>
+    <ne:title xml:lang="de">Armfüßer</ne:title>
+    <ne:title xml:lang="en">Brachiopods</ne:title>
+    <ne:subject xml:lang="de">Riffbildner</ne:subject>
+    <ne:description xml:lang="de">Armfüßer (Brachiopoda)
+
+Die Armfüßer zeichnen sich durch zwei spiralig aufgerollte tentakeltragende Arme aus, die meist von kalkigen Armgerüsten gestützt werden. Diese erzeugen einen Wasserstrom, dem die Tiere den nötigen Sauerstoff und Futterteilchen entnehmen.
+Eine zweiteilige Schale schützt den Weichkörper. Darin gleichen die Armfüßer den Muscheln, mit denen sie jedoch in keiner Weise verwandt sind. Die Schalen beider Gruppen lassen sich leicht unterscheiden. Während die Muschelschale aus einer rechten und einer linken Klappe besteht, die einander spiegelbildlich gleich sind, besitzen die Armfüßer eine kleinere Rücken- und eine größere Bauchklappe. Im Gegensatz zur Muschelklappe lässt sich jede der beiden Armfüßerklappen durch eine Spiegelebene in zwei gleiche Hälften zerlegen.
+
+Die Armfüßer heften sich mittels eines fleischigen Stiels dauernd oder nur in der Jugend am Untergrund fest. Seine Austrittsöffnung ist vielfach am Hinterrand der Bauchklappe sichtbar.
+
+Die Armfüßer hatten den Höhepunkt ihrer Entwicklung bereits im Erdaltertum (Paläozoikum), sie kommen aber noch heute vor. In der Jura-Zeit waren sie weit verbreitet, besonders an den Riffen, wo sie einen festen Untergrund zum Anheften fanden.</ne:description>
+    <ne:date annotation="dateCollected">nn</ne:date>
+    <ne:rights annotation="Rights Reserved - Free Access">Jura-Museum Eichstätt</ne:rights>
+    <ne:alternative xml:lang="de">Armfüßer</ne:alternative>
+    <ne:alternative xml:lang="en">Brachiopods</ne:alternative>
+    <ne:spatial xml:lang="de">Neumarkt</ne:spatial>
+    <ne:temporal xml:lang="de">Lias</ne:temporal>
+    <ne:temporal xml:lang="en">Lower Jurassic</ne:temporal>
+  </ne:metadata>
+</ne:record>
+
