@@ -52,6 +52,8 @@ public class Vsql_LuceneHandler extends Translate {
             Node queryNode = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(input).getFirstChild();
             NodeList nl = XPathAPI.selectNodeList(queryNode, "term/text()");
 
+            log.info("VSQL PROCESS ");
+            
             String lquery = "";
 
             for (int i = 0; i < nl.getLength(); i++) {

@@ -114,6 +114,7 @@ public class Json_LuceneHandler extends Translate {
 	}
 
 	private List<String> parseVSQL(String content) {
+		System.out.println("parseVSQL process...");
 		StringTokenizer st = new StringTokenizer(content, " ");
 		List<String> result = new ArrayList<String>();
 		while (st.hasMoreTokens()) {
