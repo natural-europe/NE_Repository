@@ -168,6 +168,9 @@ public class ARIADNEImplementation {
 					TranslateLanguage.LUCENE).query(query,
 					qry.resultListOffset, qry.resultListSize,
 					TranslateResultsformat.ARFJS);
+
+			result = result.replace("=", ":");
+
 			JSONObject jResults = new JSONObject(result);
 			JSONObject jResult = jResults.getJSONObject("result");
 			jResult.put("processingTime", sw.stop());
@@ -223,7 +226,7 @@ public class ARIADNEImplementation {
 
 		if (expression.contains("temporal:"))
 			expression = expression.replace("temporal:", "metadata.temporal:");
-		
+
 		if (expression.contains("keyword:"))
 			expression = expression.replace("keyword:", "metadata.subject:");
 
