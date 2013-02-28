@@ -222,6 +222,7 @@ public class ARIADNEImplementation {
 
 		if (expression.contains("spatial:"))
 			expression = expression.replace("spatial:", "metadata.spatial:");
+		
 		if (expression.contains("keyword:"))
 			expression = expression.replace("keyword:", "metadata.subject:");
 

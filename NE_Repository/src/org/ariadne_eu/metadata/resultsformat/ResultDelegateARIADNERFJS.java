@@ -358,8 +358,6 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 			return "spatial";
 		else if (internalName.equalsIgnoreCase("metadata.temporal"))
 			return "temporal";
-		else if (internalName.equalsIgnoreCase("metadata.subject"))
-			return "keyword";
 		else if (internalName
 				.equalsIgnoreCase("header.metadataLanguages.language"))
 			return "metadataLanguage";
