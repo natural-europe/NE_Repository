@@ -87,6 +87,7 @@ public class ARIADNEImplementation {
 					TranslateLanguage.LUCENE).query(query,
 					qry.resultListOffset, qry.resultListSize,
 					TranslateResultsformat.ARFJS);
+
 			JSONObject jResults = new JSONObject(result);
 			JSONObject jResult = jResults.getJSONObject("result");
 			jResult.put("processingTime", sw.stop());
@@ -116,7 +117,7 @@ public class ARIADNEImplementation {
 		Query qry = new Query();
 		JSONObject jo;
 		log.debug("query:json=" + json + ",callback:" + callback);
-		System.out.println("query:json=" + json + ",callback:" + callback);
+
 		try {
 			jo = new JSONObject(json);
 			qry.parseJson(jo);
@@ -140,7 +141,6 @@ public class ARIADNEImplementation {
 			}
 			query = changeFacetName(query);
 
-			System.out.println(query);
 			if (qry.exclusionTerms != null) {
 				for (int i = 0; i < qry.exclusionTerms.length; i++) {
 					// System.out.println(qry.exclusionTerms[i]);
@@ -164,12 +164,15 @@ public class ARIADNEImplementation {
 			}
 
 			log.info("querywithPadding:query=" + query);
-			String result = QueryMetadataFactory.getQueryImpl(
-					TranslateLanguage.LUCENE).query(query,
-					qry.resultListOffset, qry.resultListSize,
-					TranslateResultsformat.ARFJS);
 
+			
+			String	result = QueryMetadataFactory.getQueryImpl(
+						TranslateLanguage.LUCENE).query(query,
+						qry.resultListOffset, qry.resultListSize,
+						TranslateResultsformat.ARFJS);
+			
 			result = result.replace("=", ":");
+
 			JSONObject jResults = new JSONObject(result);
 			JSONObject jResult = jResults.getJSONObject("result");
 			jResult.put("processingTime", sw.stop());

@@ -47,6 +47,7 @@ public class Vsql_LuceneHandler extends Translate {
 
     private String vsqlToLucene(String query) {
         try {
+        	
             InputSource input = new InputSource(new StringReader(query));
             Node queryNode = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(input).getFirstChild();
             NodeList nl = XPathAPI.selectNodeList(queryNode, "term/text()");
