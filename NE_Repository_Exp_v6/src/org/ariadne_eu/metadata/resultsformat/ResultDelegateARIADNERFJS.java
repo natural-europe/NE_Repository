@@ -357,6 +357,8 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 			return "rights";
 		else if (internalName.equalsIgnoreCase("metadata.spatial"))
 			return "spatial";
+		else if (internalName.equalsIgnoreCase("metadata.subject"))
+			return "keyword";
 		else if (internalName.equalsIgnoreCase("metadata.temporal"))
 			return "temporal";
 		else if (internalName

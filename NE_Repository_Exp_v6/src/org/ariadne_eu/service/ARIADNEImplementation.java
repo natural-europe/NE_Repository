@@ -224,11 +224,16 @@ public class ARIADNEImplementation {
 		if (expression.contains("temporal:"))
 			expression = expression.replace("temporal:", "metadata.temporal:");
 		
+		if (expression.contains("keyword:"))
+			expression = expression.replace("keyword:", "metadata.subject:");
+
 		if (expression.contains("metadataLanguage:"))
-			expression = expression.replace("metadataLanguage:", "header.metadataLanguages.language:");
+			expression = expression.replace("metadataLanguage:",
+					"header.metadataLanguages.language:");
 
 		if (expression.contains("collection:\"*\""))
-			expression =  expression.replace("collection:\"*\"", "lom.solr:\"all\"");
+			expression = expression.replace("collection:\"*\"",
+					"lom.solr:\"all\"");
 
 		return expression;
 	}
