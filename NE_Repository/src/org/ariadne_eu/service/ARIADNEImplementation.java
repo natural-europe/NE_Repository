@@ -168,7 +168,7 @@ public class ARIADNEImplementation {
 					TranslateLanguage.LUCENE).query(query,
 					qry.resultListOffset, qry.resultListSize,
 					TranslateResultsformat.ARFJS);
-			
+
 			result = result.replace("=", ":");
 			JSONObject jResults = new JSONObject(result);
 			JSONObject jResult = jResults.getJSONObject("result");
@@ -222,9 +222,6 @@ public class ARIADNEImplementation {
 
 		if (expression.contains("spatial:"))
 			expression = expression.replace("spatial:", "metadata.spatial:");
-		
-		if (expression.contains("keyword:"))
-			expression = expression.replace("keyword:", "metadata.subject:");
 
 		if (expression.contains("temporal:"))
 			expression = expression.replace("temporal:", "metadata.temporal:");
@@ -236,6 +233,9 @@ public class ARIADNEImplementation {
 		if (expression.contains("collection:\"*\""))
 			expression = expression.replace("collection:\"*\"",
 					"lom.solr:\"all\"");
+
+		if (expression.contains("keyword:"))
+			expression = expression.replace("keyword:", "metadata.subject:");
 
 		return expression;
 	}
