@@ -38,7 +38,7 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 	private int max;
 	private String lQuery;
 	private static Vector<String> facetFields;
-	//MultiHashMap languages;
+	// MultiHashMap languages;
 	static {
 		try {
 			facetFields = new Vector<String>();
@@ -67,7 +67,7 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 		this.start = start;
 		this.max = max;
 		this.lQuery = lQuery;
-		//languages = new MultiHashMap();
+		// languages = new MultiHashMap();
 	}
 
 	public String result(TopDocs topDocs, IndexSearcher searcher)
@@ -174,9 +174,8 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 				addJsonObjectWE(doc, json, "metadata.geolocation",
 						"geolocation");
 
-				addJsonObject(doc, json, "fPath",
-						"fPath");
-				//getFieldsBasedOnLanguage(json);
+				addJsonObject(doc, json, "fPath", "fPath");
+				// getFieldsBasedOnLanguage(json);
 
 			} catch (JSONException ex) {
 				log.error(ex);
@@ -231,10 +230,10 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 				elText.put("value", fValue);
 				elText.put("lang", fLangValue);
 
-			//	HashMap<String, Object> langData = new HashMap<>();
-				//langData.put(responseName, fValue);
+				// HashMap<String, Object> langData = new HashMap<>();
+				// langData.put(responseName, fValue);
 
-			//	languages.put((String) fLangValue, langData);
+				// languages.put((String) fLangValue, langData);
 
 				data.add(elText);
 			}
@@ -246,29 +245,29 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 
 	}
 
-	/*private void getFieldsBasedOnLanguage(JSONObject json) throws JSONException {
-
-		Set<String> keySet = languages.keySet();
-
-		Iterator<String> iterator = keySet.iterator();
-		HashMap<String, Object> langData = new HashMap<>();
-
-		while (iterator.hasNext()) {
-			String langValue = iterator.next();
-
-			if (!langData.containsKey(langValue)) {
-
-				Collection collection = languages.getCollection(langValue);
-				
-				langData.put(langValue, collection);
-
-			} else
-				continue;
-
-		}
-		json.put("Language", langData);
-
-	}*/
+	/*
+	 * private void getFieldsBasedOnLanguage(JSONObject json) throws
+	 * JSONException {
+	 * 
+	 * Set<String> keySet = languages.keySet();
+	 * 
+	 * Iterator<String> iterator = keySet.iterator(); HashMap<String, Object>
+	 * langData = new HashMap<>();
+	 * 
+	 * while (iterator.hasNext()) { String langValue = iterator.next();
+	 * 
+	 * if (!langData.containsKey(langValue)) {
+	 * 
+	 * Collection collection = languages.getCollection(langValue);
+	 * 
+	 * langData.put(langValue, collection);
+	 * 
+	 * } else continue;
+	 * 
+	 * } json.put("Language", langData);
+	 * 
+	 * }
+	 */
 
 	private QueryResponse getSolrResponse() {
 		SolrServerManagement serverMgt = SolrServerManagement.getInstance();
@@ -359,6 +358,8 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 			return "spatial";
 		else if (internalName.equalsIgnoreCase("metadata.temporal"))
 			return "temporal";
+		else if (internalName.equalsIgnoreCase("metadata.subject"))
+			return "keyword";
 		else if (internalName
 				.equalsIgnoreCase("header.metadataLanguages.language"))
 			return "metadataLanguage";
