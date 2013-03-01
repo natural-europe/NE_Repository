@@ -372,14 +372,12 @@
 		<fieldType name="ariadne_contents" class="solr.TextField"
 			positionIncrementGap="100">
 			<analyzer>
-				<tokenizer class="solr.StandardTokenizerFactory" />
-				<filter class="solr.LowerCaseFilterFactory" />
+				<tokenizer class="solr.WhitespaceTokenizerFactory" />
+			    <filter class="solr.LowerCaseFilterFactory" />
 				<filter class="solr.SnowballPorterFilterFactory" language="English"
 					protected="protwords.txt" />
 			</analyzer>
 		</fieldType>
-
-
 
 	</types>
 
@@ -436,81 +434,7 @@
 			stored="true" />
 		<field name="header.metadataLanguages.language" type="string"
 			indexed="true" stored="true" />
-
-
-		<field name="lom.general.identifier.entry" type="string"
-			indexed="true" stored="true" multiValued="true" />
-		<field name="lom.general.identifier.catalog" type="string"
-			indexed="true" stored="true" multiValued="true" />
-		<field name="lom.general.title.string" type="ariadne_contents"
-			indexed="true" stored="true" />
-		<field name="lom.general.description.string" type="string"
-			indexed="true" stored="true" />
-		<field name="lom.general.keyword.string" type="ariadne_contents"
-			indexed="true" stored="true" />
-		<field name="lom.general.language" type="string" indexed="true"
-			stored="true" multiValued="true" />
-		<field name="lom.general.learningobjectkind.value" type="string"
-			indexed="true" stored="true" multiValued="true" />
-
-		<field name="lom.lifecycle.contribute.entity" type="string"
-			indexed="true" stored="true" multiValued="true" />
-
-		<field name="lom.metametadata.identifier.catalog" type="string"
-			indexed="true" stored="true" multiValued="true" />
-		<field name="lom.metametadata.contribute.entity.provider" type="string"
-			indexed="true" stored="true" multiValued="true" />
-
-		<field name="lom.technical.format" type="string" indexed="true"
-			stored="true" multiValued="true" />
-		<field name="lom.technical.location" type="string" indexed="true"
-			stored="true" multiValued="true" />
-
-		<field name="lom.educational.interactivitytype.value" type="string"
-			indexed="true" stored="true" multiValued="true" />
-		<field name="lom.educational.learningresourcetype.value" type="string"
-			indexed="true" stored="true" multiValued="true" />
-		<field name="lom.educational.interactivitylevel.value" type="string"
-			indexed="true" stored="true" multiValued="true" />
-		<field name="lom.educational.intendedenduserrole.value" type="string"
-			indexed="true" stored="true" multiValued="true" />
-		<field name="lom.educational.context.value" type="string"
-			indexed="true" stored="true" multiValued="true" />
-		<field name="lom.educational.typicalagerange.string" type="string"
-			indexed="true" stored="true" multiValued="true" />
-		<field name="lom.educational.learningoutcome.identifier.entry"
-			type="string" indexed="true" stored="true" multiValued="true" />
-
-		<field name="lom.rights.cost.value" type="string" indexed="true"
-			stored="true" multiValued="true" />
-		<field name="lom.rights.copyrightAndOtherRestrictions.value"
-			type="string" indexed="true" stored="true" multiValued="true" />
-
-		<field name="lom.classification.purpose.value" type="string"
-			indexed="true" stored="true" multiValued="true" />
-		<field name="lom.classification.taxonpath.taxon.id" type="string"
-			indexed="true" stored="true" multiValued="true" />
-		<field name="lom.classification.taxonpath.source.string" type="string"
-			indexed="true" stored="true" multiValued="true" />
-		<field name="lom.classification.taxonpath.taxon.id.competency"
-			type="string" indexed="true" stored="true" multiValued="true" />
-		<field name="lom.classification.taxonpath.taxon.id.domain" type="string"
-			indexed="true" stored="true" multiValued="true" />
-		<field name="lom.classification.taxonpath.taxon.competency.eqf"
-			type="string" indexed="true" stored="true" multiValued="true" />
-		<field name="lom.classification.taxonpath.taxon.domain.eqf"
-			type="string" indexed="true" stored="true" multiValued="true" />
-		<field name="lom.classification.taxonpath.taxon.eqf" type="string"
-			indexed="true" stored="true" multiValued="true" />
-		<field name="lom.classification.taxonpath.taxon.id.cso-foe"
-			type="string" indexed="true" stored="true" multiValued="true" />
-
-		<field name="learningoutcome.type.value" type="string" indexed="true"
-			stored="true" multiValued="true" />
-		<field name="learningoutcome.title.string.language" type="string"
-			indexed="true" stored="true" multiValued="true" />
-
-
+		
 		<dynamicField name="*" type="ignored" multiValued="true" />
 
 	</fields>

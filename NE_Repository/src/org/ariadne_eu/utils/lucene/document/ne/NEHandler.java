@@ -723,7 +723,7 @@ public class NEHandler extends DocumentHandler {
 			DocumentHandlerException {
 		// TODO Auto-generated method stub
 		NEHandler handler = new NEHandler();
-		String filePath = "C:\\Users\\vogias\\git\\NE_Repo\\NE_Repository\\src\\org\\ariadne_eu\\utils\\lucene\\document\\ne\\kostas.xml";
+		String filePath = "C:\\Users\\vogias\\git\\NE_Repository\\NE_Repository\\src\\org\\ariadne_eu\\utils\\lucene\\document\\ne\\kostas.xml";
 
 		Document doc = handler.getDocument(new FileInputStream(new File(
 				filePath)));
