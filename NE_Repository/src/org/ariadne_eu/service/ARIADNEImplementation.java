@@ -166,7 +166,7 @@ public class ARIADNEImplementation {
 
 			log.info("querywithPadding:query=" + query);
 
-			System.out.println("query:" + query);
+			System.out.println(query);
 			String result = QueryMetadataFactory.getQueryImpl(
 					TranslateLanguage.LUCENE).query(query,
 					qry.resultListOffset, qry.resultListSize,
