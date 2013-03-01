@@ -403,6 +403,8 @@
 			increase storage costs. default: a value that should be used if no value 
 			is specified when adding a document. -->
 
+
+
 		<field name="key" type="string" indexed="true" stored="true"
 			required="true" />
 		<field name="collection" type="string" indexed="true" stored="true"
@@ -412,19 +414,28 @@
 		<field name="md" type="string" indexed="true" stored="true" />
 		<field name="lom" type="string" indexed="true" stored="true" />
 
-		<!-- <field name="metadata.dataProvider" type="string" indexed="true" stored="true" 
-			/> <field name="metadata.licenseUri" type="string" indexed="true" stored="true" 
-			/> <field name="metadata.classification" type="string" indexed="true" stored="true" 
-			/> <field name="metadata.commonName" type="string" indexed="true" stored="true" 
-			/> <field name="metadata.date" type="string" indexed="true" stored="true" 
-			/> <field name="metadata.type" type="string" indexed="true" stored="true" 
-			/> <field name="metadata.format" type="string" indexed="true" stored="true" 
-			/> <field name="metadata.language" type="string" indexed="true" stored="true" 
-			/> <field name="metadata.rights" type="string" indexed="true" stored="true" 
-			/> <field name="metadata.spatial" type="string" indexed="true" stored="true" 
-			/> <field name="metadata.temporal" type="string" indexed="true" stored="true" 
-			/> <field name="header.metadataLanguages.language" type="string" indexed="true" 
-			stored="true" /> -->
+		<field name="metadata.dataProvider" type="string" indexed="true"
+			stored="true" />
+		<field name="metadata.licenseUri" type="string" indexed="true"
+			stored="true" />
+		<field name="metadata.classification" type="string" indexed="true"
+			stored="true" />
+		<field name="metadata.commonName" type="string" indexed="true"
+			stored="true" />
+		<field name="metadata.date" type="string" indexed="true" stored="true" />
+		<field name="metadata.type" type="string" indexed="true" stored="true" />
+		<field name="metadata.format" type="string" indexed="true"
+			stored="true" />
+		<field name="metadata.language" type="string" indexed="true"
+			stored="true" />
+		<field name="metadata.rights" type="string" indexed="true"
+			stored="true" />
+		<field name="metadata.spatial" type="string" indexed="true"
+			stored="true" />
+		<field name="metadata.temporal" type="string" indexed="true"
+			stored="true" />
+		<field name="header.metadataLanguages.language" type="string"
+			indexed="true" stored="true" />
 
 
 		<field name="lom.general.identifier.entry" type="string"
@@ -508,13 +519,11 @@
 		field is marked with required="false", it will be a required field -->
 	<uniqueKey>key</uniqueKey>
 
+	<!-- <copyFields source="*" dest="contents"></copyFields> -->
 	<!-- field for the QueryParser to use when an explicit fieldname is absent -->
 	<defaultSearchField>contents</defaultSearchField>
 
 	<!-- SolrQueryParser configuration: defaultOperator="AND|OR" -->
 	<solrQueryParser defaultOperator="OR" />
-
-
-
 
 </schema>

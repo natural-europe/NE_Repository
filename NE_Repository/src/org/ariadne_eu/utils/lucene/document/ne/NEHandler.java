@@ -34,7 +34,7 @@ public class NEHandler extends DocumentHandler {
 	String tmpValue;
 	private Hashtable elements;
 	private Hashtable attrs;
-	private String contents;
+	private StringBuffer stringBuffer;
 
 	@Override
 	public Document getDocument(InputStream is) throws DocumentHandlerException {
@@ -61,18 +61,21 @@ public class NEHandler extends DocumentHandler {
 
 	public void startDocument() {
 		doc = new Document();
-		contents = new String();
+
+		stringBuffer = new StringBuffer();
+
 		elements = new Hashtable<>();
 		attrs = new Hashtable<>();
 
 	}
 
 	public void endDocument() {
-		doc.add(new Field("contents", contents, Field.Store.YES,
+		doc.add(new Field("contents", stringBuffer.toString(), Field.Store.YES,
 				Field.Index.ANALYZED));
 		doc.add(new Field("lom.solr", "all", Field.Store.YES,
 				Field.Index.NOT_ANALYZED,
 				Field.TermVector.WITH_POSITIONS_OFFSETS));
+
 	}
 
 	public void startElement(String uri, String localName, String qName,
@@ -372,7 +375,7 @@ public class NEHandler extends DocumentHandler {
 		}
 		if (qName.equalsIgnoreCase("ne:scientificName")
 				|| qName.equalsIgnoreCase("scientificName")) {
-			
+
 			doc.add(new Field("metadata.scientificName", tmpValue,
 					Field.Store.YES, Field.Index.NOT_ANALYZED));
 		}
@@ -702,6 +705,8 @@ public class NEHandler extends DocumentHandler {
 	public void characters(char ch[], int start, int length) {
 
 		tmpValue = new String(ch, start, length);
+		stringBuffer.append(" " + tmpValue);
+		
 	}
 
 	public void endElement(String uri, String localName, String qName)
@@ -709,6 +714,7 @@ public class NEHandler extends DocumentHandler {
 
 		checkHeaderSection(qName);
 		checkMetadataSection(qName);
+
 		// checkHeader(qName);
 		// checkMetadata(qName);
 	}
