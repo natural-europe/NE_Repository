@@ -83,6 +83,7 @@ public class ARIADNEImplementation {
 			}
 
 			log.info("query:query=" + query);
+			
 			String result = QueryMetadataFactory.getQueryImpl(
 					TranslateLanguage.LUCENE).query(query,
 					qry.resultListOffset, qry.resultListSize,
@@ -165,12 +166,12 @@ public class ARIADNEImplementation {
 
 			log.info("querywithPadding:query=" + query);
 
-			
-			String	result = QueryMetadataFactory.getQueryImpl(
-						TranslateLanguage.LUCENE).query(query,
-						qry.resultListOffset, qry.resultListSize,
-						TranslateResultsformat.ARFJS);
-			
+			System.out.println("query:" + query);
+			String result = QueryMetadataFactory.getQueryImpl(
+					TranslateLanguage.LUCENE).query(query,
+					qry.resultListOffset, qry.resultListSize,
+					TranslateResultsformat.ARFJS);
+
 			result = result.replace("=", ":");
 
 			JSONObject jResults = new JSONObject(result);
