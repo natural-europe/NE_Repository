@@ -19,18 +19,20 @@ import org.xml.sax.SAXException;
 
 /**
  * @author gonzalo
- *
+ * 
  */
 public class Vsql_LuceneHandler extends Translate {
 
-    private static Logger log = Logger.getLogger(Vsql_LuceneHandler.class);
+	private static Logger log = Logger.getLogger(Vsql_LuceneHandler.class);
 
-    public Vsql_LuceneHandler(int startQueryLanguage, int endQueryLanguage) {
-        super(startQueryLanguage, endQueryLanguage);
-    }
+	public Vsql_LuceneHandler(int startQueryLanguage, int endQueryLanguage) {
+		super(startQueryLanguage, endQueryLanguage);
+	}
 
-    public String translateToQuery(String query, int startResult, int nbResults, int resultsFormat) throws QueryTranslationException {
-		if (getStartQueryLanguage() != TranslateLanguage.VSQL && getEndQueryLanguage() != TranslateLanguage.LUCENE) 
+	public String translateToQuery(String query, int startResult,
+			int nbResults, int resultsFormat) throws QueryTranslationException {
+		if (getStartQueryLanguage() != TranslateLanguage.VSQL
+				&& getEndQueryLanguage() != TranslateLanguage.LUCENE)
 			throw new QueryTranslationException();
 
 		try {
@@ -41,40 +43,41 @@ public class Vsql_LuceneHandler extends Translate {
 		}
 	}
 
-    public String translateToCount(String query) throws QueryTranslationException {
-    	return translateToQuery(query, -1, -1, -1);
-    }
+	public String translateToCount(String query)
+			throws QueryTranslationException {
+		return translateToQuery(query, -1, -1, -1);
+	}
 
-    private String vsqlToLucene(String query) {
-        try {
-        	
-            InputSource input = new InputSource(new StringReader(query));
-            Node queryNode = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(input).getFirstChild();
-            NodeList nl = XPathAPI.selectNodeList(queryNode, "term/text()");
+	private String vsqlToLucene(String query) {
+		try {
 
-            log.info("VSQL PROCESS ");
-            
-            String lquery = "";
+			InputSource input = new InputSource(new StringReader(query));
+			Node queryNode = DocumentBuilderFactory.newInstance()
+					.newDocumentBuilder().parse(input).getFirstChild();
+			NodeList nl = XPathAPI.selectNodeList(queryNode, "term/text()");
 
-            for (int i = 0; i < nl.getLength(); i++) {
-                String term =nl.item(i).getNodeValue();
-                if (i == 0)
-                	lquery += term ;
-                else
-                	lquery += " AND " + term;
-            }
-            log.debug("vsqlToLucene:translated \"" + query + "\" to \"" + lquery + "\"");
+			String lquery = "";
 
-            return lquery;
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (TransformerException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+			for (int i = 0; i < nl.getLength(); i++) {
+				String term = nl.item(i).getNodeValue();
+				if (i == 0)
+					lquery += term;
+				else
+					lquery += " AND " + term;
+			}
+			log.debug("vsqlToLucene:translated \"" + query + "\" to \""
+					+ lquery + "\"");
+
+			return lquery;
+		} catch (SAXException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		} catch (TransformerException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }
