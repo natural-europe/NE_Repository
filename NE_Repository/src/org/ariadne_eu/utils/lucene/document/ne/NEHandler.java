@@ -30,11 +30,10 @@ public class NEHandler extends DocumentHandler {
 
 	private Document doc;
 
-	String content;
+	String contents;
 	String tmpValue;
 	private Hashtable elements;
 	private Hashtable attrs;
-	private StringBuffer stringBuffer;
 
 	@Override
 	public Document getDocument(InputStream is) throws DocumentHandlerException {
@@ -62,15 +61,18 @@ public class NEHandler extends DocumentHandler {
 	public void startDocument() {
 		doc = new Document();
 
-		stringBuffer = new StringBuffer();
-
+		contents = new String();
 		elements = new Hashtable<>();
 		attrs = new Hashtable<>();
 
 	}
 
 	public void endDocument() {
-		doc.add(new Field("contents", stringBuffer.toString(), Field.Store.YES,
+
+		contents = contents.replace("\n", "");
+		contents = contents.replace("  ", " ");
+		contents = contents.replace(",", " ");
+		doc.add(new Field("contents", contents, Field.Store.YES,
 				Field.Index.ANALYZED));
 		doc.add(new Field("lom.solr", "all", Field.Store.YES,
 				Field.Index.NOT_ANALYZED,
@@ -705,8 +707,8 @@ public class NEHandler extends DocumentHandler {
 	public void characters(char ch[], int start, int length) {
 
 		tmpValue = new String(ch, start, length);
-		stringBuffer.append(" " + tmpValue);
-		
+		contents = contents + " " + tmpValue;
+
 	}
 
 	public void endElement(String uri, String localName, String qName)
