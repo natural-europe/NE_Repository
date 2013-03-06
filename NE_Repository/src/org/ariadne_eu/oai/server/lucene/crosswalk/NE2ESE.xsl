@@ -14,127 +14,234 @@
 		<record>
 			<xsl:for-each select="ne:metadata/ne:title">
 				<dc:title>
-					<xsl:attribute name="xml:lang">
-						<xsl:value-of select="@xml:lang" />
-					</xsl:attribute>
-					<xsl:value-of select="." />
+					<xsl:choose>
+						<xsl:when test="@xml:lang">
+							<xsl:attribute name="xml:lang">
+								<xsl:value-of select="@xml:lang" />
+							</xsl:attribute>
+							<xsl:value-of select="." />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="." />
+						</xsl:otherwise>
+					</xsl:choose>
 				</dc:title>
 			</xsl:for-each>
 			<xsl:for-each select="ne:metadata/ne:date">
 				<dcterms:created>
-					<xsl:attribute name="xml:lang">
-						<xsl:value-of select="@xml:lang" />
-					</xsl:attribute>
-					<xsl:value-of select="." />
+					<xsl:choose>
+						<xsl:when test="@xml:lang">
+							<xsl:attribute name="xml:lang">
+								<xsl:value-of select="@xml:lang" />
+							</xsl:attribute>
+							<xsl:value-of select="." />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="." />
+						</xsl:otherwise>
+					</xsl:choose>
 				</dcterms:created>
 			</xsl:for-each>
 
 			<xsl:for-each select="ne:metadata/ne:subject">
 				<dc:subject>
-					<xsl:attribute name="xml:lang">
-						<xsl:value-of select="@xml:lang" />
-					</xsl:attribute>
-					<xsl:value-of select="." />
+					<xsl:choose>
+						<xsl:when test="@xml:lang">
+							<xsl:attribute name="xml:lang">
+								<xsl:value-of select="@xml:lang" />
+							</xsl:attribute>
+							<xsl:value-of select="." />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="." />
+						</xsl:otherwise>
+					</xsl:choose>
 
 				</dc:subject>
 			</xsl:for-each>
 			<xsl:for-each select="ne:metadata/ne:temporal">
 				<dcterms:temporal>
-					<xsl:attribute name="xml:lang">
-						<xsl:value-of select="@xml:lang" />
-					</xsl:attribute>
-					<xsl:value-of select="." />
+					<xsl:choose>
+						<xsl:when test="@xml:lang">
+							<xsl:attribute name="xml:lang">
+								<xsl:value-of select="@xml:lang" />
+							</xsl:attribute>
+							<xsl:value-of select="." />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="." />
+						</xsl:otherwise>
+					</xsl:choose>
 				</dcterms:temporal>
 			</xsl:for-each>
 
 			<xsl:for-each select="ne:metadata/ne:spatial">
 				<dcterms:spatial>
-					<xsl:attribute name="xml:lang">
-						<xsl:value-of select="@xml:lang" />
-					</xsl:attribute>
-					<xsl:value-of select="." />
+					<xsl:choose>
+						<xsl:when test="@xml:lang">
+							<xsl:attribute name="xml:lang">
+								<xsl:value-of select="@xml:lang" />
+							</xsl:attribute>
+							<xsl:value-of select="." />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="." />
+						</xsl:otherwise>
+					</xsl:choose>
 				</dcterms:spatial>
 			</xsl:for-each>
 			<xsl:for-each select="ne:metadata/ne:type">
 				<dc:type>
-					<xsl:attribute name="xml:lang">
-						<xsl:value-of select="@xml:lang" />
-					</xsl:attribute>
-					<xsl:value-of select="." />
+					<xsl:choose>
+						<xsl:when test="@xml:lang">
+							<xsl:attribute name="xml:lang">
+								<xsl:value-of select="@xml:lang" />
+							</xsl:attribute>
+							<xsl:value-of select="." />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="." />
+						</xsl:otherwise>
+					</xsl:choose>
 				</dc:type>
 			</xsl:for-each>
 			<xsl:for-each select="ne:metadata/ne:medium">
 				<dcterms:medium>
-					<xsl:attribute name="xml:lang">
-						<xsl:value-of select="@xml:lang" />
-					</xsl:attribute>
-					<xsl:value-of select="." />
+					<xsl:choose>
+						<xsl:when test="@xml:lang">
+							<xsl:attribute name="xml:lang">
+								<xsl:value-of select="@xml:lang" />
+							</xsl:attribute>
+							<xsl:value-of select="." />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="." />
+						</xsl:otherwise>
+					</xsl:choose>
 				</dcterms:medium>
 			</xsl:for-each>
 			<xsl:for-each select="ne:metadata/ne:contributor">
 				<dc:contributor>
-					<xsl:attribute name="xml:lang">
-						<xsl:value-of select="@xml:lang" />
-					</xsl:attribute>
-					<xsl:value-of select="." />
+					<xsl:choose>
+						<xsl:when test="@xml:lang">
+							<xsl:attribute name="xml:lang">
+								<xsl:value-of select="@xml:lang" />
+							</xsl:attribute>
+							<xsl:value-of select="." />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="." />
+						</xsl:otherwise>
+					</xsl:choose>
 				</dc:contributor>
 			</xsl:for-each>
 
 			<dc:title>
-				<xsl:attribute name="xml:lang">
-						<xsl:value-of select="@xml:lang" />
-					</xsl:attribute>
-				<xsl:value-of select="ne:metadata/ne:scientificName" />
+
+				<xsl:choose>
+					<xsl:when test="@xml:lang">
+						<xsl:attribute name="xml:lang">
+								<xsl:value-of select="@xml:lang" />
+							</xsl:attribute>
+						<xsl:value-of select="ne:metadata/ne:scientificName" />
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="ne:metadata/ne:scientificName" />
+					</xsl:otherwise>
+				</xsl:choose>
+
 			</dc:title>
 
 			<xsl:for-each select="ne:metadata/ne:alternative">
 				<dcterms:alternative>
-					<xsl:attribute name="xml:lang">
-						<xsl:value-of select="@xml:lang" />
-					</xsl:attribute>
-					<xsl:value-of select="." />
+					<xsl:choose>
+						<xsl:when test="@xml:lang">
+							<xsl:attribute name="xml:lang">
+								<xsl:value-of select="@xml:lang" />
+							</xsl:attribute>
+							<xsl:value-of select="." />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="." />
+						</xsl:otherwise>
+					</xsl:choose>
 				</dcterms:alternative>
 			</xsl:for-each>
 			<xsl:for-each select="ne:metadata/ne:description">
 				<dc:description>
-					<xsl:attribute name="xml:lang">
-						<xsl:value-of select="@xml:lang" />
-					</xsl:attribute>
-					<xsl:value-of select="." />
+					<xsl:choose>
+						<xsl:when test="@xml:lang">
+							<xsl:attribute name="xml:lang">
+								<xsl:value-of select="@xml:lang" />
+							</xsl:attribute>
+							<xsl:value-of select="." />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="." />
+						</xsl:otherwise>
+					</xsl:choose>
 				</dc:description>
 			</xsl:for-each>
 
 			<xsl:for-each select="ne:metadata/ne:created">
 				<dcterms:issued>
-					<xsl:attribute name="xml:lang">
-						<xsl:value-of select="@xml:lang" />
-					</xsl:attribute>
-					<xsl:value-of select="." />
+					<xsl:choose>
+						<xsl:when test="@xml:lang">
+							<xsl:attribute name="xml:lang">
+								<xsl:value-of select="@xml:lang" />
+							</xsl:attribute>
+							<xsl:value-of select="." />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="." />
+						</xsl:otherwise>
+					</xsl:choose>
 				</dcterms:issued>
 			</xsl:for-each>
 
 			<xsl:for-each select="ne:metadata/ne:identifier">
 				<dc:identifier>
-					<xsl:attribute name="xml:lang">
-						<xsl:value-of select="@xml:lang" />
-					</xsl:attribute>
-					<xsl:value-of select="." />
+					<xsl:choose>
+						<xsl:when test="@xml:lang">
+							<xsl:attribute name="xml:lang">
+								<xsl:value-of select="@xml:lang" />
+							</xsl:attribute>
+							<xsl:value-of select="." />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="." />
+						</xsl:otherwise>
+					</xsl:choose>
 				</dc:identifier>
 			</xsl:for-each>
 			<xsl:for-each select="ne:metadata/ne:creator">
 				<dc:creator>
-					<xsl:attribute name="xml:lang">
-						<xsl:value-of select="@xml:lang" />
-					</xsl:attribute>
-					<xsl:value-of select="." />
+					<xsl:choose>
+						<xsl:when test="@xml:lang">
+							<xsl:attribute name="xml:lang">
+								<xsl:value-of select="@xml:lang" />
+							</xsl:attribute>
+							<xsl:value-of select="." />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="." />
+						</xsl:otherwise>
+					</xsl:choose>
 				</dc:creator>
 			</xsl:for-each>
 			<xsl:for-each select="ne:metadata/ne:language">
 				<dc:language>
-					<xsl:attribute name="xml:lang">
-						<xsl:value-of select="@xml:lang" />
-					</xsl:attribute>
-					<xsl:value-of select="." />
+					<xsl:choose>
+						<xsl:when test="@xml:lang">
+							<xsl:attribute name="xml:lang">
+								<xsl:value-of select="@xml:lang" />
+							</xsl:attribute>
+							<xsl:value-of select="." />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="." />
+						</xsl:otherwise>
+					</xsl:choose>
 				</dc:language>
 			</xsl:for-each>
 
@@ -149,18 +256,33 @@
 				</europeana:type>
 			<xsl:for-each select="ne:metadata/ne:format">
 				<dc:format>
-					<xsl:attribute name="xml:lang">
-						<xsl:value-of select="@xml:lang" />
-					</xsl:attribute>
-					<xsl:value-of select="." />
+					<xsl:choose>
+						<xsl:when test="@xml:lang">
+							<xsl:attribute name="xml:lang">
+								<xsl:value-of select="@xml:lang" />
+							</xsl:attribute>
+							<xsl:value-of select="." />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="." />
+						</xsl:otherwise>
+					</xsl:choose>
+
 				</dc:format>
 			</xsl:for-each>
 			<xsl:for-each select="ne:metadata/ne:extent">
 				<dcterms:extent>
-					<xsl:attribute name="xml:lang">
-						<xsl:value-of select="@xml:lang" />
-					</xsl:attribute>
-					<xsl:value-of select="." />
+					<xsl:choose>
+						<xsl:when test="@xml:lang">
+							<xsl:attribute name="xml:lang">
+								<xsl:value-of select="@xml:lang" />
+							</xsl:attribute>
+							<xsl:value-of select="." />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="." />
+						</xsl:otherwise>
+					</xsl:choose>
 				</dcterms:extent>
 			</xsl:for-each>
 
@@ -169,148 +291,268 @@
 			</europeana:rights>
 			<xsl:for-each select="ne:metadata/ne:rights">
 				<dc:rights>
-					<xsl:attribute name="xml:lang">
-						<xsl:value-of select="@xml:lang" />
-					</xsl:attribute>
-					<xsl:value-of select="." />
+					<xsl:choose>
+						<xsl:when test="@xml:lang">
+							<xsl:attribute name="xml:lang">
+								<xsl:value-of select="@xml:lang" />
+							</xsl:attribute>
+							<xsl:value-of select="." />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="." />
+						</xsl:otherwise>
+					</xsl:choose>
 				</dc:rights>
 			</xsl:for-each>
 
 			<dc:rights>
-				<xsl:attribute name="xml:lang">
-						<xsl:value-of select="@xml:lang" />
-					</xsl:attribute>
-				<xsl:value-of select="ne:header/ne:access" />
+				<xsl:choose>
+					<xsl:when test="@xml:lang">
+						<xsl:attribute name="xml:lang">
+								<xsl:value-of select="@xml:lang" />
+							</xsl:attribute>
+						<xsl:value-of select="ne:header/ne:access" />
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="ne:header/ne:access" />
+					</xsl:otherwise>
+				</xsl:choose>
+
 			</dc:rights>
 
 			<xsl:for-each select="ne:metadata/ne:isPartOf">
 				<dcterms:isPartOf>
-					<xsl:attribute name="xml:lang">
-						<xsl:value-of select="@xml:lang" />
-					</xsl:attribute>
-					<xsl:value-of select="." />
+					<xsl:choose>
+						<xsl:when test="@xml:lang">
+							<xsl:attribute name="xml:lang">
+								<xsl:value-of select="@xml:lang" />
+							</xsl:attribute>
+							<xsl:value-of select="." />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="." />
+						</xsl:otherwise>
+					</xsl:choose>
 				</dcterms:isPartOf>
 			</xsl:for-each>
 			<xsl:for-each select="ne:metadata/ne:source">
 				<dc:source>
-					<xsl:attribute name="xml:lang">
-						<xsl:value-of select="@xml:lang" />
-					</xsl:attribute>
-					<xsl:value-of select="." />
+					<xsl:choose>
+						<xsl:when test="@xml:lang">
+							<xsl:attribute name="xml:lang">
+								<xsl:value-of select="@xml:lang" />
+							</xsl:attribute>
+							<xsl:value-of select="." />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="." />
+						</xsl:otherwise>
+					</xsl:choose>
 				</dc:source>
 			</xsl:for-each>
 
 			<xsl:for-each select="ne:metadata/ne:relation">
 				<dc:relation>
-					<xsl:attribute name="xml:lang">
-						<xsl:value-of select="@xml:lang" />
-					</xsl:attribute>
-					<xsl:value-of select="." />
+					<xsl:choose>
+						<xsl:when test="@xml:lang">
+							<xsl:attribute name="xml:lang">
+								<xsl:value-of select="@xml:lang" />
+							</xsl:attribute>
+							<xsl:value-of select="." />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="." />
+						</xsl:otherwise>
+					</xsl:choose>
 				</dc:relation>
 			</xsl:for-each>
 
 			<xsl:for-each select="ne:metadata/ne:conformsTo">
 				<dcterms:conformsTo>
-					<xsl:attribute name="xml:lang">
-						<xsl:value-of select="@xml:lang" />
-					</xsl:attribute>
-					<xsl:value-of select="." />
+					<xsl:choose>
+						<xsl:when test="@xml:lang">
+							<xsl:attribute name="xml:lang">
+								<xsl:value-of select="@xml:lang" />
+							</xsl:attribute>
+							<xsl:value-of select="." />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="." />
+						</xsl:otherwise>
+					</xsl:choose>
 				</dcterms:conformsTo>
 			</xsl:for-each>
 			<xsl:for-each select="ne:metadata/ne:hasFormat">
 				<dcterms:hasFormat>
-					<xsl:attribute name="xml:lang">
-						<xsl:value-of select="@xml:lang" />
-					</xsl:attribute>
-					<xsl:value-of select="." />
+					<xsl:choose>
+						<xsl:when test="@xml:lang">
+							<xsl:attribute name="xml:lang">
+								<xsl:value-of select="@xml:lang" />
+							</xsl:attribute>
+							<xsl:value-of select="." />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="." />
+						</xsl:otherwise>
+					</xsl:choose>
 				</dcterms:hasFormat>
 			</xsl:for-each>
 
 			<xsl:for-each select="ne:metadata/ne:isFormatOf">
 				<dcterms:isFormatOf>
-					<xsl:attribute name="xml:lang">
-						<xsl:value-of select="@xml:lang" />
-					</xsl:attribute>
-					<xsl:value-of select="." />
+					<xsl:choose>
+						<xsl:when test="@xml:lang">
+							<xsl:attribute name="xml:lang">
+								<xsl:value-of select="@xml:lang" />
+							</xsl:attribute>
+							<xsl:value-of select="." />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="." />
+						</xsl:otherwise>
+					</xsl:choose>
 				</dcterms:isFormatOf>
 			</xsl:for-each>
 
 			<xsl:for-each select="ne:metadata/ne:hasVersion">
 				<dcterms:hasVersion>
-					<xsl:attribute name="xml:lang">
-						<xsl:value-of select="@xml:lang" />
-					</xsl:attribute>
-					<xsl:value-of select="." />
+					<xsl:choose>
+						<xsl:when test="@xml:lang">
+							<xsl:attribute name="xml:lang">
+								<xsl:value-of select="@xml:lang" />
+							</xsl:attribute>
+							<xsl:value-of select="." />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="." />
+						</xsl:otherwise>
+					</xsl:choose>
 				</dcterms:hasVersion>
 			</xsl:for-each>
 
 			<xsl:for-each select="ne:metadata/ne:isVersionOf">
 				<dcterms:isVersionOf>
-					<xsl:attribute name="xml:lang">
-						<xsl:value-of select="@xml:lang" />
-					</xsl:attribute>
-					<xsl:value-of select="." />
+					<xsl:choose>
+						<xsl:when test="@xml:lang">
+							<xsl:attribute name="xml:lang">
+								<xsl:value-of select="@xml:lang" />
+							</xsl:attribute>
+							<xsl:value-of select="." />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="." />
+						</xsl:otherwise>
+					</xsl:choose>
 				</dcterms:isVersionOf>
 			</xsl:for-each>
 			<xsl:for-each select="ne:metadata/ne:hasPart">
 				<dcterms:hasPart>
-					<xsl:attribute name="xml:lang">
-						<xsl:value-of select="@xml:lang" />
-					</xsl:attribute>
-					<xsl:value-of select="." />
+					<xsl:choose>
+						<xsl:when test="@xml:lang">
+							<xsl:attribute name="xml:lang">
+								<xsl:value-of select="@xml:lang" />
+							</xsl:attribute>
+							<xsl:value-of select="." />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="." />
+						</xsl:otherwise>
+					</xsl:choose>
 				</dcterms:hasPart>
 			</xsl:for-each>
 
 			<xsl:for-each select="ne:metadata/ne:isReferencedBy">
 				<dcterms:isReferencedBy>
-					<xsl:attribute name="xml:lang">
-						<xsl:value-of select="@xml:lang" />
-					</xsl:attribute>
-					<xsl:value-of select="." />
+					<xsl:choose>
+						<xsl:when test="@xml:lang">
+							<xsl:attribute name="xml:lang">
+								<xsl:value-of select="@xml:lang" />
+							</xsl:attribute>
+							<xsl:value-of select="." />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="." />
+						</xsl:otherwise>
+					</xsl:choose>
 				</dcterms:isReferencedBy>
 			</xsl:for-each>
 
 			<xsl:for-each select="ne:metadata/ne:references">
 				<dcterms:references>
-					<xsl:attribute name="xml:lang">
-						<xsl:value-of select="@xml:lang" />
-					</xsl:attribute>
-					<xsl:value-of select="." />
+					<xsl:choose>
+						<xsl:when test="@xml:lang">
+							<xsl:attribute name="xml:lang">
+								<xsl:value-of select="@xml:lang" />
+							</xsl:attribute>
+							<xsl:value-of select="." />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="." />
+						</xsl:otherwise>
+					</xsl:choose>
 				</dcterms:references>
 			</xsl:for-each>
 
 
 			<xsl:for-each select="ne:metadata/ne:isReplacedBy">
 				<dcterms:isReplacedBy>
-					<xsl:attribute name="xml:lang">
-						<xsl:value-of select="@xml:lang" />
-					</xsl:attribute>
-					<xsl:value-of select="." />
+					<xsl:choose>
+						<xsl:when test="@xml:lang">
+							<xsl:attribute name="xml:lang">
+								<xsl:value-of select="@xml:lang" />
+							</xsl:attribute>
+							<xsl:value-of select="." />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="." />
+						</xsl:otherwise>
+					</xsl:choose>
 				</dcterms:isReplacedBy>
 			</xsl:for-each>
 
 			<xsl:for-each select="ne:metadata/ne:replaces">
 				<dcterms:replaces>
-					<xsl:attribute name="xml:lang">
-						<xsl:value-of select="@xml:lang" />
-					</xsl:attribute>
-					<xsl:value-of select="." />
+					<xsl:choose>
+						<xsl:when test="@xml:lang">
+							<xsl:attribute name="xml:lang">
+								<xsl:value-of select="@xml:lang" />
+							</xsl:attribute>
+							<xsl:value-of select="." />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="." />
+						</xsl:otherwise>
+					</xsl:choose>
 				</dcterms:replaces>
 			</xsl:for-each>
 			<xsl:for-each select="ne:metadata/ne:isRequiredBy">
 				<dcterms:isRequiredBy>
-					<xsl:attribute name="xml:lang">
-						<xsl:value-of select="@xml:lang" />
-					</xsl:attribute>
-					<xsl:value-of select="." />
+					<xsl:choose>
+						<xsl:when test="@xml:lang">
+							<xsl:attribute name="xml:lang">
+								<xsl:value-of select="@xml:lang" />
+							</xsl:attribute>
+							<xsl:value-of select="." />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="." />
+						</xsl:otherwise>
+					</xsl:choose>
 				</dcterms:isRequiredBy>
 			</xsl:for-each>
 			<xsl:for-each select="ne:metadata/ne:requires">
 				<dcterms:requires>
-					<xsl:attribute name="xml:lang">
-						<xsl:value-of select="@xml:lang" />
-					</xsl:attribute>
-					<xsl:value-of select="." />
+					<xsl:choose>
+						<xsl:when test="@xml:lang">
+							<xsl:attribute name="xml:lang">
+								<xsl:value-of select="@xml:lang" />
+							</xsl:attribute>
+							<xsl:value-of select="." />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="." />
+						</xsl:otherwise>
+					</xsl:choose>
 				</dcterms:requires>
 			</xsl:for-each>
 
