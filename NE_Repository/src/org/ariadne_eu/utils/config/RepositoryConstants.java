@@ -81,6 +81,8 @@ public class RepositoryConstants extends Constants {
 	public String OAICAT_SERVER_CATALOG_DATEFIELD = "oaicat.server.catalog.field.date";
 	public String OAICAT_SERVER_CATALOG_IDFIELD = "oaicat.server.catalog.field.id";
 	public String OAICAT_SERVER_CATALOG_SETFIELD = "oaicat.server.catalog.field.set";
+	public String OAICAT_SERVER_CATALOG_XSLT_PATH = "oaicat.server.catalog.xslt";
+	
 	
 	public String MACE_OAI_ALOE_TARGET = "mace.oai.aloe.target";
 	public String MACE_OAI_ALOE_MDPREFIX = "mace.oai.aloe.mdprefix";

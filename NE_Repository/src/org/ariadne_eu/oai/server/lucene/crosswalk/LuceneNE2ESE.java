@@ -29,6 +29,7 @@ public class LuceneNE2ESE extends Crosswalk {
 
 	protected String fullLomField = "";
 
+	private String xsltPath="";
 	public LuceneNE2ESE(Properties properties) {
 		super(
 				"http://www.europeana.eu/schemas/ese/ http://www.europeana.eu/schemas/ese/ESE-V3.4.xsd");
@@ -40,6 +41,11 @@ public class LuceneNE2ESE extends Crosswalk {
 					RepositoryConstants.getInstance().OAICAT_SERVER_CATALOG_MDFIELD
 							+ " is missing from the properties file");
 		}
+		xsltPath=RepositoryConstants.getInstance().OAICAT_SERVER_CATALOG_XSLT_PATH;
+		if(xsltPath==null)
+			throw new IllegalArgumentException(
+					RepositoryConstants.getInstance().OAICAT_SERVER_CATALOG_XSLT_PATH
+							+ " is missing from the properties file");
 	}
 
 	public String createMetadata(Object nativeItem)
