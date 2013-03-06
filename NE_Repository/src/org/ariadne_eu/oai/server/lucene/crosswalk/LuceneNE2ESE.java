@@ -41,17 +41,15 @@ public class LuceneNE2ESE extends Crosswalk {
 		// Cast the nativeItem to your object
 		Document doc = (Document) nativeItem;
 		String lom = "";
+
 		if (doc.getField(fullLomField) != null)
 			lom = doc.getField(fullLomField).stringValue();
 
-	/*	InputStream source = new ByteArrayInputStream(lom.getBytes());
+		InputStream source = new ByteArrayInputStream(lom.getBytes());
 		StreamSource src = new StreamSource(source);
-		StreamSource xslt = new StreamSource(
-				new File(
-						"C:\\Users\\vogias\\workspace\\OE_SDExpo\\Transformations\\SDEvents\\Ratings.xsl"));// change
-																											// the
-		// path
-		// accordingly
+
+		StreamSource xslt = new StreamSource(new File(
+				"C:\\Users\\vogias\\workspace\\NE2ESE\\NE2ESE.xsl"));
 
 		TransformerFactory factory = TransformerFactory.newInstance();
 		Transformer transformer;
@@ -60,17 +58,18 @@ public class LuceneNE2ESE extends Crosswalk {
 
 			StringWriter outWriter = new StringWriter();
 			StreamResult result = new StreamResult(outWriter);
+
 			transformer.transform(src, result);
 
 			StringBuffer sb = outWriter.getBuffer();
 			lom = sb.toString();
+
 			return lom;
 		} catch (TransformerException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return lom;
-		}*/
-		return lom;
+		}
 
 	}
 
