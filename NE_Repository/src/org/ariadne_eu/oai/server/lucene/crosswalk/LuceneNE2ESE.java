@@ -61,7 +61,7 @@ public class LuceneNE2ESE extends Crosswalk {
 		StreamSource src = new StreamSource(source);
 
 		StreamSource xslt = new StreamSource(new File(
-				"NE2ESE.xsl"));
+				xsltPath));
 
 		TransformerFactory factory = TransformerFactory.newInstance();
 		Transformer transformer;
