@@ -3,10 +3,14 @@ package org.ariadne_eu.oai.server.lucene.crosswalk;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.InputStream;
+import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.Properties;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.Result;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -18,6 +22,8 @@ import org.apache.lucene.document.Document;
 import org.ariadne_eu.utils.config.RepositoryConstants;
 import org.oclc.oai.server.crosswalk.Crosswalk;
 import org.oclc.oai.server.verb.CannotDisseminateFormatException;
+import org.w3c.dom.Node;
+import org.xml.sax.InputSource;
 
 public class LuceneNE2ESE extends Crosswalk {
 
@@ -49,7 +55,7 @@ public class LuceneNE2ESE extends Crosswalk {
 		StreamSource src = new StreamSource(source);
 
 		StreamSource xslt = new StreamSource(new File(
-				"C:\\Users\\vogias\\workspace\\NE2ESE\\NE2ESE.xsl"));
+				"NE2ESE.xsl"));
 
 		TransformerFactory factory = TransformerFactory.newInstance();
 		Transformer transformer;
@@ -65,12 +71,10 @@ public class LuceneNE2ESE extends Crosswalk {
 			lom = sb.toString();
 
 			return lom;
-		} catch (TransformerException e) {
-			// TODO Auto-generated catch block
+		} catch (TransformerException e) { // TODO Auto-generated
 			e.printStackTrace();
 			return lom;
 		}
-
 	}
 
 	public boolean isAvailableFor(Object arg0) {
