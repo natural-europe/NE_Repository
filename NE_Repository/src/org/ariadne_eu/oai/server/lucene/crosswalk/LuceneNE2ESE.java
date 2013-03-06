@@ -41,7 +41,8 @@ public class LuceneNE2ESE extends Crosswalk {
 					RepositoryConstants.getInstance().OAICAT_SERVER_CATALOG_MDFIELD
 							+ " is missing from the properties file");
 		}
-		xsltPath=RepositoryConstants.getInstance().OAICAT_SERVER_CATALOG_XSLT_PATH;
+		xsltPath=properties
+				.getProperty(RepositoryConstants.getInstance().OAICAT_SERVER_CATALOG_XSLT_PATH);
 		if(xsltPath==null)
 			throw new IllegalArgumentException(
 					RepositoryConstants.getInstance().OAICAT_SERVER_CATALOG_XSLT_PATH

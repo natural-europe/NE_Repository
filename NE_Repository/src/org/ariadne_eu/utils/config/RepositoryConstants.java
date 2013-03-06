@@ -141,6 +141,7 @@ public class RepositoryConstants extends Constants {
 		OAICAT_HANDLER_APPBASE = "oaicat.handler.appBase";
 		OAICAT_HANDLER_EXTENSIONPATH = "oaicat.handler.extensionPath";
 		OAICAT_HANDLER_DEBUG = "oaicat.handler.debug";
+		OAICAT_SERVER_CATALOG_XSLT_PATH = "oaicat.server.catalog.xslt";
 	}
 	
 	
