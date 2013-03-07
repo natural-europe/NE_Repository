@@ -137,20 +137,23 @@
 				</dc:contributor>
 			</xsl:for-each>
 
-			<dc:title>
-				<xsl:choose>
-					<xsl:when test="@xml:lang">
-						<xsl:attribute name="xml:lang">
-								<xsl:value-of select="@xml:lang" />
+			<xsl:choose>
+				<xsl:when test="ne:metadata/ne:scientificName">
+					<dc:title>
+						<xsl:choose>
+							<xsl:when test="ne:metadata/ne:scientificName/@xml:lang">
+								<xsl:attribute name="xml:lang">
+								<xsl:value-of select="ne:metadata/ne:scientificName/@xml:lang" />
 							</xsl:attribute>
-						<xsl:value-of select="ne:metadata/ne:scientificName" />
-					</xsl:when>
-					<xsl:otherwise>
-						<xsl:value-of select="ne:metadata/ne:scientificName" />
-					</xsl:otherwise>
-				</xsl:choose>
-			</dc:title>
-
+								<xsl:value-of select="ne:metadata/ne:scientificName" />
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:value-of select="ne:metadata/ne:scientificName" />
+							</xsl:otherwise>
+						</xsl:choose>
+					</dc:title>
+				</xsl:when>
+			</xsl:choose>
 
 			<xsl:for-each select="ne:metadata/ne:alternative">
 				<dcterms:alternative>
@@ -333,7 +336,7 @@
 						<xsl:choose>
 							<xsl:when test="ne:header/ne:access/@xml:lang">
 								<xsl:attribute name="xml:lang">
-								<xsl:value-of select=ne:header/ne:access/@xml:lang" />
+								<xsl:value-of select="ne:header/ne:access/@xml:lang" />
 							</xsl:attribute>
 								<xsl:value-of select="ne:header/ne:access" />
 							</xsl:when>
