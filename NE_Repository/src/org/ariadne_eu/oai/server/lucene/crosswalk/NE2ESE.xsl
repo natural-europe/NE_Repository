@@ -249,7 +249,7 @@
 			<xsl:choose>
 				<xsl:when test="ne:metadata/ne:objectUri">
 					<europeana:isShownBy>
-						<xsl:value-of select="." />
+						<xsl:value-of select="ne:metadata/ne:objectUri" />
 					</europeana:isShownBy>
 				</xsl:when>
 			</xsl:choose>
@@ -257,7 +257,7 @@
 			<xsl:choose>
 				<xsl:when test="ne:metadata/ne:contextUri">
 					<europeana:isShownAt>
-						<xsl:value-of select="." />
+						<xsl:value-of select="ne:metadata/ne:contextUri" />
 					</europeana:isShownAt>
 				</xsl:when>
 			</xsl:choose>
@@ -265,7 +265,7 @@
 			<xsl:choose>
 				<xsl:when test="ne:metadata/ne:contentType">
 					<europeana:type>
-						<xsl:value-of select="." />
+						<xsl:value-of select="ne:metadata/ne:contentType" />
 					</europeana:type>
 				</xsl:when>
 			</xsl:choose>
