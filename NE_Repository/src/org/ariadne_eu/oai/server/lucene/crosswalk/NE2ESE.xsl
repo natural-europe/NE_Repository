@@ -59,6 +59,7 @@
 
 				</dc:subject>
 			</xsl:for-each>
+
 			<xsl:for-each select="ne:metadata/ne:temporal">
 				<dcterms:temporal>
 					<xsl:choose>
@@ -137,7 +138,6 @@
 			</xsl:for-each>
 
 			<dc:title>
-
 				<xsl:choose>
 					<xsl:when test="@xml:lang">
 						<xsl:attribute name="xml:lang">
@@ -149,8 +149,8 @@
 						<xsl:value-of select="ne:metadata/ne:scientificName" />
 					</xsl:otherwise>
 				</xsl:choose>
-
 			</dc:title>
+
 
 			<xsl:for-each select="ne:metadata/ne:alternative">
 				<dcterms:alternative>
@@ -303,9 +303,14 @@
 				</dcterms:extent>
 			</xsl:for-each>
 
-			<europeana:rights>
-				<xsl:value-of select="ne:metadata/ne:licenseUri" />
-			</europeana:rights>
+			<xsl:choose>
+				<xsl:when test="ne:metadata/ne:licenseUri">
+					<europeana:rights>
+						<xsl:value-of select="ne:metadata/ne:licenseUri" />
+					</europeana:rights>
+				</xsl:when>
+			</xsl:choose>
+
 			<xsl:for-each select="ne:metadata/ne:rights">
 				<dc:rights>
 					<xsl:choose>
@@ -322,20 +327,25 @@
 				</dc:rights>
 			</xsl:for-each>
 
-			<dc:rights>
-				<xsl:choose>
-					<xsl:when test="@xml:lang">
-						<xsl:attribute name="xml:lang">
+			<xsl:choose>
+				<xsl:when test="ne:header/ne:access">
+					<dc:rights>
+						<xsl:choose>
+							<xsl:when test="@xml:lang">
+								<xsl:attribute name="xml:lang">
 								<xsl:value-of select="@xml:lang" />
 							</xsl:attribute>
-						<xsl:value-of select="ne:header/ne:access" />
-					</xsl:when>
-					<xsl:otherwise>
-						<xsl:value-of select="ne:header/ne:access" />
-					</xsl:otherwise>
-				</xsl:choose>
+								<xsl:value-of select="ne:header/ne:access" />
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:value-of select="ne:header/ne:access" />
+							</xsl:otherwise>
+						</xsl:choose>
+					</dc:rights>
+				</xsl:when>
+			</xsl:choose>
 
-			</dc:rights>
+
 
 			<xsl:for-each select="ne:metadata/ne:isPartOf">
 				<dcterms:isPartOf>
@@ -573,13 +583,24 @@
 				</dcterms:requires>
 			</xsl:for-each>
 
-			<europeana:dataProvider>
-					<xsl:value-of select="ne:metadata/ne:dataProvider" />
-				</europeana:dataProvider>
 
-			<europeana:provider>
+			<xsl:choose>
+				<xsl:when test="ne:metadata/ne:dataProvider">
+					<europeana:dataProvider>
+						<xsl:value-of select="ne:metadata/ne:dataProvider" />
+					</europeana:dataProvider>
+				</xsl:when>
+			</xsl:choose>
+
+			<xsl:choose>
+				<xsl:when test="ne:metadata/ne:provider">
+					<europeana:provider>
 						<xsl:value-of select="ne:metadata/ne:provider" />
 				</europeana:provider>
+				</xsl:when>
+			</xsl:choose>
+
+
 
 		</record>
 		<!-- </ese:metadata> -->
