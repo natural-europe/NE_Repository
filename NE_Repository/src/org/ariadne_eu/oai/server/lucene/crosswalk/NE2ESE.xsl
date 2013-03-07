@@ -331,9 +331,9 @@
 				<xsl:when test="ne:header/ne:access">
 					<dc:rights>
 						<xsl:choose>
-							<xsl:when test="@xml:lang">
+							<xsl:when test="ne:header/ne:access/@xml:lang">
 								<xsl:attribute name="xml:lang">
-								<xsl:value-of select="@xml:lang" />
+								<xsl:value-of select=ne:header/ne:access/@xml:lang" />
 							</xsl:attribute>
 								<xsl:value-of select="ne:header/ne:access" />
 							</xsl:when>
