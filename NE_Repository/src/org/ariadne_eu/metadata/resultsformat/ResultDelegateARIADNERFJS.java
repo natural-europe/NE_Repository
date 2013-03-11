@@ -171,7 +171,7 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 				addJsonObjectWE(doc, json, "metadata.conformsTo", "conformsTo");
 				addJsonObjectWE(doc, json, "metadata.spatial", "spatial");
 				addJsonObjectWE(doc, json, "metadata.temporal", "temporal");
-				addJsonObjectWE(doc, json, "metadata.geolocation",
+				addJsonGeolocation(doc, json, "metadata.geolocation",
 						"geolocation");
 
 				addJsonObject(doc, json, "fPath", "fPath");
@@ -202,6 +202,28 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 			json.put(responeseName, new String(""));
 	}
 
+	private void addJsonGeolocation(SolrDocument doc, JSONObject json,
+			String fieldName, String responeseName) throws JSONException {
+
+		String geolocationAttributes1 = fieldName + "@latitude";
+		String geolocationAttributes2 = fieldName + "@longtitude";
+		String geolocationAttributes3 = fieldName + "@elevation";
+
+		String latitude = (String) doc.getFieldValue(geolocationAttributes1);
+		String longtitude = (String) doc.getFieldValue(geolocationAttributes2);
+		String elevation = (String) doc.getFieldValue(geolocationAttributes3);
+
+		JSONObject geolocation = new JSONObject();
+		geolocation.put("latitude", latitude);
+		geolocation.put("longtitude", longtitude);
+		geolocation.put("elevation", elevation);
+
+		Collection data = new HashSet();
+		data.add(geolocation);
+		json.put(responeseName, data);
+
+	}
+
 	private void addJsonObjectWE(SolrDocument doc, JSONObject json,
 			String fieldName, String responeseName) throws JSONException {
 
@@ -215,16 +237,9 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 			throws JSONException {
 
 		String langAttributes = fieldName + "@xml:lang";
-		String geolocationAttributes1 = fieldName + "@latitude";
-		String geolocationAttributes2 = fieldName + "@longtitude";
-		String geolocationAttributes3 = fieldName + "@elevation";
 
 		Collection<Object> fieldValues = doc.getFieldValues(fieldName);
 		Collection<Object> fieldLangValues = doc.getFieldValues(langAttributes);
-
-		String latitude = (String) doc.getFieldValue(geolocationAttributes1);
-		String longtitude = (String) doc.getFieldValue(geolocationAttributes2);
-		String elevation = (String) doc.getFieldValue(geolocationAttributes3);
 
 		if (fieldValues != null && fieldLangValues != null) {
 
@@ -255,12 +270,6 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 
 			json.put(responseName, new String(""));
 
-		JSONObject geolocation = new JSONObject();
-		geolocation.put("latitude", latitude);
-		geolocation.put("longtitude", longtitude);
-		geolocation.put("elevation", elevation);
-
-		data.add(geolocation);
 	}
 
 	/*
