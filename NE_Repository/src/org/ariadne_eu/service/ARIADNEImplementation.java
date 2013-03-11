@@ -228,6 +228,9 @@ public class ARIADNEImplementation {
 		if (expression.contains("temporal:"))
 			expression = expression.replace("temporal:", "metadata.temporal:");
 
+		if (expression.contains("geolocation:"))
+			expression = expression.replace("geolocation:", "metadata.geolocation:");
+
 		if (expression.contains("metadataLanguage:"))
 			expression = expression.replace("metadataLanguage:",
 					"header.metadataLanguages.language:");
