@@ -215,8 +215,16 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 			throws JSONException {
 
 		String langAttributes = fieldName + "@xml:lang";
+		String geolocationAttributes1 = fieldName + "@latitude";
+		String geolocationAttributes2 = fieldName + "@longtitude";
+		String geolocationAttributes3 = fieldName + "@elevation";
+
 		Collection<Object> fieldValues = doc.getFieldValues(fieldName);
 		Collection<Object> fieldLangValues = doc.getFieldValues(langAttributes);
+
+		String latitude = (String) doc.getFieldValue(geolocationAttributes1);
+		String longtitude = (String) doc.getFieldValue(geolocationAttributes2);
+		String elevation = (String) doc.getFieldValue(geolocationAttributes3);
 
 		if (fieldValues != null && fieldLangValues != null) {
 
@@ -247,6 +255,12 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 
 			json.put(responseName, new String(""));
 
+		JSONObject geolocation = new JSONObject();
+		geolocation.put("latitude", latitude);
+		geolocation.put("longtitude", longtitude);
+		geolocation.put("elevation", elevation);
+
+		data.add(geolocation);
 	}
 
 	/*
