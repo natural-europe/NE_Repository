@@ -95,9 +95,7 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 			try {
 				// idArrayJson.put(doc.get("lom.general.identifier.entry"));
 
-				String geoFlag = (String) doc.get("metadata.geolocation");
-
-				if (geoFlag != null) {
+				
 					idArrayJson.put(doc.get("header.id"));
 					addJsonObject(doc, json, "header.id", "id");
 					addJsonObject(doc, json, "header.collectionId",
@@ -189,7 +187,7 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 
 					addJsonObject(doc, json, "fPath", "fPath");
 					// getFieldsBasedOnLanguage(json);
-				}
+				
 
 			} catch (JSONException ex) {
 				log.error(ex);
@@ -212,8 +210,8 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 		Object field = doc.get(fieldName);
 		if (field != null)
 			json.put(responeseName, field);
-		else
-			json.put(responeseName, new String(""));
+		//else
+			//json.put(responeseName, new String(""));
 	}
 
 	private void addJsonGeolocation(SolrDocument doc, JSONObject json,
@@ -280,9 +278,9 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 			}
 
 			json.put(responseName, data);
-		} else
+		} //else
 
-			json.put(responseName, new String(""));
+			//json.put(responseName, new String(""));
 
 	}
 
