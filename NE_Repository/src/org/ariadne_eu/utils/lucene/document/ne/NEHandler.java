@@ -584,11 +584,12 @@ public class NEHandler extends DocumentHandler {
 			doc.add(new Field("metadata.temporal", tmpValue, Field.Store.YES,
 					Field.Index.NOT_ANALYZED));
 		}
-		if (qName.equalsIgnoreCase("ne:geolocation")
-				|| qName.equalsIgnoreCase("geolocation")) {
-			doc.add(new Field("metadata.geolocation", tmpValue,
-					Field.Store.YES, Field.Index.NOT_ANALYZED));
-		}
+		/*
+		 * if (qName.equalsIgnoreCase("ne:geolocation") ||
+		 * qName.equalsIgnoreCase("geolocation")) { doc.add(new
+		 * Field("metadata.geolocation", tmpValue, Field.Store.YES,
+		 * Field.Index.NOT_ANALYZED)); }
+		 */
 
 	}
 
