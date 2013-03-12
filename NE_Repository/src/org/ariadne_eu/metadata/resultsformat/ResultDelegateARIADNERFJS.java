@@ -206,7 +206,7 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 			String fieldName, String responeseName) throws JSONException {
 
 		String geolocationAttributes1 = fieldName + "@latitude";
-		String geolocationAttributes2 = fieldName + "@longtitude";
+		String geolocationAttributes2 = fieldName + "@longitude";
 		String geolocationAttributes3 = fieldName + "@elevation";
 
 		String latitude = (String) doc.getFieldValue(geolocationAttributes1);
