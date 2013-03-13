@@ -404,6 +404,11 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 			return "temporal";
 		else if (internalName.equalsIgnoreCase("metadata.geolocation"))
 			return "geolocation";
+		else if (internalName.equalsIgnoreCase("metadata.geolocation@longitude"))
+			return "longitude";
+		else if (internalName.equalsIgnoreCase("metadata.geolocation@latitude"))
+			return "latitude";
+	
 		else if (internalName
 				.equalsIgnoreCase("header.metadataLanguages.language"))
 			return "metadataLanguage";
