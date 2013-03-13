@@ -116,8 +116,10 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 							"presentedToII");
 					addJsonObject(doc, json, "header.disseminatedToBiocase",
 							"disseminatedToBiocase");
+					
 					addJsonObject(doc, json,
 							"header.metadataLanguages.language", "Languages");
+					
 					addJsonObject(doc, json, "metadata.provider", "provider");
 					addJsonObject(doc, json, "metadata.dataProvider",
 							"dataProvider");
