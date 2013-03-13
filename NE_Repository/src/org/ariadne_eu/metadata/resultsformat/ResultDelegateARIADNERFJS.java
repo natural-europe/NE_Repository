@@ -186,6 +186,11 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 							"geolocation");
 
 					addJsonObject(doc, json, "fPath", "fPath");
+					
+					addJsonObject(doc, json, "metadata.geolocation@latitude", "latitude");
+					
+					addJsonObject(doc, json, "metadata.geolocation@longitude", "longitude");
+					
 					// getFieldsBasedOnLanguage(json);
 				
 

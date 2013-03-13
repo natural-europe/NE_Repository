@@ -229,8 +229,17 @@ public class ARIADNEImplementation {
 			expression = expression.replace("temporal:", "metadata.temporal:");
 
 		if (expression.contains("geolocation:"))
-			expression = expression.replace("geolocation:", "metadata.geolocation:");
+			expression = expression.replace("geolocation:",
+					"metadata.geolocation:");
 
+		if (expression.contains("latitude:"))
+			expression = expression.replace("latitude:",
+					"metadata.geolocation@latitude:");
+		
+		if (expression.contains("longitude:"))
+			expression = expression.replace("longitude:",
+					"metadata.geolocation@longitude:");
+		
 		if (expression.contains("metadataLanguage:"))
 			expression = expression.replace("metadataLanguage:",
 					"header.metadataLanguages.language:");
