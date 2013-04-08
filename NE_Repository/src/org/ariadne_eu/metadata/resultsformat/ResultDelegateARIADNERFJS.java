@@ -92,122 +92,118 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 		for (int i = 0; i < max && (max < 0 || i < size - start); i++) {
 			JSONObject json = new JSONObject();
 			doc = response.getResults().get(i);
+
 			try {
 				// idArrayJson.put(doc.get("lom.general.identifier.entry"));
 
-				
-					idArrayJson.put(doc.get("header.id"));
-					addJsonObject(doc, json, "header.id", "id");
-					addJsonObject(doc, json, "header.collectionId",
-							"collectionId");
-					addJsonObject(doc, json, "header.createdOn", "createdOn");
-					addJsonObject(doc, json, "header.createdBy", "createdBy");
-					addJsonObject(doc, json, "header.lastModifiedOn",
-							"lastModifiedOn");
-					addJsonObject(doc, json, "header.lastModifiedBy",
-							"lastModifiedBy");
-					addJsonObject(doc, json, "header.deletedOn", "deletedOn");
-					addJsonObject(doc, json, "header.deletedBy", "deletedBy");
-					addJsonObject(doc, json, "header.version", "version");
-					addJsonObject(doc, json, "header.status", "status");
-					addJsonObject(doc, json, "header.access", "access");
-					addJsonObject(doc, json, "header.validated", "validated");
-					addJsonObject(doc, json, "header.presentedToII",
-							"presentedToII");
-					addJsonObject(doc, json, "header.disseminatedToBiocase",
-							"disseminatedToBiocase");
-					
-					addJsonObject(doc, json,
-							"header.metadataLanguages.language", "Languages");
-					
-					addJsonObject(doc, json, "metadata.provider", "provider");
-					addJsonObject(doc, json, "metadata.dataProvider",
-							"dataProvider");
-					addJsonObject(doc, json, "metadata.objectUri", "objectUri");
-					addJsonObject(doc, json, "metadata.contextUri",
-							"contextUri");
-					addJsonObject(doc, json, "metadata.contentType",
-							"contentType");
-					addJsonObject(doc, json, "metadata.licenseUri",
-							"licenseUri");
-					addJsonObject(doc, json, "metadata.thumbnailUri",
-							"thumbnailUri");
+				idArrayJson.put(doc.get("header.id"));
+				addJsonObject(doc, json, "header.id", "id");
+				addJsonObject(doc, json, "header.collectionId", "collectionId");
+				addJsonObject(doc, json, "header.createdOn", "createdOn");
+				addJsonObject(doc, json, "header.createdBy", "createdBy");
+				addJsonObject(doc, json, "header.lastModifiedOn",
+						"lastModifiedOn");
+				addJsonObject(doc, json, "header.lastModifiedBy",
+						"lastModifiedBy");
+				addJsonObject(doc, json, "header.deletedOn", "deletedOn");
+				addJsonObject(doc, json, "header.deletedBy", "deletedBy");
+				addJsonObject(doc, json, "header.version", "version");
+				addJsonObject(doc, json, "header.status", "status");
+				addJsonObject(doc, json, "header.access", "access");
+				addJsonObject(doc, json, "header.validated", "validated");
+				addJsonObject(doc, json, "header.presentedToII",
+						"presentedToII");
+				addJsonObject(doc, json, "header.disseminatedToBiocase",
+						"disseminatedToBiocase");
 
-					addJsonObjectWE(doc, json, "metadata.scientificName",
-							"scientificName");
-					addJsonObjectWE(doc, json, "metadata.classification",
-							"classification");
-					addJsonObjectWE(doc, json, "metadata.commonName",
-							"commonName");
-					addJsonObjectWE(doc, json, "metadata.title", "title");
-					addJsonObjectWE(doc, json, "metadata.creator", "creator");
-					addJsonObjectWE(doc, json, "metadata.subject", "subject");
-					addJsonObjectWE(doc, json, "metadata.description",
-							"description");
-					addJsonObjectWE(doc, json, "metadata.contributor",
-							"contributor");
-					addJsonObjectWE(doc, json, "metadata.date", "date");
-					addJsonObjectWE(doc, json, "metadata.type", "type");
-					addJsonObjectWE(doc, json, "metadata.format", "format");
-					addJsonObjectWE(doc, json, "metadata.identifier",
-							"identifier");
-					addJsonObjectWE(doc, json, "metadata.source", "source");
-					addJsonObjectWE(doc, json, "metadata.language", "language");
-					addJsonObjectWE(doc, json, "metadata.relation", "relation");
-					addJsonObjectWE(doc, json, "metadata.rights", "rights");
-					addJsonObjectWE(doc, json, "metadata.alternative",
-							"alternative");
-					addJsonObjectWE(doc, json, "metadata.created", "created");
-					addJsonObjectWE(doc, json, "metadata.extent", "extent");
-					addJsonObjectWE(doc, json, "metadata.medium", "medium");
-					addJsonObjectWE(doc, json, "metadata.isVersionOf",
-							"isVersionOf");
-					addJsonObjectWE(doc, json, "metadata.hasVersion",
-							"hasVersion");
-					addJsonObjectWE(doc, json, "metadata.isReplacedBy",
-							"isReplacedBy");
-					addJsonObjectWE(doc, json, "metadata.replaces", "replaces");
-					addJsonObjectWE(doc, json, "metadata.isRequiredBy",
-							"isRequiredBy");
-					addJsonObjectWE(doc, json, "metadata.requires", "requires");
-					addJsonObjectWE(doc, json, "metadata.isPartOf", "isPartOf");
-					addJsonObjectWE(doc, json, "metadata.hasPart", "hasPart");
-					addJsonObjectWE(doc, json, "metadata.isReferencedBy",
-							"isReferencedBy");
-					addJsonObjectWE(doc, json, "metadata.references",
-							"references");
-					addJsonObjectWE(doc, json, "metadata.isFormatOf",
-							"isFormatOf");
-					addJsonObjectWE(doc, json, "metadata.hasFormat",
-							"hasFormat");
-					addJsonObjectWE(doc, json, "metadata.conformsTo",
-							"conformsTo");
-					addJsonObjectWE(doc, json, "metadata.spatial", "spatial");
-					addJsonObjectWE(doc, json, "metadata.temporal", "temporal");
-					addJsonGeolocation(doc, json, "metadata.geolocation",
-							"geolocation");
+				addJsonObject(doc, json, "header.metadataLanguages.language",
+						"Languages");
 
-					addJsonObject(doc, json, "fPath", "fPath");
-					
-					addJsonObject(doc, json, "metadata.geolocation@latitude", "latitude");
-					
-					addJsonObject(doc, json, "metadata.geolocation@longitude", "longitude");
-					
-					// getFieldsBasedOnLanguage(json);
-				
+				addJsonObject(doc, json, "metadata.provider", "provider");
+				addJsonObject(doc, json, "metadata.dataProvider",
+						"dataProvider");
+				addJsonObject(doc, json, "metadata.objectUri", "objectUri");
+				addJsonObject(doc, json, "metadata.contextUri", "contextUri");
+				addJsonObject(doc, json, "metadata.contentType", "contentType");
+				addJsonObject(doc, json, "metadata.licenseUri", "licenseUri");
+				addJsonObject(doc, json, "metadata.thumbnailUri",
+						"thumbnailUri");
+
+				addJsonObjectWE(doc, json, "metadata.scientificName",
+						"scientificName");
+				addJsonObjectWE(doc, json, "metadata.classification",
+						"classification");
+				addJsonObjectWE(doc, json, "metadata.commonName", "commonName");
+				addJsonObjectWE(doc, json, "metadata.title", "title");
+				addJsonObjectWE(doc, json, "metadata.creator", "creator");
+				addJsonObjectWE(doc, json, "metadata.subject", "subject");
+				addJsonObjectWE(doc, json, "metadata.description",
+						"description");
+				addJsonObjectWE(doc, json, "metadata.contributor",
+						"contributor");
+				addJsonObjectWE(doc, json, "metadata.date", "date");
+				addJsonObjectWE(doc, json, "metadata.type", "type");
+				addJsonObjectWE(doc, json, "metadata.format", "format");
+				addJsonObjectWE(doc, json, "metadata.identifier", "identifier");
+				addJsonObjectWE(doc, json, "metadata.source", "source");
+				addJsonObjectWE(doc, json, "metadata.language", "language");
+
+				addJsonObjectWE(doc, json, "metadata.relation", "relation");
+				addJsonObjectWE(doc, json, "metadata.rights", "rights");
+
+				// ---------------------------------
+				addJsonObjectWE(doc, json, "metadata.alternative",
+						"alternative");
+
+				// ------------------
+				addJsonObjectWE(doc, json, "metadata.created", "created");
+				addJsonObjectWE(doc, json, "metadata.extent", "extent");
+				addJsonObjectWE(doc, json, "metadata.medium", "medium");
+				addJsonObjectWE(doc, json, "metadata.isVersionOf",
+						"isVersionOf");
+				addJsonObjectWE(doc, json, "metadata.hasVersion", "hasVersion");
+				addJsonObjectWE(doc, json, "metadata.isReplacedBy",
+						"isReplacedBy");
+				addJsonObjectWE(doc, json, "metadata.replaces", "replaces");
+				addJsonObjectWE(doc, json, "metadata.isRequiredBy",
+						"isRequiredBy");
+				addJsonObjectWE(doc, json, "metadata.requires", "requires");
+				addJsonObjectWE(doc, json, "metadata.isPartOf", "isPartOf");
+				addJsonObjectWE(doc, json, "metadata.hasPart", "hasPart");
+				addJsonObjectWE(doc, json, "metadata.isReferencedBy",
+						"isReferencedBy");
+				addJsonObjectWE(doc, json, "metadata.references", "references");
+				addJsonObjectWE(doc, json, "metadata.isFormatOf", "isFormatOf");
+				addJsonObjectWE(doc, json, "metadata.hasFormat", "hasFormat");
+				addJsonObjectWE(doc, json, "metadata.conformsTo", "conformsTo");
+				addJsonObjectWE(doc, json, "metadata.spatial", "spatial");
+				addJsonObjectWE(doc, json, "metadata.temporal", "temporal");
+				addJsonGeolocation(doc, json, "metadata.geolocation",
+						"geolocation");
+
+				addJsonObject(doc, json, "fPath", "fPath");
+
+				addJsonObject(doc, json, "metadata.geolocation@latitude",
+						"latitude");
+
+				addJsonObject(doc, json, "metadata.geolocation@longitude",
+						"longitude");
+
+				// getFieldsBasedOnLanguage(json);
 
 			} catch (JSONException ex) {
 				log.error(ex);
 			}
 			metadataArrayJson.put(json);
 		}
+		System.out.println("Done");
+
 		resultJson.put("id", idArrayJson);
 		resultJson.put("metadata", metadataArrayJson);
 		resultJson.put("nrOfResults", size);
 
 		resultsJson.put("result", resultJson);
 
-		System.out.println(resultsJson.toString());
 		// log.info(resultsJson.toString());
 		return resultsJson.toString();
 	}
@@ -217,8 +213,8 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 		Object field = doc.get(fieldName);
 		if (field != null)
 			json.put(responeseName, field);
-		//else
-			//json.put(responeseName, new String(""));
+		// else
+		// json.put(responeseName, new String(""));
 	}
 
 	private void addJsonGeolocation(SolrDocument doc, JSONObject json,
@@ -265,16 +261,27 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 			Object[] fValuesarray = fieldValues.toArray();
 			Object[] flvArray = fieldLangValues.toArray();
 
+			System.out.println("fieldvalues length:" + fValuesarray.length);
+			System.out.println("flvArray length:" + flvArray.length);
+
 			for (int i = 0; i < fValuesarray.length; i++) {
 				Object fValue = fValuesarray[i];
-				Object fLangValue = flvArray[i];
+
+				Object fLangValue="";
+				try {
+					fLangValue = flvArray[i];
+				} catch (IndexOutOfBoundsException ex) {
+					System.out.println("Bad Record detected...");
+				}
 
 				// HashMap<String, Object> elText = new HashMap<>();
 				// elText.put("value", fValue);
 				// elText.put("lang", fLangValue);
+
 				JSONObject jsonObject = new JSONObject();
 				jsonObject.put("value", fValue);
 				jsonObject.put("lang", fLangValue);
+
 				// HashMap<String, Object> langData = new HashMap<>();
 				// langData.put(responseName, fValue);
 
@@ -284,10 +291,11 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 				data.add(jsonObject);
 			}
 
+			System.out.println("Saving to jsonbject");
 			json.put(responseName, data);
-		} //else
+			System.out.println("Done");
 
-			//json.put(responseName, new String(""));
+		}
 
 	}
 
@@ -406,11 +414,12 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 			return "temporal";
 		else if (internalName.equalsIgnoreCase("metadata.geolocation"))
 			return "geolocation";
-		else if (internalName.equalsIgnoreCase("metadata.geolocation@longitude"))
+		else if (internalName
+				.equalsIgnoreCase("metadata.geolocation@longitude"))
 			return "longitude";
 		else if (internalName.equalsIgnoreCase("metadata.geolocation@latitude"))
 			return "latitude";
-	
+
 		else if (internalName
 				.equalsIgnoreCase("header.metadataLanguages.language"))
 			return "metadataLanguage";

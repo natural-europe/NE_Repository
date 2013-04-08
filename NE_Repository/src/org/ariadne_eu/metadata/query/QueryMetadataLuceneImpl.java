@@ -80,6 +80,7 @@ public class QueryMetadataLuceneImpl extends QueryMetadataImpl {
 		String lQuery = TranslateLanguage.translateToQuery(query,
 				getLanguage(), TranslateLanguage.LUCENE, start, max,
 				resultsFormat);
+		
 		return luceneQuery(lQuery, start, max, resultsFormat);
 	}
 
@@ -96,7 +97,7 @@ public class QueryMetadataLuceneImpl extends QueryMetadataImpl {
 			int n = start + max - 1;
 			reader = null;
 			reader = ReaderManagement.getInstance().getReader(indexDir);
-
+				
 			TopDocs topDocs = null;
 			IndexSearchDelegate result = null;
 
@@ -122,7 +123,6 @@ public class QueryMetadataLuceneImpl extends QueryMetadataImpl {
 			} else if (resultsFormat == TranslateResultsformat.IJS) {
 				result = new ResultDelegateICOPERJS(start, max);
 			} else if (resultsFormat == TranslateResultsformat.ARFJS) {
-				
 				result = new ResultDelegateARIADNERFJS(start, max, lQuery);
 			} else if (resultsFormat == TranslateResultsformat.RFME) {
 				result = new ResultDelegateRFMEntity(start, max);
