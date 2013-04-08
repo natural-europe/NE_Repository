@@ -261,8 +261,7 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 			Object[] fValuesarray = fieldValues.toArray();
 			Object[] flvArray = fieldLangValues.toArray();
 
-			System.out.println("fieldvalues length:" + fValuesarray.length);
-			System.out.println("flvArray length:" + flvArray.length);
+	
 
 			for (int i = 0; i < fValuesarray.length; i++) {
 				Object fValue = fValuesarray[i];
