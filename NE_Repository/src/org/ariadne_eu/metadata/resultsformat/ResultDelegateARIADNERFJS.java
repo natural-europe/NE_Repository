@@ -210,11 +210,32 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 
 	private void addJsonObject(SolrDocument doc, JSONObject json,
 			String fieldName, String responeseName) throws JSONException {
-		Object field = doc.get(fieldName);
-		if (field != null)
-			json.put(responeseName, field);
-		// else
-		// json.put(responeseName, new String(""));
+		Collection<Object> values = doc.getFieldValues(fieldName);
+
+		if (values != null) {
+
+			Object[] results = values.toArray();
+
+			int length = results.length;
+			if (length == 1) {
+				Object object = results[0];
+				json.put(responeseName, object);
+
+			} else {
+				JSONObject jsonObject = new JSONObject();
+
+				for (int i = 0; i < results.length; i++) {
+
+					Object object = results[i];
+
+					jsonObject.put(responeseName + "_" + i, object);
+
+				}
+				json.put(responeseName, jsonObject);
+			}
+
+		}
+
 	}
 
 	private void addJsonGeolocation(SolrDocument doc, JSONObject json,
@@ -261,38 +282,32 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 			Object[] fValuesarray = fieldValues.toArray();
 			Object[] flvArray = fieldLangValues.toArray();
 
-	
-
 			for (int i = 0; i < fValuesarray.length; i++) {
+
 				Object fValue = fValuesarray[i];
 
-				Object fLangValue="";
+				Object fLangValue = "noLangValue";
 				try {
 					fLangValue = flvArray[i];
+
+					JSONObject jsonObject = new JSONObject();
+					jsonObject.put("value", fValue);
+					jsonObject.put("lang", fLangValue);
+
+					data.add(jsonObject);
 				} catch (IndexOutOfBoundsException ex) {
-					System.out.println("Bad Record detected...");
+
+					JSONObject jsonObject = new JSONObject();
+					jsonObject.put("value", fValue);
+					jsonObject.put("lang", fLangValue);
+					data.add(jsonObject);
 				}
 
-				// HashMap<String, Object> elText = new HashMap<>();
-				// elText.put("value", fValue);
-				// elText.put("lang", fLangValue);
-
-				JSONObject jsonObject = new JSONObject();
-				jsonObject.put("value", fValue);
-				jsonObject.put("lang", fLangValue);
-
-				// HashMap<String, Object> langData = new HashMap<>();
-				// langData.put(responseName, fValue);
-
-				// languages.put((String) fLangValue, langData);
-
-				// data.add(elText);
-				data.add(jsonObject);
 			}
 
-			System.out.println("Saving to jsonbject");
 			json.put(responseName, data);
-			System.out.println("Done");
+		} else if (fieldValues != null && fieldLangValues == null) {
+			addJsonObject(doc, json, fieldName, responseName);
 
 		}
 
