@@ -261,41 +261,34 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 			Object[] fValuesarray = fieldValues.toArray();
 			Object[] flvArray = fieldLangValues.toArray();
 
-	
-
 			for (int i = 0; i < fValuesarray.length; i++) {
+
 				Object fValue = fValuesarray[i];
 
-				Object fLangValue="";
+				Object fLangValue = "noLangValue";
 				try {
 					fLangValue = flvArray[i];
+
+					JSONObject jsonObject = new JSONObject();
+					jsonObject.put("value", fValue);
+					jsonObject.put("lang", fLangValue);
+
+					data.add(jsonObject);
 				} catch (IndexOutOfBoundsException ex) {
-					System.out.println("Bad Record detected...");
+
+					JSONObject jsonObject = new JSONObject();
+					jsonObject.put("value", fValue);
+					jsonObject.put("lang", fLangValue);
+					data.add(jsonObject);
 				}
 
-				// HashMap<String, Object> elText = new HashMap<>();
-				// elText.put("value", fValue);
-				// elText.put("lang", fLangValue);
-
-				JSONObject jsonObject = new JSONObject();
-				jsonObject.put("value", fValue);
-				jsonObject.put("lang", fLangValue);
-
-				// HashMap<String, Object> langData = new HashMap<>();
-				// langData.put(responseName, fValue);
-
-				// languages.put((String) fLangValue, langData);
-
-				// data.add(elText);
-				data.add(jsonObject);
 			}
 
-			System.out.println("Saving to jsonbject");
 			json.put(responseName, data);
-			System.out.println("Done");
+		} else if (fieldValues != null && fieldLangValues == null) {
+			addJsonObject(doc, json, fieldName, responseName);
 
 		}
-
 	}
 
 	/*
