@@ -210,32 +210,11 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 
 	private void addJsonObject(SolrDocument doc, JSONObject json,
 			String fieldName, String responeseName) throws JSONException {
-		Collection<Object> values = doc.getFieldValues(fieldName);
-
-		if (values != null) {
-
-			Object[] results = values.toArray();
-
-			int length = results.length;
-			if (length == 1) {
-				Object object = results[0];
-				json.put(responeseName, object);
-
-			} else {
-				JSONObject jsonObject = new JSONObject();
-
-				for (int i = 0; i < results.length; i++) {
-
-					Object object = results[i];
-
-					jsonObject.put(responeseName + "_" + i, object);
-
-				}
-				json.put(responeseName, jsonObject);
-			}
-
-		}
-
+		Object field = doc.get(fieldName);
+		if (field != null)
+			json.put(responeseName, field);
+		// else
+		// json.put(responeseName, new String(""));
 	}
 
 	private void addJsonGeolocation(SolrDocument doc, JSONObject json,
