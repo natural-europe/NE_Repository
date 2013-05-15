@@ -1,6 +1,8 @@
 package org.ariadne_eu.metadata.resultsformat;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -196,7 +198,6 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 			}
 			metadataArrayJson.put(json);
 		}
-		
 
 		resultJson.put("id", idArrayJson);
 		resultJson.put("metadata", metadataArrayJson);
