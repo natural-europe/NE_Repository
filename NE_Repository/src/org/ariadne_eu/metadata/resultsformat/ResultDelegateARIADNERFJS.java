@@ -196,7 +196,7 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 			}
 			metadataArrayJson.put(json);
 		}
-		System.out.println("Done");
+		
 
 		resultJson.put("id", idArrayJson);
 		resultJson.put("metadata", metadataArrayJson);
