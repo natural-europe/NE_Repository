@@ -84,6 +84,7 @@ public class NEHandler extends DocumentHandler {
 	public void startElement(String uri, String localName, String qName,
 			Attributes atts) throws SAXException {
 
+		tmpValue = "";
 		checkMetadataSection(qName, atts);
 
 	}
@@ -708,7 +709,7 @@ public class NEHandler extends DocumentHandler {
 
 	public void characters(char ch[], int start, int length) {
 
-		tmpValue = new String(ch, start, length);
+		tmpValue = tmpValue + new String(ch, start, length);
 		contents = contents + " " + tmpValue;
 
 	}
