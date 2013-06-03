@@ -7,7 +7,7 @@
 		<wb-resource deploy-path="/WEB-INF" source-path="/jsp/WEB-INF" />
 		<wb-resource deploy-path="/META-INF" source-path="/jsp/META-INF" />
 		<wb-resource deploy-path="/" source-path="/jsp" />
-		<property name="java-output-path" value="/NE_Repository_Exp/build/classes" />
+		<property name="java-output-path" value="/NE_Repository_Exp/bin" />
 		<property name="context-root" value="NE_Repository_Exp" />
 	</wb-module>
 </project-modules>
