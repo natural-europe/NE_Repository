@@ -442,6 +442,9 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 		else if (internalName
 				.equalsIgnoreCase("header.metadataLanguages.language"))
 			return "metadataLanguage";
+		else if (internalName
+				.equalsIgnoreCase("header.collectionId"))
+			return "collection";
 
 		return internalName;
 	}
