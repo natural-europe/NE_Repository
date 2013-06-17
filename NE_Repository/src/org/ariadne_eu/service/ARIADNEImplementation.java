@@ -250,6 +250,9 @@ public class ARIADNEImplementation {
 
 		if (expression.contains("keyword:"))
 			expression = expression.replace("keyword:", "metadata.subject:");
+		
+		if (expression.contains("collection:"))
+			expression = expression.replace("collection:", "header.collectionId:");
 
 		return expression;
 	}
