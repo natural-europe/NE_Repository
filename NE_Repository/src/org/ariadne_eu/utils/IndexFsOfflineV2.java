@@ -31,8 +31,8 @@ public class IndexFsOfflineV2 {
 		String newIndexDir = propmanager.getProperty("index.tempfolder");
 		File newdir = new File(newIndexDir);
 		newdir.mkdir();
-		String oldIndexDir = PropertiesManager.getInstance().getProperty(RepositoryConstants.getInstance().SR_LUCENE_INDEXDIR); 
-		PropertiesManager.getInstance().get$properties().put(RepositoryConstants.getInstance().SR_LUCENE_INDEXDIR, newIndexDir);
+		String oldIndexDir = PropertiesManager.getInstance().getProperty(RepositoryConstants.getInstance().sR_LUCENE_INDEXDIR_READ); 
+		PropertiesManager.getInstance().get$properties().put(RepositoryConstants.getInstance().sR_LUCENE_INDEXDIR_READ, newIndexDir);
 
 		ReIndexFSImpl reindex = new ReIndexFSImpl();
 		reindex.reIndexMetadata();

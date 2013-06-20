@@ -49,19 +49,19 @@ public class QueryMetadataLuceneImpl extends QueryMetadataImpl {
 			String indexDirString = PropertiesManager
 					.getInstance()
 					.getProperty(
-							RepositoryConstants.getInstance().SR_LUCENE_INDEXDIR
+							RepositoryConstants.getInstance().sR_LUCENE_INDEXDIR_READ
 									+ "." + getLanguage());
 			if (indexDirString == null)
 				indexDirString = PropertiesManager.getInstance().getProperty(
-						RepositoryConstants.getInstance().SR_LUCENE_INDEXDIR);
+						RepositoryConstants.getInstance().sR_LUCENE_INDEXDIR_READ);
 			if (indexDirString == null)
 				log.error("initialize failed: no "
-						+ RepositoryConstants.getInstance().SR_LUCENE_INDEXDIR
+						+ RepositoryConstants.getInstance().sR_LUCENE_INDEXDIR_READ
 						+ " found");
 			indexDir = new File(indexDirString);
 			if (!indexDir.isDirectory())
 				log.error("initialize failed: "
-						+ RepositoryConstants.getInstance().SR_LUCENE_INDEXDIR
+						+ RepositoryConstants.getInstance().sR_LUCENE_INDEXDIR_READ
 						+ " invalid directory");
 			// TODO: check for valid lucene index
 		} catch (Throwable t) {

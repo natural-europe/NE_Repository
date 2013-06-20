@@ -17,9 +17,9 @@ public class MemoryReaderManagement {
 	
 	private MemoryReaderManagement(){
 		System.out.println("Initializing Lucene InMemory...");
-		String indexDirString = PropertiesManager.getInstance().getProperty(RepositoryConstants.getInstance().SR_LUCENE_INDEXDIR);
+		String indexDirString = PropertiesManager.getInstance().getProperty(RepositoryConstants.getInstance().sR_LUCENE_INDEXDIR_READ);
         if (indexDirString == null)
-            log.error("initialize failed: no " + RepositoryConstants.getInstance().SR_LUCENE_INDEXDIR + " found");
+            log.error("initialize failed: no " + RepositoryConstants.getInstance().sR_LUCENE_INDEXDIR_READ + " found");
         File indexDir = new File(indexDirString);
         RAMDirectory idx = null;
 		try {

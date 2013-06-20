@@ -73,9 +73,9 @@ public class LuceneLomCatalog extends AbstractCatalog {
 		} else {
 			LuceneLomCatalog.maxListSize = Integer.parseInt(maxListSize);
 		}
-		String lucenePath = properties.getProperty(RepositoryConstants.getInstance().SR_LUCENE_INDEXDIR);
+		String lucenePath = properties.getProperty(RepositoryConstants.getInstance().sR_LUCENE_INDEXDIR_READ);
 		if (lucenePath == null) {
-			throw new IllegalArgumentException(RepositoryConstants.getInstance().SR_LUCENE_INDEXDIR + " is missing from the properties file");
+			throw new IllegalArgumentException(RepositoryConstants.getInstance().sR_LUCENE_INDEXDIR_READ + " is missing from the properties file");
 		} else {
 			LuceneLomCatalog.lucenePath = lucenePath;
 		}
@@ -232,7 +232,7 @@ public class LuceneLomCatalog extends AbstractCatalog {
 
 	@SuppressWarnings("unchecked")
 	public Map listIdentifiers(String from, String until, String set, String metadataPrefix) throws BadArgumentException, CannotDisseminateFormatException, NoItemsMatchException, NoSetHierarchyException, OAIInternalServerError {
-		loadIndexReader(new File(PropertiesManager.getInstance().getProperty(RepositoryConstants.getInstance().SR_LUCENE_INDEXDIR)));
+		loadIndexReader(new File(PropertiesManager.getInstance().getProperty(RepositoryConstants.getInstance().sR_LUCENE_INDEXDIR_READ)));
 		IndexSearcher searcher = new IndexSearcher(reader);
 		//		SingletonIndexSearcher sis = SingletonIndexSearcher.getSingletonIndexSearcher(reader);
 		purge(); // clean out old resumptionTokens
@@ -395,7 +395,7 @@ public class LuceneLomCatalog extends AbstractCatalog {
 	@SuppressWarnings("unchecked")
 	public Map listRecords(String from, String until, String set, String metadataPrefix)
 	throws CannotDisseminateFormatException {
-		loadIndexReader(new File(PropertiesManager.getInstance().getProperty(RepositoryConstants.getInstance().SR_LUCENE_INDEXDIR)));
+		loadIndexReader(new File(PropertiesManager.getInstance().getProperty(RepositoryConstants.getInstance().sR_LUCENE_INDEXDIR_READ)));
 		IndexSearcher searcher = new IndexSearcher(reader);
 		purge(); // clean out old resumptionTokens
 		Map listRecordsMap = new HashMap();
@@ -534,7 +534,7 @@ public class LuceneLomCatalog extends AbstractCatalog {
 	@SuppressWarnings("unchecked")
 	public Map listRecords(String resumptionToken)
 	throws BadResumptionTokenException {
-		loadIndexReader(new File(PropertiesManager.getInstance().getProperty(RepositoryConstants.getInstance().SR_LUCENE_INDEXDIR)));
+		loadIndexReader(new File(PropertiesManager.getInstance().getProperty(RepositoryConstants.getInstance().sR_LUCENE_INDEXDIR_READ)));
 		IndexSearcher searcher = new IndexSearcher(reader);
 		Map listRecordsMap = new HashMap();
 		ArrayList records = new ArrayList();
@@ -702,7 +702,7 @@ public class LuceneLomCatalog extends AbstractCatalog {
 	//	}
 
 	public String getRecord(String oaiIdentifier, String metadataPrefix) throws IdDoesNotExistException, CannotDisseminateFormatException, OAIInternalServerError {
-		loadIndexReader(new File(PropertiesManager.getInstance().getProperty(RepositoryConstants.getInstance().SR_LUCENE_INDEXDIR)));
+		loadIndexReader(new File(PropertiesManager.getInstance().getProperty(RepositoryConstants.getInstance().sR_LUCENE_INDEXDIR_READ)));
 		IndexSearcher searcher = new IndexSearcher(reader);
 
 		String localIdentifier = oaiIdentifier;
