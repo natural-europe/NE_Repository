@@ -217,12 +217,12 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 
 			Object[] results = values.toArray();
 
-			int length = results.length;
-			if (length == 1) {
-				Object object = results[0];
-				json.put(responeseName, object);
-
-			} else {
+//			int length = results.length;
+//			if (length == 1) {
+//				Object object = results[0];
+//				json.put(responeseName, object);
+//
+//			} else {
 				JSONObject jsonObject = new JSONObject();
 
 				for (int i = 0; i < results.length; i++) {
@@ -233,7 +233,7 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 
 				}
 				json.put(responeseName, jsonObject);
-			}
+			//}
 
 		}
 
@@ -442,8 +442,7 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 		else if (internalName
 				.equalsIgnoreCase("header.metadataLanguages.language"))
 			return "metadataLanguage";
-		else if (internalName
-				.equalsIgnoreCase("header.collectionId"))
+		else if (internalName.equalsIgnoreCase("header.collectionId"))
 			return "collection";
 
 		return internalName;
