@@ -125,14 +125,40 @@ public class Query {
 				if (thisClause.has("expression"))
 					expression = thisClause.getString("expression").trim();
 
+				System.out.println("Expression:" + expression);
+
 				if (language.equalsIgnoreCase("vsql")) {
 					stList.addAll(parseVSQL(expression));
 				} else if (language.equalsIgnoreCase("anyOf")) {
 					String[] parts = expression.split(":");
-					stList.add(parseAnyOf(parts[0], parts[1], ","));
+					if (parts.length <= 2)
+						stList.add(parseAnyOf(parts[0], parts[1], ","));
+					else {
+
+						String cnt = "";
+						for (int j = 1; j < parts.length; j++) {
+
+							cnt = cnt + parts[j] + ":";
+						}
+						cnt = cnt.substring(0, cnt.lastIndexOf(":"));
+						stList.add(parseAnyOf(parts[0], cnt, ","));
+					}
+
 				} else if (language.equalsIgnoreCase("anyOfFacet")) {
 					String[] parts = expression.split(":");
-					stList.add(parseFacet(parts[0], parts[1], ","));
+
+					if (parts.length <= 2)
+						stList.add(parseFacet(parts[0], parts[1], ","));
+					else {
+						String cnt = "";
+						for (int j = 1; j < parts.length; j++) {
+
+							cnt = cnt + parts[j] + ":";
+						}
+						cnt = cnt.substring(0, cnt.lastIndexOf(":"));
+						stList.add(parseAnyOf(parts[0], cnt, ","));
+					}
+
 				}
 			}
 			searchTerms = new String[stList.size()][];

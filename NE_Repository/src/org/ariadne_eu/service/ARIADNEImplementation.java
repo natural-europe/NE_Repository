@@ -120,8 +120,11 @@ public class ARIADNEImplementation {
 		log.debug("query:json=" + json + ",callback:" + callback);
 
 		try {
+
 			jo = new JSONObject(json);
+
 			qry.parseJson(jo);
+
 			// CNF :: ((a OR b) AND (c OR d))
 			if (qry.searchTerms != null) {
 				for (int i = 0; i < qry.searchTerms.length; i++) {
@@ -250,9 +253,10 @@ public class ARIADNEImplementation {
 
 		if (expression.contains("keyword:"))
 			expression = expression.replace("keyword:", "metadata.subject:");
-		
+
 		if (expression.contains("collection:"))
-			expression = expression.replace("collection:", "header.collectionId:");
+			expression = expression.replace("collection:",
+					"header.collectionId:");
 
 		return expression;
 	}
