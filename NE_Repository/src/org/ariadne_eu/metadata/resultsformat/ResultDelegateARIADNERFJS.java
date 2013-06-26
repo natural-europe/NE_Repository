@@ -1,19 +1,14 @@
 package org.ariadne_eu.metadata.resultsformat;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 import java.util.Vector;
 
 import net.sourceforge.minor.lucene.core.searcher.IndexSearchDelegate;
 
-import org.apache.commons.collections.MultiHashMap;
 import org.apache.log4j.Logger;
 import org.apache.lucene.index.CorruptIndexException;
 import org.apache.lucene.search.IndexSearcher;
@@ -223,9 +218,9 @@ public class ResultDelegateARIADNERFJS implements IndexSearchDelegate {
 //				json.put(responeseName, object);
 //
 //			} else {
-				JSONObject jsonObject = new JSONObject();
+				//JSONObject jsonObject = new JSONObject();
 
-				org.json.JSONArray jsonArray=new org.json.JSONArray();
+				JSONArray jsonArray=new JSONArray();
 				for (int i = 0; i < results.length; i++) {
 
 					Object object = results[i];
