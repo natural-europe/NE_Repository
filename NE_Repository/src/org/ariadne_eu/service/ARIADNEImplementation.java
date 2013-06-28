@@ -246,6 +246,10 @@ public class ARIADNEImplementation {
 		if (expression.contains("metadataLanguage:"))
 			expression = expression.replace("metadataLanguage:",
 					"header.metadataLanguages.language:");
+		
+		if (expression.contains("contentType:"))
+			expression = expression.replace("contentType:",
+					"metadata.contentType:");
 
 		if (expression.contains("collection:\"*\""))
 			expression = expression.replace("collection:\"*\"",
