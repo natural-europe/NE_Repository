@@ -49,3 +49,5 @@
 2013-06-26 12:37:55,808 INFO  org.ariadne_eu.service.ARIADNEImplementation @ querywithPadding:query=lom.solr:"all"
 2013-06-28 12:59:49,398 INFO  org.ariadne_eu.service.ARIADNEImplementation @ querywithPadding:query=lom.solr:"all"
 2013-06-28 13:00:11,807 INFO  org.ariadne_eu.service.ARIADNEImplementation @ querywithPadding:query=lom.solr:"all" AND metadata.contentType:"IMAGE"
+2013-06-28 13:07:53,475 INFO  org.ariadne_eu.service.ARIADNEImplementation @ querywithPadding:query=lom.solr:"all"
+2013-06-28 13:08:08,961 INFO  org.ariadne_eu.service.ARIADNEImplementation @ querywithPadding:query=lom.solr:"all" AND metadata.contentType:"IMAGE"
